@@ -1,0 +1,60 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build
+bin/
+obj/
+[Bb]uild/
+[Bb]uild[Ll]og.*
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# Others
+*.dbmdl
+*.bak
+*.cache
+*.pdb
+
+# Windows Forms designer files backup
+*.Designer.cs~
+
+# Publish output
+publish/
+
+# Local settings
+appsettings.Development.json
+appsettings.Local.json
+
+# User secrets
+secrets.json
+
+# Optional: ignore compiled resources
+*.resources
+
+# Optional: ignore auto-generated config transforms
+*.csproj.user
