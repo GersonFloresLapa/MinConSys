@@ -33,8 +33,8 @@ namespace MinConSys
             try
             {
                 _personas = (await _personaService.ListarPersonasAsync()).ToList();
-                dvgPersonas.DataSource = null;
-                dvgPersonas.DataSource = _personas;
+                dgvPersonas.DataSource = null;
+                dgvPersonas.DataSource = _personas;
             }
             catch (Exception ex)
             {

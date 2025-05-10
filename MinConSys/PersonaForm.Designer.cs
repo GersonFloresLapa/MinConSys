@@ -31,10 +31,10 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.dvgPersonas = new System.Windows.Forms.DataGridView();
+            this.dgvPersonas = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgPersonas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,19 +67,19 @@
             this.btnEditar.Size = new System.Drawing.Size(73, 36);
             this.btnEditar.Text = "Editar";
             // 
-            // dvgPersonas
+            // dgvPersonas
             // 
-            this.dvgPersonas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dvgPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgPersonas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dvgPersonas.Location = new System.Drawing.Point(0, 0);
-            this.dvgPersonas.Name = "dvgPersonas";
-            this.dvgPersonas.Size = new System.Drawing.Size(800, 478);
-            this.dvgPersonas.TabIndex = 0;
+            this.dgvPersonas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersonas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPersonas.Location = new System.Drawing.Point(0, 0);
+            this.dgvPersonas.Name = "dgvPersonas";
+            this.dgvPersonas.Size = new System.Drawing.Size(800, 478);
+            this.dgvPersonas.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dvgPersonas);
+            this.panel1.Controls.Add(this.dgvPersonas);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
@@ -98,7 +98,7 @@
             this.Load += new System.EventHandler(this.PersonaForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgPersonas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -109,7 +109,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnNuevo;
         private System.Windows.Forms.ToolStripButton btnEditar;
-        private System.Windows.Forms.DataGridView dvgPersonas;
+        private System.Windows.Forms.DataGridView dgvPersonas;
         private System.Windows.Forms.Panel panel1;
     }
 }

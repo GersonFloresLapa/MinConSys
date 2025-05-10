@@ -21,7 +21,19 @@ namespace MinConSys.Core.Services
 
         public async Task<List<PersonaDto>> ListarPersonasAsync()
         {
-            return await _personaRepository.GetAllPersonasAsync();
+            var personas =  await _personaRepository.GetAllPersonasAsync();
+
+            // Mapear a DTO
+            var lista = personas.Select(p => new PersonaDto
+            {
+                IdPersona = p.IdPersona,
+                DocumentoCompleto = $"{p.TipoDocumento}-{p.NumeroDocumento}",
+                NombreCompleto = $"{p.Nombres} {p.ApellidoPaterno} {p.ApellidoMaterno}".Trim(),
+                Correo = p.CorreoElectronico,
+                Estado = p.Estado == "A" ? "Activo" : "Inactivo"
+            }).ToList();
+
+            return lista;
         }
     }
 }
