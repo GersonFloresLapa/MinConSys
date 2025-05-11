@@ -1,5 +1,6 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
+using MinConSys.Core.Models;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Core.Models.Response;
 using System;
@@ -34,6 +35,28 @@ namespace MinConSys.Core.Services
             }).ToList();
 
             return lista;
+        }
+
+        public async Task<Persona> ObtenerPorIdAsync(int id)
+        {
+            return await _personaRepository.GetPersonaByIdAsync(id);
+        }
+
+        public async Task<int> CrearPersonaAsync(Persona request)
+        {
+            request.FechaCreacion = DateTime.Now;
+            return await _personaRepository.AddPersonaAsync(request);
+        }
+
+        public async Task<bool> ActualizarPersonaAsync(Persona request)
+        {
+            request.FechaModificacion = DateTime.Now;
+            return await _personaRepository.UpdatePersonaAsync(request);
+        }
+
+        public async Task<bool> EliminarPersonaAsync(int id,string nombreUsuario)
+        {
+            return await _personaRepository.DeletePersonaAsync(id, nombreUsuario);
         }
     }
 }

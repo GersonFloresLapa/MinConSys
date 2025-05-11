@@ -1,5 +1,7 @@
 ﻿using Dapper;
 using MinConSys.Core.Interfaces.Repository;
+using MinConSys.Core.Models;
+using MinConSys.Core.Models.Dto;
 using MinConSys.Core.Models.Response;
 using MinConSys.Infrastructure.Data;
 using System;
@@ -11,26 +13,25 @@ using System.Threading.Tasks;
 
 namespace MinConSys.Infrastructure.Repositories
 {
-    public class LoginRepository : ILoginRepository
+    public class MenuRepository : IMenuRepository
     {
         protected readonly ConnectionFactory _connectionFactory;
-        public LoginRepository(ConnectionFactory connectionFactory) 
+        public MenuRepository(ConnectionFactory connectionFactory) 
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<LoginResponse> Autenticar(string nombreUsuario, string clave)
+
+        public async Task<List<MenuDto>> ObtenerMenuPorUsuario(string nombreUsuario)
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
-                var parameters = new { NombreUsuario = nombreUsuario, Clave = clave };
+                var menu =  await connection.QueryAsync<MenuDto>(
+                       "usp_ObtenerMenuPorUsuario",
+                       new { nombreUsuario },
+                       commandType: CommandType.StoredProcedure
+                        );
 
-                var usuario = await connection.QueryFirstOrDefaultAsync<LoginResponse>(
-                    "usp_LoginUsuario",
-                    parameters,
-                    commandType: CommandType.StoredProcedure
-                );
-
-                return usuario;
+                return menu.ToList();
             }
         }
     }

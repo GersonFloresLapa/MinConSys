@@ -1,6 +1,7 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Helpers;
+using MinConSys.Maestros;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,5 +43,18 @@ namespace MinConSys
             }
         }
 
+        private async void btnNuevo_Click(object sender, EventArgs e)
+        {
+            using (var form = new PersonaEditForm(_personaService))
+            {
+                
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    await CargarPersonasAsync(); // Vuelves a cargar la lista
+                }
+            }
+        }
     }
 }

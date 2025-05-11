@@ -8,7 +8,7 @@ namespace MinConSys.Core.Models.Dto
 {
     public class MenuDto
     {
-        public int Id { get; set; }
+        public int IdMenu { get; set; }
         public string Nombre { get; set; }
         public string NombreInterno { get; set; }
         public int? PadreId { get; set; }

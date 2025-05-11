@@ -22,7 +22,7 @@ namespace MinConSys.Infrastructure.Repositories
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            using (var connection = _connectionFactory.GetConnection())
+            using (var connection = await _connectionFactory.GetConnection())
             {
                 return await connection.QueryAsync<T>($"SELECT * FROM {_tableName}");
             }
@@ -30,7 +30,7 @@ namespace MinConSys.Infrastructure.Repositories
 
         public async Task<T> GetByIdAsync(int id)
         {
-            using (var connection = _connectionFactory.GetConnection())
+            using (var connection = await _connectionFactory.GetConnection())
             {
                 return await connection.QuerySingleOrDefaultAsync<T>($"SELECT * FROM {_tableName} WHERE Id = @Id", new { Id = id });
             }
@@ -41,7 +41,7 @@ namespace MinConSys.Infrastructure.Repositories
 
         public async Task<bool> DeleteAsync(int id)
         {
-            using (var connection = _connectionFactory.GetConnection())
+            using (var connection = await _connectionFactory.GetConnection())
             {
                 var affected = await connection.ExecuteAsync($"DELETE FROM {_tableName} WHERE Id = @Id", new { Id = id });
                 return affected > 0;

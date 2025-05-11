@@ -17,10 +17,10 @@ namespace MinConSys.Infrastructure.Data
             _connectionString = connectionString;
         }
 
-        public IDbConnection GetConnection()
+        public async Task<IDbConnection> GetConnection()
         {
             var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            await connection.OpenAsync();
             return connection;
         }
     }

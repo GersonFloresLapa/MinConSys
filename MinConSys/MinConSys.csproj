@@ -70,16 +70,22 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\PersonaEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\PersonaEditForm.Designer.cs">
+      <DependentUpon>PersonaEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonaForm.cs">
+    <Compile Include="Maestros\PersonaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PersonaForm.Designer.cs">
+    <Compile Include="Maestros\PersonaForm.Designer.cs">
       <DependentUpon>PersonaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -91,6 +97,9 @@
     <None Include="Resources\guardar.png" />
     <None Include="Resources\exportar.png" />
     <None Include="Resources\eliminar.png" />
+    <EmbeddedResource Include="Maestros\PersonaEditForm.resx">
+      <DependentUpon>PersonaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -101,7 +110,7 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonaForm.resx">
+    <EmbeddedResource Include="Maestros\PersonaForm.resx">
       <DependentUpon>PersonaForm.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="appsettings.json">

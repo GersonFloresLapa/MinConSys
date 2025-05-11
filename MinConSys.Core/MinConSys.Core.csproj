@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\Repository\ILoginRepository.cs" />
     <Compile Include="Interfaces\Repository\IPersonaRepository.cs" />
     <Compile Include="Interfaces\Services\ILoginService.cs" />
+    <Compile Include="Interfaces\Services\IMenuService.cs" />
     <Compile Include="Interfaces\Services\IPersonaService.cs" />
     <Compile Include="Models\Dto\MenuDto.cs" />
     <Compile Include="Models\Dto\PersonaDto.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Models\Response\LoginResponse.cs" />
     <Compile Include="Models\Response\PersonaResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\PersonaService.cs" />
     <Compile Include="Services\LoginService.cs" />
   </ItemGroup>

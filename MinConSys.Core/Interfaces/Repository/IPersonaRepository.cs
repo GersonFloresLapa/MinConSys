@@ -11,6 +11,9 @@ namespace MinConSys.Core.Interfaces.Repository
     public interface IPersonaRepository
     {
         Task<List<Persona>> GetAllPersonasAsync();
-        
+        Task<Persona> GetPersonaByIdAsync(int id);
+        Task<int> AddPersonaAsync(Persona persona);
+        Task<bool> UpdatePersonaAsync(Persona persona);
+        Task<bool> DeletePersonaAsync(int id, string usuario);
     }
 }

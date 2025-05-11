@@ -10,6 +10,6 @@ namespace MinConSys.Core.Interfaces.Repository
 {
     public interface IMenuRepository
     {
-        Task<MenuDto> ObtenerMenuUsuario(string nombreUsuario);
+        Task<List<MenuDto>> ObtenerMenuPorUsuario(string nombreUsuario);
     }
 }

@@ -14,10 +14,10 @@ namespace MinConSys.Core.Models
         public string Nombres { get; set; }
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
-        public string Genero { get; set; }
         public string CorreoElectronico { get; set; }
         public string Telefono { get; set; }
         public string Direccion { get; set; }
+        public string Brevete { get; set; }
         public string Estado { get; set; }
         public string UsuarioCreacion { get; set; }
         public DateTime? FechaCreacion { get; set; }

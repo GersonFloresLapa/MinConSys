@@ -9,6 +9,7 @@ namespace MinConSys.Core.Models.Response
     public class LoginResponse
     {
         public string NombreCompleto { get; set; }
+        public string NombreUsuario { get; set; }
         public string NombreRol { get; set; }
     }
 }
