@@ -70,6 +70,18 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\LocalidadEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\LocalidadEditForm.Designer.cs">
+      <DependentUpon>LocalidadEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\LocalidadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\LocalidadForm.Designer.cs">
+      <DependentUpon>LocalidadForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\PersonaEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +109,12 @@
     <None Include="Resources\guardar.png" />
     <None Include="Resources\exportar.png" />
     <None Include="Resources\eliminar.png" />
+    <EmbeddedResource Include="Maestros\LocalidadEditForm.resx">
+      <DependentUpon>LocalidadEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\LocalidadForm.resx">
+      <DependentUpon>LocalidadForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maestros\PersonaEditForm.resx">
       <DependentUpon>PersonaEditForm.cs</DependentUpon>
     </EmbeddedResource>
