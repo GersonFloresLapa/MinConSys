@@ -67,11 +67,11 @@
     <Compile Include="Models\Dto\MenuDto.cs" />
     <Compile Include="Models\Dto\TablaGeneralesDto.cs" />
     <Compile Include="Models\Dto\PersonaDto.cs" />
-    <Compile Include="Models\Localidad.cs" />
+    <Compile Include="Models\Base\Localidad.cs" />
     <Compile Include="Models\Request\TablaGeneralesRequest.cs" />
     <Compile Include="Models\Response\TablaGeneralesResponse.cs" />
-    <Compile Include="Models\TablaGenerales.cs" />
-    <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Base\TablaGenerales.cs" />
+    <Compile Include="Models\Base\Persona.cs" />
     <Compile Include="Models\Request\LocalidadRequest.cs" />
     <Compile Include="Models\Request\LoginRequest.cs" />
     <Compile Include="Models\Request\PersonaRequest.cs" />
