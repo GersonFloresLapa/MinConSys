@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Maestros\VehiculoForm.Designer.cs">
       <DependentUpon>VehiculoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\LocalidadEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +167,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\VehiculoForm.resx">
       <DependentUpon>VehiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maestros\LocalidadEditForm.resx">
       <DependentUpon>LocalidadEditForm.cs</DependentUpon>
     </EmbeddedResource>
