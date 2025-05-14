@@ -1,4 +1,5 @@
 ﻿using MinConSys.Core.Interfaces.Services;
+using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Helpers;
 using MinConSys.Maestros;
@@ -14,29 +15,29 @@ using System.Windows.Forms;
 
 namespace MinConSys
 {
-    public partial class PersonaForm : Form
+    public partial class EmpresaForm : Form
     {
-        private readonly IPersonaService _personaService;
-        private List<PersonaDto> _personas;
-        public PersonaForm(IPersonaService personaService)
+        private readonly IEmpresaService _empresaService;
+        private List<Empresa> _empresas;
+        public EmpresaForm(IEmpresaService empresaService)
         {
             InitializeComponent();
-            _personaService = personaService;
+            _empresaService = empresaService;
  
         }
 
-        private async void PersonaForm_Load(object sender, EventArgs e)
+        private async void EmpresaForm_Load(object sender, EventArgs e)
         {
-            await CargarPersonasAsync();
-            dgvPersonas.ConfigurarGenerico();
+            await CargarEmpresasAsync();
+            dgvEmpresas.ConfigurarGenerico();
         }
-        private async Task CargarPersonasAsync()
+        private async Task CargarEmpresasAsync()
         {
             try
             {
-                _personas = (await _personaService.ListarPersonasAsync()).ToList();
-                dgvPersonas.DataSource = null;
-                dgvPersonas.DataSource = _personas;
+                _empresas = (await _empresaService.ListarEmpresasAsync()).ToList();
+                dgvEmpresas.DataSource = null;
+                dgvEmpresas.DataSource = _empresas;
             }
             catch (Exception ex)
             {
@@ -46,27 +47,27 @@ namespace MinConSys
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new PersonaEditForm(_personaService))
+            using (var form = new EmpresaEditForm(_empresaService))
             {
                 var result = form.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
-                    await CargarPersonasAsync(); // Vuelves a cargar la lista
+                    await CargarEmpresasAsync(); // Vuelves a cargar la lista
                 }
             }
         }
 
         private async void btnEditar_Click(object sender, EventArgs e)
         {
-            int idPersona = Convert.ToInt32(dgvPersonas.CurrentRow.Cells["IdPersona"].Value);
-            using (var form = new PersonaEditForm(_personaService, idPersona))
+            int idEmpresa = Convert.ToInt32(dgvEmpresas.CurrentRow.Cells["IdEmpresa"].Value);
+            using (var form = new EmpresaEditForm(_empresaService, idEmpresa))
             {
                 var result = form.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
-                    await CargarPersonasAsync(); // Vuelves a cargar la lista
+                    await CargarEmpresasAsync(); // Vuelves a cargar la lista
                 }
             }
         }

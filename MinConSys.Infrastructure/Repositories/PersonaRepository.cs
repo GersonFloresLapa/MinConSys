@@ -55,6 +55,9 @@ namespace MinConSys.Infrastructure.Repositories
                     ApellidoPaterno,
                     ApellidoMaterno,
                     CorreoElectronico,
+                    Telefono,
+                    Direccion,
+                    Brevete,
                     Estado
                    FROM Personas
                    WHERE IdPersona = @Id AND Estado = 'A'";

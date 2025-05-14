@@ -30,8 +30,17 @@ namespace MinConSys.Maestros
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.txtBrevete = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtCorreoElectronico = new System.Windows.Forms.TextBox();
+            this.txtApellidoMaterno = new System.Windows.Forms.TextBox();
+            this.txtApellidoPaterno = new System.Windows.Forms.TextBox();
+            this.txtNombres = new System.Windows.Forms.TextBox();
+            this.txtNumeroDocumento = new System.Windows.Forms.TextBox();
+            this.cboTipoDocumento = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -41,17 +50,6 @@ namespace MinConSys.Maestros
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboTipoDocumento = new System.Windows.Forms.ComboBox();
-            this.txtNumeroDocumento = new System.Windows.Forms.TextBox();
-            this.txtNombres = new System.Windows.Forms.TextBox();
-            this.txtApellidoPaterno = new System.Windows.Forms.TextBox();
-            this.txtApellidoMaterno = new System.Windows.Forms.TextBox();
-            this.txtCorreoElectronico = new System.Windows.Forms.TextBox();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtBrevete = new System.Windows.Forms.TextBox();
-            this.cboEstado = new System.Windows.Forms.ComboBox();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,9 +64,18 @@ namespace MinConSys.Maestros
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGuardar.Image = global::MinConSys.Properties.Resources.guardar;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
+            this.btnGuardar.Text = "toolStripButton1";
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cboEstado);
             this.panel1.Controls.Add(this.txtBrevete);
             this.panel1.Controls.Add(this.txtDireccion);
             this.panel1.Controls.Add(this.txtTelefono);
@@ -78,7 +85,6 @@ namespace MinConSys.Maestros
             this.panel1.Controls.Add(this.txtNombres);
             this.panel1.Controls.Add(this.txtNumeroDocumento);
             this.panel1.Controls.Add(this.cboTipoDocumento);
-            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
@@ -94,14 +100,80 @@ namespace MinConSys.Maestros
             this.panel1.Size = new System.Drawing.Size(549, 400);
             this.panel1.TabIndex = 1;
             // 
-            // label10
+            // txtBrevete
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(276, 344);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 13);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Estado:";
+            this.txtBrevete.Location = new System.Drawing.Point(107, 337);
+            this.txtBrevete.Name = "txtBrevete";
+            this.txtBrevete.Size = new System.Drawing.Size(121, 20);
+            this.txtBrevete.TabIndex = 18;
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(107, 293);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(392, 20);
+            this.txtDireccion.TabIndex = 17;
+            this.txtDireccion.Tag = "";
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Location = new System.Drawing.Point(107, 249);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(392, 20);
+            this.txtTelefono.TabIndex = 16;
+            this.txtTelefono.Tag = "entero";
+            // 
+            // txtCorreoElectronico
+            // 
+            this.txtCorreoElectronico.Location = new System.Drawing.Point(107, 205);
+            this.txtCorreoElectronico.Name = "txtCorreoElectronico";
+            this.txtCorreoElectronico.Size = new System.Drawing.Size(392, 20);
+            this.txtCorreoElectronico.TabIndex = 15;
+            this.txtCorreoElectronico.Tag = "email";
+            // 
+            // txtApellidoMaterno
+            // 
+            this.txtApellidoMaterno.Location = new System.Drawing.Point(107, 164);
+            this.txtApellidoMaterno.Name = "txtApellidoMaterno";
+            this.txtApellidoMaterno.Size = new System.Drawing.Size(392, 20);
+            this.txtApellidoMaterno.TabIndex = 14;
+            // 
+            // txtApellidoPaterno
+            // 
+            this.txtApellidoPaterno.Location = new System.Drawing.Point(107, 117);
+            this.txtApellidoPaterno.Name = "txtApellidoPaterno";
+            this.txtApellidoPaterno.Size = new System.Drawing.Size(392, 20);
+            this.txtApellidoPaterno.TabIndex = 13;
+            this.txtApellidoPaterno.Tag = "requerido";
+            // 
+            // txtNombres
+            // 
+            this.txtNombres.Location = new System.Drawing.Point(107, 73);
+            this.txtNombres.Name = "txtNombres";
+            this.txtNombres.Size = new System.Drawing.Size(392, 20);
+            this.txtNombres.TabIndex = 12;
+            this.txtNombres.Tag = "requerido";
+            // 
+            // txtNumeroDocumento
+            // 
+            this.txtNumeroDocumento.Location = new System.Drawing.Point(399, 29);
+            this.txtNumeroDocumento.Name = "txtNumeroDocumento";
+            this.txtNumeroDocumento.Size = new System.Drawing.Size(100, 20);
+            this.txtNumeroDocumento.TabIndex = 11;
+            this.txtNumeroDocumento.Tag = "requerido|entero";
+            // 
+            // cboTipoDocumento
+            // 
+            this.cboTipoDocumento.FormattingEnabled = true;
+            this.cboTipoDocumento.Items.AddRange(new object[] {
+            "DNI",
+            "CE",
+            "PAS"});
+            this.cboTipoDocumento.Location = new System.Drawing.Point(107, 29);
+            this.cboTipoDocumento.Name = "cboTipoDocumento";
+            this.cboTipoDocumento.Size = new System.Drawing.Size(121, 21);
+            this.cboTipoDocumento.TabIndex = 10;
+            this.cboTipoDocumento.Tag = "requerido";
             // 
             // label9
             // 
@@ -184,95 +256,6 @@ namespace MinConSys.Maestros
             this.label1.TabIndex = 0;
             this.label1.Text = "Tipo Documento:";
             // 
-            // cboTipoDocumento
-            // 
-            this.cboTipoDocumento.FormattingEnabled = true;
-            this.cboTipoDocumento.Items.AddRange(new object[] {
-            "DNI",
-            "CE",
-            "PAS"});
-            this.cboTipoDocumento.Location = new System.Drawing.Point(107, 29);
-            this.cboTipoDocumento.Name = "cboTipoDocumento";
-            this.cboTipoDocumento.Size = new System.Drawing.Size(121, 21);
-            this.cboTipoDocumento.TabIndex = 10;
-            // 
-            // txtNumeroDocumento
-            // 
-            this.txtNumeroDocumento.Location = new System.Drawing.Point(399, 29);
-            this.txtNumeroDocumento.Name = "txtNumeroDocumento";
-            this.txtNumeroDocumento.Size = new System.Drawing.Size(100, 20);
-            this.txtNumeroDocumento.TabIndex = 11;
-            // 
-            // txtNombres
-            // 
-            this.txtNombres.Location = new System.Drawing.Point(107, 73);
-            this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(392, 20);
-            this.txtNombres.TabIndex = 12;
-            // 
-            // txtApellidoPaterno
-            // 
-            this.txtApellidoPaterno.Location = new System.Drawing.Point(107, 117);
-            this.txtApellidoPaterno.Name = "txtApellidoPaterno";
-            this.txtApellidoPaterno.Size = new System.Drawing.Size(392, 20);
-            this.txtApellidoPaterno.TabIndex = 13;
-            // 
-            // txtApellidoMaterno
-            // 
-            this.txtApellidoMaterno.Location = new System.Drawing.Point(107, 164);
-            this.txtApellidoMaterno.Name = "txtApellidoMaterno";
-            this.txtApellidoMaterno.Size = new System.Drawing.Size(392, 20);
-            this.txtApellidoMaterno.TabIndex = 14;
-            // 
-            // txtCorreoElectronico
-            // 
-            this.txtCorreoElectronico.Location = new System.Drawing.Point(107, 205);
-            this.txtCorreoElectronico.Name = "txtCorreoElectronico";
-            this.txtCorreoElectronico.Size = new System.Drawing.Size(392, 20);
-            this.txtCorreoElectronico.TabIndex = 15;
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Location = new System.Drawing.Point(107, 249);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(392, 20);
-            this.txtTelefono.TabIndex = 16;
-            // 
-            // txtDireccion
-            // 
-            this.txtDireccion.Location = new System.Drawing.Point(107, 293);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(392, 20);
-            this.txtDireccion.TabIndex = 17;
-            // 
-            // txtBrevete
-            // 
-            this.txtBrevete.Location = new System.Drawing.Point(107, 337);
-            this.txtBrevete.Name = "txtBrevete";
-            this.txtBrevete.Size = new System.Drawing.Size(121, 20);
-            this.txtBrevete.TabIndex = 18;
-            // 
-            // cboEstado
-            // 
-            this.cboEstado.FormattingEnabled = true;
-            this.cboEstado.Items.AddRange(new object[] {
-            "A",
-            "I"});
-            this.cboEstado.Location = new System.Drawing.Point(334, 337);
-            this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(165, 21);
-            this.cboEstado.TabIndex = 19;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardar.Image = global::MinConSys.Properties.Resources.guardar;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
-            this.btnGuardar.Text = "toolStripButton1";
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
             // PersonaEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +265,7 @@ namespace MinConSys.Maestros
             this.Controls.Add(this.toolStrip1);
             this.Name = "PersonaEditForm";
             this.Text = "PersonaEditForm";
+            this.Load += new System.EventHandler(this.PersonaEditForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -295,7 +279,6 @@ namespace MinConSys.Maestros
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -305,7 +288,6 @@ namespace MinConSys.Maestros
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.TextBox txtBrevete;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtTelefono;

@@ -97,6 +97,18 @@ namespace MinConSys
                         var personaForm = new PersonaForm(_serviceProvider.GetRequiredService<IPersonaService>());
                         AbrirFormularioHijo(personaForm);
                         break;
+                    case "Empresas":
+                        var empresaForm = new EmpresaForm(_serviceProvider.GetRequiredService<IEmpresaService>());
+                        AbrirFormularioHijo(empresaForm);
+                        break;
+                    case "Vehiculo":
+                        var vehiculoForm = new VehiculoForm(_serviceProvider.GetRequiredService<IVehiculoService>(), _serviceProvider.GetRequiredService<IEmpresaService>());
+                        AbrirFormularioHijo(vehiculoForm);
+                        break;
+                    case "Contrato":
+                        var contratoForm = new ContratoForm(_serviceProvider.GetRequiredService<IContratoService>(), _serviceProvider.GetRequiredService<IEmpresaService>());
+                        AbrirFormularioHijo(contratoForm);
+                        break;
                     default:
                         break;
                 }

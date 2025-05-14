@@ -42,16 +42,17 @@ namespace MinConSys.Core.Services
             return await _personaRepository.GetPersonaByIdAsync(id);
         }
 
-        public async Task<int> CrearPersonaAsync(Persona request)
+        public async Task<int> CrearPersonaAsync(Persona persona)
         {
-            request.FechaCreacion = DateTime.Now;
-            return await _personaRepository.AddPersonaAsync(request);
+            persona.FechaCreacion = DateTime.Now;
+            persona.Estado = "A";
+            return await _personaRepository.AddPersonaAsync(persona);
         }
 
-        public async Task<bool> ActualizarPersonaAsync(Persona request)
+        public async Task<bool> ActualizarPersonaAsync(Persona persona)
         {
-            request.FechaModificacion = DateTime.Now;
-            return await _personaRepository.UpdatePersonaAsync(request);
+            persona.FechaModificacion = DateTime.Now;
+            return await _personaRepository.UpdatePersonaAsync(persona);
         }
 
         public async Task<bool> EliminarPersonaAsync(int id,string nombreUsuario)

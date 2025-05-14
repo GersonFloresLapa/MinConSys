@@ -1,6 +1,6 @@
 ﻿namespace MinConSys
 {
-    partial class PersonaForm
+    partial class VehiculoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,10 +31,10 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.dgvPersonas = new System.Windows.Forms.DataGridView();
+            this.dgvVehiculos = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVehiculos)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,38 +69,38 @@
             this.btnEditar.Text = "Editar";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // dgvPersonas
+            // dgvVehiculos
             // 
-            this.dgvPersonas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPersonas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPersonas.Location = new System.Drawing.Point(0, 0);
-            this.dgvPersonas.Name = "dgvPersonas";
-            this.dgvPersonas.Size = new System.Drawing.Size(800, 478);
-            this.dgvPersonas.TabIndex = 0;
+            this.dgvVehiculos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVehiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVehiculos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvVehiculos.Location = new System.Drawing.Point(0, 0);
+            this.dgvVehiculos.Name = "dgvVehiculos";
+            this.dgvVehiculos.Size = new System.Drawing.Size(800, 478);
+            this.dgvVehiculos.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dgvPersonas);
+            this.panel1.Controls.Add(this.dgvVehiculos);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 478);
             this.panel1.TabIndex = 2;
             // 
-            // PersonaForm
+            // VehiculoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 517);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "PersonaForm";
-            this.Text = "Personas";
-            this.Load += new System.EventHandler(this.PersonaForm_Load);
+            this.Name = "VehiculoForm";
+            this.Text = "Empresas";
+            this.Load += new System.EventHandler(this.VehiculoForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVehiculos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -111,7 +111,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnNuevo;
         private System.Windows.Forms.ToolStripButton btnEditar;
-        private System.Windows.Forms.DataGridView dgvPersonas;
+        private System.Windows.Forms.DataGridView dgvVehiculos;
         private System.Windows.Forms.Panel panel1;
     }
 }

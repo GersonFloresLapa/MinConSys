@@ -62,7 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\DataGridViewHelper.cs" />
     <Compile Include="Helpers\EstilosBotones.cs" />
+    <Compile Include="Helpers\FormValidator.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -70,11 +72,47 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\ContratoEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\ContratoEditForm.Designer.cs">
+      <DependentUpon>ContratoEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\ContratoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\ContratoForm.Designer.cs">
+      <DependentUpon>ContratoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\EmpresaEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\EmpresaEditForm.Designer.cs">
+      <DependentUpon>EmpresaEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\VehiculoEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\VehiculoEditForm.Designer.cs">
+      <DependentUpon>VehiculoEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\VehiculoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\VehiculoForm.Designer.cs">
+      <DependentUpon>VehiculoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\PersonaEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Maestros\PersonaEditForm.Designer.cs">
       <DependentUpon>PersonaEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\EmpresaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\EmpresaForm.Designer.cs">
+      <DependentUpon>EmpresaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -88,6 +126,12 @@
     <Compile Include="Maestros\PersonaForm.Designer.cs">
       <DependentUpon>PersonaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\SelectorGenericoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\SelectorGenericoForm.Designer.cs">
+      <DependentUpon>SelectorGenericoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Resources\delete.png" />
@@ -97,8 +141,29 @@
     <None Include="Resources\guardar.png" />
     <None Include="Resources\exportar.png" />
     <None Include="Resources\eliminar.png" />
+    <EmbeddedResource Include="Maestros\ContratoEditForm.resx">
+      <DependentUpon>ContratoEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\ContratoForm.resx">
+      <DependentUpon>ContratoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\EmpresaEditForm.resx">
+      <DependentUpon>EmpresaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\VehiculoEditForm.resx">
+      <DependentUpon>VehiculoEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\VehiculoForm.resx">
+      <DependentUpon>VehiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maestros\PersonaEditForm.resx">
       <DependentUpon>PersonaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\EmpresaForm.resx">
+      <DependentUpon>EmpresaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\SelectorGenericoForm.resx">
+      <DependentUpon>SelectorGenericoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -145,5 +210,6 @@
       <Name>MinConSys.DI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
