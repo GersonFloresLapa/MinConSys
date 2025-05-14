@@ -40,6 +40,9 @@ namespace MinConSys.DI
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<IVehiculoRepository, VehiculoRepository>();
             services.AddScoped<IContratoRepository, ContratoRepository>();
+            services.AddScoped<ILocalidadRepository, LocalidadRepository>();
+            services.AddScoped<ITablaGeneralesRepository, TablaGeneralesRepository>();
+
             // Más repositorios...
 
             // Registrar servicios de negocio
@@ -49,6 +52,9 @@ namespace MinConSys.DI
             services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<IVehiculoService, VehiculoService>();
             services.AddScoped<IContratoService, ContratoService>();
+            services.AddScoped<ILocalidadService, LocalidadService>();
+            services.AddScoped<ITablaGeneralesService, TablaGeneralesService>();
+
             // Más servicios...
 
             return services.BuildServiceProvider();

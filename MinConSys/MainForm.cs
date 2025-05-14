@@ -109,6 +109,11 @@ namespace MinConSys
                         var contratoForm = new ContratoForm(_serviceProvider.GetRequiredService<IContratoService>(), _serviceProvider.GetRequiredService<IEmpresaService>());
                         AbrirFormularioHijo(contratoForm);
                         break;
+                    case "Localidad":
+                        var localidadForm = new LocalidadForm(_serviceProvider.GetRequiredService<ILocalidadService>());
+                        AbrirFormularioHijo(localidadForm);
+                        break;
+
                     default:
                         break;
                 }
@@ -120,6 +125,13 @@ namespace MinConSys
             var personaForm = new PersonaForm(_serviceProvider.GetRequiredService<IPersonaService>());
             AbrirFormularioHijo(personaForm);
         }
+
+        private void localidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var localidadForm = new LocalidadForm(_serviceProvider.GetRequiredService<ILocalidadService>());
+            AbrirFormularioHijo(localidadForm);
+        }
+
         private void AbrirFormularioHijo(Form formHijo)
         {
 

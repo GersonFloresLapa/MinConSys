@@ -59,7 +59,9 @@
     <Compile Include="Repositories\ContratoRepository.cs" />
     <Compile Include="Repositories\EmpresaRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\LocalidadRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\TablaGeneralesRepository.cs" />
     <Compile Include="Repositories\PersonaRepository.cs" />
     <Compile Include="Repositories\LoginRepository.cs" />
     <Compile Include="Repositories\VehiculoRepository.cs" />
