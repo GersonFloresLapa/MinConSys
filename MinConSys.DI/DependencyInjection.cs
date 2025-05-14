@@ -37,12 +37,18 @@ namespace MinConSys.DI
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IPersonaRepository, PersonaRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<ILocalidadRepository, LocalidadRepository>();
+            services.AddScoped<ITablaGeneralesRepository, TablaGeneralesRepository>();
+
             // Más repositorios...
 
             // Registrar servicios de negocio
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IPersonaService, PersonaService>();
             services.AddScoped<IMenuService, MenuService>();
+            services.AddScoped<ILocalidadService, LocalidadService>();
+            services.AddScoped<ITablaGeneralesService, TablaGeneralesService>();
+
             // Más servicios...
 
             return services.BuildServiceProvider();
