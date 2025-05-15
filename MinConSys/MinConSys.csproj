@@ -72,6 +72,48 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\BalanzaEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\BalanzaEditForm.Designer.cs">
+      <DependentUpon>BalanzaEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\BalanzaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\BalanzaForm.Designer.cs">
+      <DependentUpon>BalanzaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\TablaGeneralesEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\TablaGeneralesEditForm.Designer.cs">
+      <DependentUpon>TablaGeneralesEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\TablaGeneralesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\TablaGeneralesForm.Designer.cs">
+      <DependentUpon>TablaGeneralesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\ProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\ProductoForm.Designer.cs">
+      <DependentUpon>ProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\ProductoEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\ProductoEditForm.Designer.cs">
+      <DependentUpon>ProductoEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\ClaseEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\ClaseEditForm.Designer.cs">
+      <DependentUpon>ClaseEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\ContratoEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +131,12 @@
     </Compile>
     <Compile Include="Maestros\EmpresaEditForm.Designer.cs">
       <DependentUpon>EmpresaEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\ClaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\ClaseForm.Designer.cs">
+      <DependentUpon>ClaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maestros\VehiculoEditForm.cs">
       <SubType>Form</SubType>
@@ -153,6 +201,27 @@
     <None Include="Resources\guardar.png" />
     <None Include="Resources\exportar.png" />
     <None Include="Resources\eliminar.png" />
+    <EmbeddedResource Include="Maestros\BalanzaEditForm.resx">
+      <DependentUpon>BalanzaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\BalanzaForm.resx">
+      <DependentUpon>BalanzaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\TablaGeneralesEditForm.resx">
+      <DependentUpon>TablaGeneralesEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\TablaGeneralesForm.resx">
+      <DependentUpon>TablaGeneralesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\ProductoForm.resx">
+      <DependentUpon>ProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\ProductoEditForm.resx">
+      <DependentUpon>ProductoEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\ClaseEditForm.resx">
+      <DependentUpon>ClaseEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maestros\ContratoEditForm.resx">
       <DependentUpon>ContratoEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\EmpresaEditForm.resx">
       <DependentUpon>EmpresaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\ClaseForm.resx">
+      <DependentUpon>ClaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\VehiculoEditForm.resx">
       <DependentUpon>VehiculoEditForm.cs</DependentUpon>

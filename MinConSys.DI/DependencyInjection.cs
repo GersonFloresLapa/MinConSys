@@ -42,6 +42,9 @@ namespace MinConSys.DI
             services.AddScoped<IContratoRepository, ContratoRepository>();
             services.AddScoped<ILocalidadRepository, LocalidadRepository>();
             services.AddScoped<ITablaGeneralesRepository, TablaGeneralesRepository>();
+            services.AddScoped<IClaseRepository, ClaseRepository>();
+            services.AddScoped<IProductoRepository, ProductoRepository>();
+            services.AddScoped<IBalanzaRepository, BalanzaRepository>();
 
             // Más repositorios...
 
@@ -54,6 +57,9 @@ namespace MinConSys.DI
             services.AddScoped<IContratoService, ContratoService>();
             services.AddScoped<ILocalidadService, LocalidadService>();
             services.AddScoped<ITablaGeneralesService, TablaGeneralesService>();
+            services.AddScoped<IClaseService, ClaseService>();
+            services.AddScoped<IProductoService, ProductoService>();
+            services.AddScoped<IBalanzaService, BalanzaService>();
 
             // Más servicios...
 

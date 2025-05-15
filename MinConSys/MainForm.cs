@@ -113,6 +113,22 @@ namespace MinConSys
                         var localidadForm = new LocalidadForm(_serviceProvider.GetRequiredService<ILocalidadService>());
                         AbrirFormularioHijo(localidadForm);
                         break;
+                    case "Clase":
+                        var claseForm = new ClaseForm(_serviceProvider.GetRequiredService<IClaseService>());
+                        AbrirFormularioHijo(claseForm);
+                        break;
+                    case "Producto":
+                        var productoForm = new ProductoForm(_serviceProvider.GetRequiredService<IProductoService>());
+                        AbrirFormularioHijo(productoForm);
+                        break;
+                    case "Balanza":
+                        var balanzaForm = new BalanzaForm(_serviceProvider.GetRequiredService<IBalanzaService>());
+                        AbrirFormularioHijo(balanzaForm);
+                        break;
+                    case "TablaGenerales":
+                        var tablaGeneralesForm = new TablaGeneralesForm(_serviceProvider.GetRequiredService<ITablaGeneralesService>());
+                        AbrirFormularioHijo(tablaGeneralesForm);
+                        break;
 
                     default:
                         break;

@@ -46,6 +46,7 @@ namespace MinConSys.Core.Services
         public async Task<int> CrearTablaGeneralesAsync(TablaGenerales request)
         {
             request.FechaCreacion = DateTime.Now;
+            request.Estado = "A";
             return await _tablaGeneralesRepository.AddTablaGeneralesAsync(request);
         }
 

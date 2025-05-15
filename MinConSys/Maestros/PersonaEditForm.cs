@@ -17,13 +17,7 @@ namespace MinConSys.Maestros
     {
         private readonly IPersonaService _personaService;
         private readonly int _idPersona;
-        public PersonaEditForm(IPersonaService personaService)
-        {
-            InitializeComponent();
-            _personaService = personaService;
-            _idPersona = 0;
-        }
-
+        
         public PersonaEditForm(IPersonaService personaService,int idPersona)
         {
             InitializeComponent();

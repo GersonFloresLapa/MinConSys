@@ -1,4 +1,5 @@
 ﻿using MinConSys.Core.Interfaces.Services;
+using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Helpers;
 using MinConSys.Maestros;
@@ -14,28 +15,28 @@ using System.Windows.Forms;
 
 namespace MinConSys
 {
-    public partial class PersonaForm : Form
+    public partial class ProductoForm : Form
     {
-        private readonly IPersonaService _personaService;
-        private List<PersonaDto> _personas;
-        public PersonaForm(IPersonaService personaService)
+        private readonly IProductoService _productoService;
+        private List<Producto> _productos;
+        public ProductoForm(IProductoService productoService)
         {
             InitializeComponent();
-            _personaService = personaService;
+            _productoService = productoService;
  
         }
-        private async void PersonaForm_Load(object sender, EventArgs e)
+        private async void ProductoForm_Load(object sender, EventArgs e)
         {
-            await CargarPersonasAsync();
-            dgvPersonas.ConfigurarGenerico();
+            await CargarProductosAsync();
+            dgvProductos.ConfigurarGenerico();
         }
-        private async Task CargarPersonasAsync()
+        private async Task CargarProductosAsync()
         {
             try
             {
-                _personas = (await _personaService.ListarPersonasAsync()).ToList();
-                dgvPersonas.DataSource = null;
-                dgvPersonas.DataSource = _personas;
+                _productos = (await _productoService.ListarProductosAsync()).ToList();
+                dgvProductos.DataSource = null;
+                dgvProductos.DataSource = _productos;
             }
             catch (Exception ex)
             {
@@ -44,26 +45,26 @@ namespace MinConSys
         }
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new PersonaEditForm(_personaService,0))
+            using (var form = new ProductoEditForm(_productoService,0))
             {
                 var result = form.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
-                    await CargarPersonasAsync(); // Vuelves a cargar la lista
+                    await CargarProductosAsync(); // Vuelves a cargar la lista
                 }
             }
         }
         private async void btnEditar_Click(object sender, EventArgs e)
         {
-            int idPersona = Convert.ToInt32(dgvPersonas.CurrentRow.Cells["IdPersona"].Value);
-            using (var form = new PersonaEditForm(_personaService, idPersona))
+            int idProducto = Convert.ToInt32(dgvProductos.CurrentRow.Cells["IdProducto"].Value);
+            using (var form = new ProductoEditForm(_productoService, idProducto))
             {
                 var result = form.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
-                    await CargarPersonasAsync(); // Vuelves a cargar la lista
+                    await CargarProductosAsync(); // Vuelves a cargar la lista
                 }
             }
         }
