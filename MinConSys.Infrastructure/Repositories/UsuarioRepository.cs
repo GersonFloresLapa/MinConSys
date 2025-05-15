@@ -1,113 +1,104 @@
 ﻿using Dapper;
 using MinConSys.Core.Interfaces.Repository;
-using MinConSys.Core.Models;
 using MinConSys.Core.Models.Base;
-using MinConSys.Core.Models.Dto;
-using MinConSys.Core.Models.Response;
 using MinConSys.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MinConSys.Infrastructure.Repositories
 {
-    public class MenuRepository : IMenuRepository
+    public class UsuarioRepository : IUsuarioRepository
     {
         protected readonly ConnectionFactory _connectionFactory;
-        public MenuRepository(ConnectionFactory connectionFactory) 
+
+        public UsuarioRepository(ConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<List<MenuDto>> ObtenerMenuPorUsuario(string nombreUsuario)
-        {
-            using (var connection = await _connectionFactory.GetConnection())
-            {
-                var menu =  await connection.QueryAsync<MenuDto>(
-                       "usp_ObtenerMenuPorUsuario",
-                       new { nombreUsuario },
-                       commandType: CommandType.StoredProcedure
-                        );
-
-                return menu.ToList();
-            }
-        }
-        public async Task<List<Menu>> GetAllMenusAsync()
+        public async Task<List<Usuario>> GetAllUsuariosAsync()
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
                 string sql = @"SELECT 
-                    IdMenu,
-                    Nombre,
-                    NombreInterno,
-                    PadreId,
-                    Orden,
-                    Estado,
-                    UsuarioCreacion,
-                    FechaCreacion,
-                    UsuarioModificacion,
-                    FechaModificacion
-                FROM Menu
-                WHERE Estado = 'A'
-                ORDER BY Orden";
-
-                var menus = await connection.QueryAsync<Menu>(sql);
-                return menus.ToList();
-            }
-        }
-
-        public async Task<Menu> GetMenuByIdAsync(int id)
-        {
-            using (var connection = await _connectionFactory.GetConnection())
-            {
-                string sql = @"SELECT 
-                IdMenu,
-                Nombre,
-                NombreInterno,
-                PadreId,
-                Orden,
+                IdUsuario,
+                IdRol,
+                NombreUsuario,
+                Clave,
+                Nombres,
+                ApellidoPaterno,
+                ApellidoMaterno,
                 Estado,
                 UsuarioCreacion,
                 FechaCreacion,
                 UsuarioModificacion,
                 FechaModificacion
-            FROM Menu
-            WHERE IdMenu = @Id AND Estado = 'A'";
+            FROM Usuario
+            WHERE Estado = 'A'";
 
-                return await connection.QueryFirstOrDefaultAsync<Menu>(sql, new { Id = id });
+                var usuarios = await connection.QueryAsync<Usuario>(sql);
+                return usuarios.ToList();
             }
         }
 
-        public async Task<int> AddMenuAsync(Menu menu)
+        public async Task<Usuario> GetUsuarioByIdAsync(int id)
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                IdUsuario,
+                IdRol,
+                NombreUsuario,
+                Clave,
+                Nombres,
+                ApellidoPaterno,
+                ApellidoMaterno,
+                Estado,
+                UsuarioCreacion,
+                FechaCreacion,
+                UsuarioModificacion,
+                FechaModificacion
+            FROM Usuario
+            WHERE IdUsuario = @Id AND Estado = 'A'";
+
+                return await connection.QueryFirstOrDefaultAsync<Usuario>(sql, new { Id = id });
+            }
+        }
+
+        public async Task<int> AddUsuarioAsync(Usuario usuario)
         {
             using (var connection = await _connectionFactory.GetConnection())
             using (var transaction = connection.BeginTransaction())
             {
                 try
                 {
-                    string sql = @"INSERT INTO Menu (
-                    Nombre,
-                    NombreInterno,
-                    PadreId,
-                    Orden,
+                    string sql = @"INSERT INTO Usuario (
+                    IdRol,
+                    NombreUsuario,
+                    Clave,
+                    Nombres,
+                    ApellidoPaterno,
+                    ApellidoMaterno,
                     Estado,
                     UsuarioCreacion,
                     FechaCreacion
                 ) VALUES (
-                    @Nombre,
-                    @NombreInterno,
-                    @PadreId,
-                    @Orden,
+                    @IdRol,
+                    @NombreUsuario,
+                    @Clave,
+                    @Nombres,
+                    @ApellidoPaterno,
+                    @ApellidoMaterno,
                     @Estado,
                     @UsuarioCreacion,
                     GETDATE()
                 );
                 SELECT CAST(SCOPE_IDENTITY() as int);";
 
-                    var id = await connection.QuerySingleAsync<int>(sql, menu, transaction);
+                    var id = await connection.QuerySingleAsync<int>(sql, usuario, transaction);
                     transaction.Commit();
                     return id;
                 }
@@ -119,23 +110,25 @@ namespace MinConSys.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> UpdateMenuAsync(Menu menu)
+        public async Task<bool> UpdateUsuarioAsync(Usuario usuario)
         {
             using (var connection = await _connectionFactory.GetConnection())
             using (var transaction = connection.BeginTransaction())
             {
                 try
                 {
-                    string sql = @"UPDATE Menu SET
-                    Nombre = @Nombre,
-                    NombreInterno = @NombreInterno,
-                    PadreId = @PadreId,
-                    Orden = @Orden,
+                    string sql = @"UPDATE Usuario SET
+                    IdRol = @IdRol,
+                    NombreUsuario = @NombreUsuario,
+                    Clave = @Clave,
+                    Nombres = @Nombres,
+                    ApellidoPaterno = @ApellidoPaterno,
+                    ApellidoMaterno = @ApellidoMaterno,
                     UsuarioModificacion = @UsuarioModificacion,
                     FechaModificacion = GETDATE()
-                WHERE IdMenu = @IdMenu AND Estado = 'A'";
+                WHERE IdUsuario = @IdUsuario AND Estado = 'A'";
 
-                    var affectedRows = await connection.ExecuteAsync(sql, menu, transaction);
+                    var affectedRows = await connection.ExecuteAsync(sql, usuario, transaction);
                     transaction.Commit();
                     return affectedRows > 0;
                 }
@@ -147,22 +140,22 @@ namespace MinConSys.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> DeleteMenuAsync(int id, string usuario)
+        public async Task<bool> DeleteUsuarioAsync(int id, string usuario)
         {
             using (var connection = await _connectionFactory.GetConnection())
             using (var transaction = connection.BeginTransaction())
             {
                 try
                 {
-                    string sql = @"UPDATE Menu SET
+                    string sql = @"UPDATE Usuario SET
                     Estado = 'I',
                     UsuarioModificacion = @UsuarioModificacion,
                     FechaModificacion = GETDATE()
-                WHERE IdMenu = @IdMenu AND Estado = 'A'";
+                WHERE IdUsuario = @IdUsuario AND Estado = 'A'";
 
                     var affectedRows = await connection.ExecuteAsync(sql, new
                     {
-                        IdMenu = id,
+                        IdUsuario = id,
                         UsuarioModificacion = usuario
                     }, transaction);
 
@@ -177,4 +170,5 @@ namespace MinConSys.Infrastructure.Repositories
             }
         }
     }
+
 }

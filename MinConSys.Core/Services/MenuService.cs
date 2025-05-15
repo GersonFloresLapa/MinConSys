@@ -1,5 +1,6 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
+using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Core.Models.Response;
 using System;
@@ -33,6 +34,33 @@ namespace MinConSys.Core.Services
 
             return menu.Where(x => x.PadreId == 0).OrderBy(x => x.Orden).ToList();
 
+        }
+        public async Task<List<Menu>> ListarMenusAsync()
+        {
+            return await _menuRepository.GetAllMenusAsync();
+        }
+
+        public async Task<Menu> ObtenerPorIdAsync(int id)
+        {
+            return await _menuRepository.GetMenuByIdAsync(id);
+        }
+
+        public async Task<int> CrearMenuAsync(Menu menu)
+        {
+            menu.Estado = "A";
+            menu.FechaCreacion = DateTime.Now;
+            return await _menuRepository.AddMenuAsync(menu);
+        }
+
+        public async Task<bool> ActualizarMenuAsync(Menu menu)
+        {
+            menu.FechaModificacion = DateTime.Now;
+            return await _menuRepository.UpdateMenuAsync(menu);
+        }
+
+        public async Task<bool> EliminarMenuAsync(int id, string usuario)
+        {
+            return await _menuRepository.DeleteMenuAsync(id, usuario);
         }
     }
 }

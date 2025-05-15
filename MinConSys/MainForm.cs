@@ -129,7 +129,18 @@ namespace MinConSys
                         var tablaGeneralesForm = new TablaGeneralesForm(_serviceProvider.GetRequiredService<ITablaGeneralesService>());
                         AbrirFormularioHijo(tablaGeneralesForm);
                         break;
-
+                    case "Menu":
+                        var menuForm = new MenuForm(_serviceProvider.GetRequiredService<IMenuService>());
+                        AbrirFormularioHijo(menuForm);
+                        break;
+                    case "Rol":
+                        var rolForm = new RolForm(_serviceProvider.GetRequiredService<IRolService>());
+                        AbrirFormularioHijo(rolForm);
+                        break;
+                    case "Usuario":
+                        var usuarioForm = new UsuarioForm(_serviceProvider.GetRequiredService<IUsuarioService>());
+                        AbrirFormularioHijo(usuarioForm);
+                        break;
                     default:
                         break;
                 }

@@ -84,6 +84,48 @@
     <Compile Include="Maestros\BalanzaForm.Designer.cs">
       <DependentUpon>BalanzaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\MenuEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\MenuEditForm.Designer.cs">
+      <DependentUpon>MenuEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\RolEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\RolEditForm.Designer.cs">
+      <DependentUpon>RolEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\UsuarioEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\UsuarioEditForm.Designer.cs">
+      <DependentUpon>UsuarioEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\RolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\RolForm.Designer.cs">
+      <DependentUpon>RolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\UsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\UsuarioForm.Designer.cs">
+      <DependentUpon>UsuarioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\TablaGeneralesEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +248,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\BalanzaForm.resx">
       <DependentUpon>BalanzaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\MenuEditForm.resx">
+      <DependentUpon>MenuEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\RolEditForm.resx">
+      <DependentUpon>RolEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\UsuarioEditForm.resx">
+      <DependentUpon>UsuarioEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\RolForm.resx">
+      <DependentUpon>RolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\UsuarioForm.resx">
+      <DependentUpon>UsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\TablaGeneralesEditForm.resx">
       <DependentUpon>TablaGeneralesEditForm.cs</DependentUpon>

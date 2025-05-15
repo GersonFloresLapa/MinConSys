@@ -64,9 +64,12 @@
     <Compile Include="Repositories\LocalidadRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\ProductoRepository.cs" />
+    <Compile Include="Repositories\RolMenuPermisoRepository.cs" />
+    <Compile Include="Repositories\RolRepository.cs" />
     <Compile Include="Repositories\TablaGeneralesRepository.cs" />
     <Compile Include="Repositories\PersonaRepository.cs" />
     <Compile Include="Repositories\LoginRepository.cs" />
+    <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="Repositories\VehiculoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
