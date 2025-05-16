@@ -17,12 +17,13 @@ namespace MinConSys
     public partial class PersonaForm : Form
     {
         private readonly IPersonaService _personaService;
+        private readonly ITablaGeneralesService _tablaGeneralesService;
         private List<PersonaDto> _personas;
-        public PersonaForm(IPersonaService personaService)
+        public PersonaForm(IPersonaService personaService, ITablaGeneralesService tablaGeneralesService)
         {
             InitializeComponent();
             _personaService = personaService;
- 
+            _tablaGeneralesService = tablaGeneralesService;
         }
         private async void PersonaForm_Load(object sender, EventArgs e)
         {
@@ -44,7 +45,7 @@ namespace MinConSys
         }
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new PersonaEditForm(_personaService,0))
+            using (var form = new PersonaEditForm(_personaService, _tablaGeneralesService, 0))
             {
                 var result = form.ShowDialog();
 
@@ -57,7 +58,7 @@ namespace MinConSys
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idPersona = Convert.ToInt32(dgvPersonas.CurrentRow.Cells["IdPersona"].Value);
-            using (var form = new PersonaEditForm(_personaService, idPersona))
+            using (var form = new PersonaEditForm(_personaService,_tablaGeneralesService, idPersona))
             {
                 var result = form.ShowDialog();
 

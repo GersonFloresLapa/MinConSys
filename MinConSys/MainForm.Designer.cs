@@ -100,7 +100,6 @@
             this.personasToolStripMenuItem.Name = "personasToolStripMenuItem";
             this.personasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.personasToolStripMenuItem.Text = "Personas";
-            this.personasToolStripMenuItem.Click += new System.EventHandler(this.personasToolStripMenuItem_Click);
             // 
             // empresasToolStripMenuItem
             // 

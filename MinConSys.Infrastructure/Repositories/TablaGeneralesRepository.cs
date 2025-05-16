@@ -162,5 +162,20 @@ namespace MinConSys.Infrastructure.Repositories
                 }
             }
         }
+
+        public async Task<List<TablaGenerales>> GetAllTablaGeneralesByTipoGeneralAsync(string tipoGeneral)
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                                Codigo,
+                                Valor
+                               FROM TablaGenerales
+                               WHERE TipoGeneral = @TipoGeneral and Estado = 'A'";
+
+                var result = await connection.QueryAsync<TablaGenerales>(sql,new { TipoGeneral = tipoGeneral});
+                return result.ToList();
+            }
+        }
     }
 }

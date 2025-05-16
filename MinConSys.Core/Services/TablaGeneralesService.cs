@@ -55,10 +55,13 @@ namespace MinConSys.Core.Services
             request.FechaModificacion = DateTime.Now;
             return await _tablaGeneralesRepository.UpdateTablaGeneralesAsync(request);
         }
-
         public async Task<bool> EliminarTablaGeneralesAsync(int id,string nombreUsuario)
         {
             return await _tablaGeneralesRepository.DeleteTablaGeneralesAsync(id, nombreUsuario);
+        }
+        public async Task<List<TablaGenerales>> ObtenerPorTipoGeneralAsync(string tipoGeneral)
+        {
+            return await _tablaGeneralesRepository.GetAllTablaGeneralesByTipoGeneralAsync(tipoGeneral);
         }
     }
 }

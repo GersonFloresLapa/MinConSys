@@ -1,4 +1,5 @@
 ﻿using MinConSys.Core.Interfaces.Services;
+using MinConSys.Core.Models;
 using MinConSys.Core.Models.Base;
 using MinConSys.Helpers;
 using System;
@@ -16,25 +17,30 @@ namespace MinConSys.Maestros
     public partial class EmpresaEditForm : Form
     {
         private readonly IEmpresaService _empresaService;
+        private readonly ITablaGeneralesService _tablaGeneralesService;
         private readonly int _idEmpresa;
-        public EmpresaEditForm(IEmpresaService empresaService)
-        {
-            InitializeComponent();
-            _empresaService = empresaService;
-            _idEmpresa = 0;
-        }
-        public EmpresaEditForm(IEmpresaService empresaService, int idEmpresa)
+        private List<TablaGenerales> _estadoContribuyentes;
+        private List<TablaGenerales> _condicionContribuyentes;
+
+        public EmpresaEditForm(IEmpresaService empresaService, ITablaGeneralesService tablaGenerales, int idEmpresa)
         {
             InitializeComponent();
             _empresaService = empresaService;
             _idEmpresa = idEmpresa;
+            _tablaGeneralesService = tablaGenerales;
         }
 
         private async void EmpresaEditForm_Load(object sender, EventArgs e)
         {
+            var estadoContribuyenteTask = CargarEstadoContribuyenteAsync();
+            var condicionContribuyenteTask = CargarCondicionContribuyenteAsync();
+
+            await Task.WhenAll(estadoContribuyenteTask, condicionContribuyenteTask);
+
             if (_idEmpresa != 0)
             {
                 var empresa = await _empresaService.ObtenerPorIdAsync(_idEmpresa);
+
                 if (empresa != null)
                 {
                     txtRUC.Text = empresa.RUC;
@@ -43,8 +49,8 @@ namespace MinConSys.Maestros
                     txtDireccionComercial.Text = empresa.DireccionComercial;
                     txtTelefono.Text = empresa.Telefono;
                     txtEmail.Text = empresa.Email;
-                    cboEstadoContribuyente.Text = empresa.EstadoContribuyente;
-                    cboCondicionContribuyente.Text = empresa.CondicionContribuyente;
+                    cboEstadoContribuyente.SelectedValue = empresa.EstadoContribuyente;
+                    cboCondicionContribuyente.SelectedValue = empresa.CondicionContribuyente;
                     txtPartidaElectronica.Text = empresa.PartidaElectronica;
                     txtZonaPartidaElectronica.Text = empresa.ZonaPartidaElectronica;
                 }
@@ -70,8 +76,8 @@ namespace MinConSys.Maestros
                 DireccionComercial = txtDireccionComercial.Text,
                 Telefono = txtTelefono.Text,
                 Email = txtEmail.Text,
-                EstadoContribuyente = cboEstadoContribuyente.Text,
-                CondicionContribuyente = cboCondicionContribuyente.Text,
+                EstadoContribuyente = cboEstadoContribuyente.SelectedValue.ToString(),
+                CondicionContribuyente = cboCondicionContribuyente.SelectedValue.ToString(),
                 PartidaElectronica = txtPartidaElectronica.Text,
                 ZonaPartidaElectronica = txtZonaPartidaElectronica.Text,
                 Estado = cboEstadoContribuyente.Text,
@@ -98,6 +104,29 @@ namespace MinConSys.Maestros
             {
                 btnGuardar.Enabled = true;
             }
+        }
+
+        private async Task CargarEstadoContribuyenteAsync()
+        {
+
+            _estadoContribuyentes = await _tablaGeneralesService.ObtenerPorTipoGeneralAsync("ESTADOCONTRIBUYENTE");
+
+            cboEstadoContribuyente.DataSource = _estadoContribuyentes;
+            cboEstadoContribuyente.DisplayMember = "Valor";
+            cboEstadoContribuyente.ValueMember = "Codigo";
+            cboEstadoContribuyente.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private async Task CargarCondicionContribuyenteAsync()
+        {
+
+            _condicionContribuyentes = await _tablaGeneralesService.ObtenerPorTipoGeneralAsync("CONDICIONCONTRIBUYENTE");
+
+            cboCondicionContribuyente.DataSource = _condicionContribuyentes;
+            cboCondicionContribuyente.DisplayMember = "Valor";
+            cboCondicionContribuyente.ValueMember = "Codigo";
+            cboCondicionContribuyente.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
     }
 }

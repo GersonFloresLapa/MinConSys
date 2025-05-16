@@ -15,5 +15,6 @@ namespace MinConSys.Core.Interfaces.Services
         Task<int> CrearTablaGeneralesAsync(TablaGenerales request);
         Task<bool> ActualizarTablaGeneralesAsync(TablaGenerales request);
         Task<bool> EliminarTablaGeneralesAsync(int id, string nombreUsuario);
+        Task<List<TablaGenerales>> ObtenerPorTipoGeneralAsync(string tipoGeneral);
     }
 }

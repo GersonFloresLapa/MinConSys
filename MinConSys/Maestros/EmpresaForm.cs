@@ -18,12 +18,13 @@ namespace MinConSys
     public partial class EmpresaForm : Form
     {
         private readonly IEmpresaService _empresaService;
+        private readonly ITablaGeneralesService _tablaGeneralesService;
         private List<Empresa> _empresas;
-        public EmpresaForm(IEmpresaService empresaService)
+        public EmpresaForm(IEmpresaService empresaService, ITablaGeneralesService tablaGeneralesService)
         {
             InitializeComponent();
             _empresaService = empresaService;
- 
+            _tablaGeneralesService = tablaGeneralesService;
         }
 
         private async void EmpresaForm_Load(object sender, EventArgs e)
@@ -47,7 +48,7 @@ namespace MinConSys
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new EmpresaEditForm(_empresaService))
+            using (var form = new EmpresaEditForm(_empresaService, _tablaGeneralesService,0))
             {
                 var result = form.ShowDialog();
 
@@ -61,7 +62,7 @@ namespace MinConSys
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idEmpresa = Convert.ToInt32(dgvEmpresas.CurrentRow.Cells["IdEmpresa"].Value);
-            using (var form = new EmpresaEditForm(_empresaService, idEmpresa))
+            using (var form = new EmpresaEditForm(_empresaService, _tablaGeneralesService, idEmpresa))
             {
                 var result = form.ShowDialog();
 

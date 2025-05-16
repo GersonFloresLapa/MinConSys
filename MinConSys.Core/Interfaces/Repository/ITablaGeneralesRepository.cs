@@ -15,5 +15,6 @@ namespace MinConSys.Core.Interfaces.Repository
         Task<int> AddTablaGeneralesAsync(TablaGenerales tablaGenerales);
         Task<bool> UpdateTablaGeneralesAsync(TablaGenerales tablaGenerales);
         Task<bool> DeleteTablaGeneralesAsync(int id, string usuario);
+        Task<List<TablaGenerales>> GetAllTablaGeneralesByTipoGeneralAsync(string tipoGeneral);
     }
 }

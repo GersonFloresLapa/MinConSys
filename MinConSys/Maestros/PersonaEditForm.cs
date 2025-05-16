@@ -16,12 +16,14 @@ namespace MinConSys.Maestros
     public partial class PersonaEditForm : Form
     {
         private readonly IPersonaService _personaService;
+        private readonly ITablaGeneralesService _tablaGeneralesService;
         private readonly int _idPersona;
-        
-        public PersonaEditForm(IPersonaService personaService,int idPersona)
+        private List<TablaGenerales> _tipoDocumento;
+        public PersonaEditForm(IPersonaService personaService, ITablaGeneralesService tablaGeneralesService, int idPersona)
         {
             InitializeComponent();
             _personaService = personaService;
+            _tablaGeneralesService = tablaGeneralesService;
             _idPersona = idPersona;
         }
 
@@ -38,7 +40,7 @@ namespace MinConSys.Maestros
             var nuevaPersona = new Persona
             {
                 IdPersona = _idPersona,
-                TipoDocumento = cboTipoDocumento.Text,
+                TipoDocumento = cboTipoDocumento.SelectedValue.ToString(),
                 NumeroDocumento = txtNumeroDocumento.Text,
                 Nombres = txtNombres.Text,
                 ApellidoPaterno = txtApellidoPaterno.Text,
@@ -78,6 +80,8 @@ namespace MinConSys.Maestros
 
         private async void PersonaEditForm_Load(object sender, EventArgs e)
         {
+            await CargarTipoDocumentoAsync();
+
             if (_idPersona != 0)
             {
                 var persona = await _personaService.ObtenerPorIdAsync(_idPersona);
@@ -95,6 +99,17 @@ namespace MinConSys.Maestros
                     txtBrevete.Text = persona.Brevete;
                 }
             }
+        }
+
+        private async Task CargarTipoDocumentoAsync()
+        {
+
+            _tipoDocumento = await _tablaGeneralesService.ObtenerPorTipoGeneralAsync("TIPODOCUMENTO");
+
+            cboTipoDocumento.DataSource = _tipoDocumento;
+            cboTipoDocumento.DisplayMember = "Valor";
+            cboTipoDocumento.ValueMember = "Codigo";
+
         }
     }
 }

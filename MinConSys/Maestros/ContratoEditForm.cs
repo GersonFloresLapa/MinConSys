@@ -81,8 +81,6 @@ namespace MinConSys.Maestros
 
         private async void ContratoEditForm_Load(object sender, EventArgs e)
         {
-            cboEmpresa.DropDownStyle = ComboBoxStyle.DropDown;
-            cboProveedor.DropDownStyle = ComboBoxStyle.DropDown;
 
             var empresasTask = CargarEmpresasAsync();
             var proveedoresTask = CargarProveedoresAsync();

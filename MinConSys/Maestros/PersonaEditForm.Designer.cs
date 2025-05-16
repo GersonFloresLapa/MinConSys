@@ -164,11 +164,8 @@ namespace MinConSys.Maestros
             // 
             // cboTipoDocumento
             // 
+            this.cboTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoDocumento.FormattingEnabled = true;
-            this.cboTipoDocumento.Items.AddRange(new object[] {
-            "DNI",
-            "CE",
-            "PAS"});
             this.cboTipoDocumento.Location = new System.Drawing.Point(107, 29);
             this.cboTipoDocumento.Name = "cboTipoDocumento";
             this.cboTipoDocumento.Size = new System.Drawing.Size(121, 21);

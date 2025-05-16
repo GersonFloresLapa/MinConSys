@@ -94,11 +94,11 @@ namespace MinConSys
                 switch (nombreInterno)
                 {
                     case "Persona":
-                        var personaForm = new PersonaForm(_serviceProvider.GetRequiredService<IPersonaService>());
+                        var personaForm = new PersonaForm(_serviceProvider.GetRequiredService<IPersonaService>(), _serviceProvider.GetRequiredService<ITablaGeneralesService>());
                         AbrirFormularioHijo(personaForm);
                         break;
                     case "Empresas":
-                        var empresaForm = new EmpresaForm(_serviceProvider.GetRequiredService<IEmpresaService>());
+                        var empresaForm = new EmpresaForm(_serviceProvider.GetRequiredService<IEmpresaService>(), _serviceProvider.GetRequiredService<ITablaGeneralesService>());
                         AbrirFormularioHijo(empresaForm);
                         break;
                     case "Vehiculo":
@@ -145,18 +145,6 @@ namespace MinConSys
                         break;
                 }
             }
-        }
-
-        private void personasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var personaForm = new PersonaForm(_serviceProvider.GetRequiredService<IPersonaService>());
-            AbrirFormularioHijo(personaForm);
-        }
-
-        private void localidadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var localidadForm = new LocalidadForm(_serviceProvider.GetRequiredService<ILocalidadService>());
-            AbrirFormularioHijo(localidadForm);
         }
 
         private void AbrirFormularioHijo(Form formHijo)
