@@ -31,7 +31,7 @@ namespace MinConSys
         private async void VehiculoForm_Load(object sender, EventArgs e)
         {
             await CargarVehiculosAsync();
-            dgvVehiculos.ConfigurarGenerico();
+            dgvVehiculos.ConfigurarGenerico(_vehiculos);
         }
         private async Task CargarVehiculosAsync()
         {

@@ -228,6 +228,12 @@
     <Compile Include="Maestros\PersonaForm.Designer.cs">
       <DependentUpon>PersonaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\FormFiltro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\FormFiltro.Designer.cs">
+      <DependentUpon>FormFiltro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\SelectorGenericoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\EmpresaForm.resx">
       <DependentUpon>EmpresaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\FormFiltro.resx">
+      <DependentUpon>FormFiltro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\SelectorGenericoForm.resx">
       <DependentUpon>SelectorGenericoForm.cs</DependentUpon>

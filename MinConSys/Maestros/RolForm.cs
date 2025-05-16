@@ -28,7 +28,7 @@ namespace MinConSys
         private async void RolForm_Load(object sender, EventArgs e)
         {
             await CargarRolsAsync();
-            dgvRols.ConfigurarGenerico();
+            dgvRols.ConfigurarGenerico(_rols);
         }
         private async Task CargarRolsAsync()
         {

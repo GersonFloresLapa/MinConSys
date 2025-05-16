@@ -28,7 +28,7 @@ namespace MinConSys
         private async void MenuForm_Load(object sender, EventArgs e)
         {
             await CargarMenusAsync();
-            dgvMenus.ConfigurarGenerico();
+            dgvMenus.ConfigurarGenerico(_menus);
         }
         private async Task CargarMenusAsync()
         {

@@ -28,7 +28,7 @@ namespace MinConSys
         private async void ClaseForm_Load(object sender, EventArgs e)
         {
             await CargarClasesAsync();
-            dgvClases.ConfigurarGenerico();
+            dgvClases.ConfigurarGenerico(_clases);
         }
         private async Task CargarClasesAsync()
         {

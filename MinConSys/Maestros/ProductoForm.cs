@@ -28,7 +28,7 @@ namespace MinConSys
         private async void ProductoForm_Load(object sender, EventArgs e)
         {
             await CargarProductosAsync();
-            dgvProductos.ConfigurarGenerico();
+            dgvProductos.ConfigurarGenerico(_productos);
         }
         private async Task CargarProductosAsync()
         {

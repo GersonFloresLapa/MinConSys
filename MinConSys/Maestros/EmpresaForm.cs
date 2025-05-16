@@ -30,7 +30,7 @@ namespace MinConSys
         private async void EmpresaForm_Load(object sender, EventArgs e)
         {
             await CargarEmpresasAsync();
-            dgvEmpresas.ConfigurarGenerico();
+            dgvEmpresas.ConfigurarGenerico(_empresas);
         }
         private async Task CargarEmpresasAsync()
         {

@@ -4,6 +4,7 @@ using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Helpers;
 using MinConSys.Maestros;
+using MinConSys.Modales;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,16 +21,16 @@ namespace MinConSys
     {
         private readonly ITablaGeneralesService _tablaGeneralesService;
         private List<TablaGeneralesDto> _tablaGenerales;
+        private string columnaFiltrada = "";
         public TablaGeneralesForm(ITablaGeneralesService tablaGeneralesService)
         {
             InitializeComponent();
             _tablaGeneralesService = tablaGeneralesService;
- 
         }
         private async void TablaGeneralesForm_Load(object sender, EventArgs e)
         {
             await CargarTablaGeneralessAsync();
-            dgvTablaGenerales.ConfigurarGenerico();
+            dgvTablaGenerales.ConfigurarGenerico(_tablaGenerales);
         }
         private async Task CargarTablaGeneralessAsync()
         {

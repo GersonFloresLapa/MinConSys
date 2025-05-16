@@ -28,7 +28,7 @@ namespace MinConSys
         private async void BalanzaForm_Load(object sender, EventArgs e)
         {
             await CargarBalanzasAsync();
-            dgvBalanzas.ConfigurarGenerico();
+            dgvBalanzas.ConfigurarGenerico(_balanzas);
         }
         private async Task CargarBalanzasAsync()
         {

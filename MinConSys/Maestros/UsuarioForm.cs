@@ -28,7 +28,7 @@ namespace MinConSys
         private async void UsuarioForm_Load(object sender, EventArgs e)
         {
             await CargarUsuariosAsync();
-            dgvUsuarios.ConfigurarGenerico();
+            dgvUsuarios.ConfigurarGenerico(_usuarios);
         }
         private async Task CargarUsuariosAsync()
         {

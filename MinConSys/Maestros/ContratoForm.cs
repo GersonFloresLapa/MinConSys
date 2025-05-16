@@ -30,7 +30,7 @@ namespace MinConSys
         private async void ContratoForm_Load(object sender, EventArgs e)
         {
             await CargarContratosAsync();
-            dgvContratos.ConfigurarGenerico();
+            dgvContratos.ConfigurarGenerico(_contratos);
         }
         private async Task CargarContratosAsync()
         {

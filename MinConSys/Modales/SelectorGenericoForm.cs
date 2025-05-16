@@ -52,7 +52,7 @@ namespace MinConSys.Modales
         {
             CargarDatos();
 
-            dgvDatos.ConfigurarGenerico();
+            //dgvDatos.ConfigurarGenerico();
         }
     }
 }

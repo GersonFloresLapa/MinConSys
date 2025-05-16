@@ -28,7 +28,7 @@ namespace MinConSys
         private async void PersonaForm_Load(object sender, EventArgs e)
         {
             await CargarPersonasAsync();
-            dgvPersonas.ConfigurarGenerico();
+            dgvPersonas.ConfigurarGenerico(_personas);
         }
         private async Task CargarPersonasAsync()
         {
