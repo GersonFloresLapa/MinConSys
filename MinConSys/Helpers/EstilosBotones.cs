@@ -14,27 +14,27 @@ namespace MinConSys.Helpers
 
         public static void AplicarEstiloNuevo(ToolStripButton btn)
         {
-            AplicarEstiloBase(btn, "Nuevo", Properties.Resources.nuevo, Color.LightGreen);
+            AplicarEstiloBase(btn, "Nuevo", Properties.Resources.Nuevo, Color.LightGreen);
         }
 
         public static void AplicarEstiloEditar(ToolStripButton btn)
         {
-            AplicarEstiloBase(btn, "Editar", Properties.Resources.editar, Color.LightSkyBlue);
+            AplicarEstiloBase(btn, "Editar", Properties.Resources.Editar, Color.LightSkyBlue);
         }
 
         public static void AplicarEstiloGuardar(ToolStripButton btn)
         {
-            AplicarEstiloBase(btn, "Guardar", Properties.Resources.guardar, Color.LightSalmon);
+            AplicarEstiloBase(btn, "Guardar", Properties.Resources.Guardar, Color.LightSalmon);
         }
 
         public static void AplicarEstiloExportar(ToolStripButton btn)
         {
-            AplicarEstiloBase(btn, "Exportar", Properties.Resources.exportar, Color.Khaki);
+            AplicarEstiloBase(btn, "Exportar", Properties.Resources.Exportar, Color.Khaki);
         }
 
         public static void AplicarEstiloEliminar(ToolStripButton btn)
         {
-            AplicarEstiloBase(btn, "Eliminar", Properties.Resources.eliminar, Color.LightCoral);
+            AplicarEstiloBase(btn, "Eliminar", Properties.Resources.Eliminar, Color.LightCoral);
         }
 
         private static void AplicarEstiloBase(ToolStripButton btn, string texto, Image icono, Color fondo)

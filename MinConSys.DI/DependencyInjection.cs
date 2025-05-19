@@ -48,7 +48,7 @@ namespace MinConSys.DI
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.AddScoped<IRolRepository, RolRepository>();
-
+            services.AddScoped<IAdjuntoRepository, AdjuntoRepository>();
             // Más repositorios...
 
             // Registrar servicios de negocio
@@ -66,7 +66,7 @@ namespace MinConSys.DI
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IRolService, RolService>();
-
+            services.AddScoped<IAdjuntoService, AdjuntoService>();
             // Más servicios...
 
             return services.BuildServiceProvider();

@@ -56,7 +56,7 @@ namespace MinConSys.Maestros
             // btnGuardar
             // 
             this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardar.Image = global::MinConSys.Properties.Resources.guardar;
+            this.btnGuardar.Image = global::MinConSys.Properties.Resources.Guardar;
             this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(23, 22);

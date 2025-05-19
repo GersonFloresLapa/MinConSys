@@ -2,6 +2,7 @@
 using MinConSys.Core.Models;
 using MinConSys.Core.Models.Base;
 using MinConSys.Helpers;
+using MinConSys.Modales;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,16 +19,21 @@ namespace MinConSys.Maestros
     {
         private readonly IEmpresaService _empresaService;
         private readonly ITablaGeneralesService _tablaGeneralesService;
+        private readonly IAdjuntoService _adjuntoService;
         private readonly int _idEmpresa;
         private List<TablaGenerales> _estadoContribuyentes;
         private List<TablaGenerales> _condicionContribuyentes;
-
-        public EmpresaEditForm(IEmpresaService empresaService, ITablaGeneralesService tablaGenerales, int idEmpresa)
+        private AdjuntosViewerControl _adjuntosViewer;
+        public EmpresaEditForm( IEmpresaService empresaService, 
+                                ITablaGeneralesService tablaGenerales,
+                                IAdjuntoService adjuntoService,
+                                int idEmpresa)
         {
             InitializeComponent();
             _empresaService = empresaService;
             _idEmpresa = idEmpresa;
             _tablaGeneralesService = tablaGenerales;
+            _adjuntoService = adjuntoService;
         }
 
         private async void EmpresaEditForm_Load(object sender, EventArgs e)
@@ -55,6 +61,20 @@ namespace MinConSys.Maestros
                     txtZonaPartidaElectronica.Text = empresa.ZonaPartidaElectronica;
                 }
             }
+
+            // Instanciar el control
+            _adjuntosViewer = new AdjuntosViewerControl();
+
+            // Configurar servicio e identificación de los adjuntos
+            _adjuntosViewer.SetService(_adjuntoService); // asegúrate de tener una instancia de IAdjuntoService
+            _adjuntosViewer.TablaReferencia = "Empresa";
+            _adjuntosViewer.IdReferencia = _idEmpresa; // por ejemplo
+
+            // Ajustar al panel
+            _adjuntosViewer.Dock = DockStyle.Fill;
+            // Agregar al panel3
+            panel3.Controls.Clear(); // opcional: limpiar contenido anterior
+            panel3.Controls.Add(_adjuntosViewer);
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)

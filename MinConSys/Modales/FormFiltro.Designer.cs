@@ -35,8 +35,8 @@ namespace MinConSys.Modales
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.cboFiltro = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -93,28 +93,29 @@ namespace MinConSys.Modales
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.textBox1);
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.txtBuscar);
+            this.panel3.Controls.Add(this.cboFiltro);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(261, 47);
             this.panel3.TabIndex = 5;
             // 
-            // comboBox1
+            // txtBuscar
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.txtBuscar.Location = new System.Drawing.Point(137, 12);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(115, 20);
+            this.txtBuscar.TabIndex = 1;
             // 
-            // textBox1
+            // cboFiltro
             // 
-            this.textBox1.Location = new System.Drawing.Point(137, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(115, 20);
-            this.textBox1.TabIndex = 1;
+            this.cboFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltro.FormattingEnabled = true;
+            this.cboFiltro.Location = new System.Drawing.Point(10, 12);
+            this.cboFiltro.Name = "cboFiltro";
+            this.cboFiltro.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltro.TabIndex = 0;
             // 
             // FormFiltro
             // 
@@ -147,7 +148,7 @@ namespace MinConSys.Modales
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.ComboBox cboFiltro;
     }
 }

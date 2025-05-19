@@ -54,7 +54,7 @@ namespace MinConSys
             // btnNuevo
             // 
             this.btnNuevo.AutoSize = false;
-            this.btnNuevo.Image = global::MinConSys.Properties.Resources.nuevo;
+            this.btnNuevo.Image = global::MinConSys.Properties.Resources.Nuevo;
             this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(96, 36);
@@ -63,7 +63,7 @@ namespace MinConSys
             // 
             // btnEditar
             // 
-            this.btnEditar.Image = global::MinConSys.Properties.Resources.editar;
+            this.btnEditar.Image = global::MinConSys.Properties.Resources.Editar;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(90, 36);

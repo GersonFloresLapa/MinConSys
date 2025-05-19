@@ -19,12 +19,16 @@ namespace MinConSys
     {
         private readonly IEmpresaService _empresaService;
         private readonly ITablaGeneralesService _tablaGeneralesService;
+        private readonly IAdjuntoService _adjuntoService;
         private List<Empresa> _empresas;
-        public EmpresaForm(IEmpresaService empresaService, ITablaGeneralesService tablaGeneralesService)
+        public EmpresaForm(IEmpresaService empresaService, 
+                            ITablaGeneralesService tablaGeneralesService,
+                            IAdjuntoService adjuntoService)
         {
             InitializeComponent();
             _empresaService = empresaService;
             _tablaGeneralesService = tablaGeneralesService;
+            _adjuntoService = adjuntoService;
         }
 
         private async void EmpresaForm_Load(object sender, EventArgs e)
@@ -48,7 +52,7 @@ namespace MinConSys
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new EmpresaEditForm(_empresaService, _tablaGeneralesService,0))
+            using (var form = new EmpresaEditForm(_empresaService, _tablaGeneralesService, _adjuntoService, 0))
             {
                 var result = form.ShowDialog();
 
@@ -62,7 +66,7 @@ namespace MinConSys
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idEmpresa = Convert.ToInt32(dgvEmpresas.CurrentRow.Cells["IdEmpresa"].Value);
-            using (var form = new EmpresaEditForm(_empresaService, _tablaGeneralesService, idEmpresa))
+            using (var form = new EmpresaEditForm(_empresaService, _tablaGeneralesService, _adjuntoService, idEmpresa))
             {
                 var result = form.ShowDialog();
 
