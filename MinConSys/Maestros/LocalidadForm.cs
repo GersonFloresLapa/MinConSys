@@ -18,6 +18,7 @@ namespace MinConSys
     {
         private readonly ILocalidadService _localidadService;
         private List<LocalidadDto> _localidad;
+
         public LocalidadForm(ILocalidadService localidadService)
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace MinConSys
         private async void LocalidadForm_Load(object sender, EventArgs e)
         {
             await CargarLocalidadesAsync();
+            dgvLocalidades.ConfigurarGenerico(_localidad);
         }
         private async Task CargarLocalidadesAsync()
         {
@@ -46,7 +48,7 @@ namespace MinConSys
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new LocalidadEditForm(_localidadService))
+            using (var form = new LocalidadEditForm(_localidadService,0 ))
             {
 
                 var result = form.ShowDialog();
@@ -57,5 +59,20 @@ namespace MinConSys
                 }
             }
         }
+
+        private async void btnEditar_Click(object sender, EventArgs e)
+        {
+            int idLocalidad = Convert.ToInt32(dgvLocalidades.CurrentRow.Cells["IdLocalidad"].Value);
+            using (var form = new LocalidadEditForm(_localidadService , idLocalidad))
+            {
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    await CargarLocalidadesAsync(); // Vuelves a cargar la lista
+                }
+            }
+        }
+
     }
 }

@@ -47,7 +47,7 @@ namespace MinConSys
             this.btnEditar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1067, 39);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -68,6 +68,7 @@ namespace MinConSys
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(90, 36);
             this.btnEditar.Text = "Editar";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // dgvLocalidades
             // 
@@ -75,34 +76,37 @@ namespace MinConSys
             this.dgvLocalidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLocalidades.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLocalidades.Location = new System.Drawing.Point(0, 0);
+            this.dgvLocalidades.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvLocalidades.Name = "dgvLocalidades";
-            this.dgvLocalidades.Size = new System.Drawing.Size(800, 478);
+            this.dgvLocalidades.RowHeadersWidth = 51;
+            this.dgvLocalidades.Size = new System.Drawing.Size(1067, 597);
             this.dgvLocalidades.TabIndex = 0;
-
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dgvLocalidades);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 42);
+            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 478);
+            this.panel1.Size = new System.Drawing.Size(1067, 597);
             this.panel1.TabIndex = 2;
-            // 
             // 
             // LocalidadForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 517);
+            this.ClientSize = new System.Drawing.Size(1067, 636);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LocalidadForm";
             this.Text = "LocalidadForm";
             this.Load += new System.EventHandler(this.LocalidadForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalidades)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

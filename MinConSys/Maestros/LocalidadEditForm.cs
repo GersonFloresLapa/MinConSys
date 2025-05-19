@@ -16,37 +16,79 @@ namespace MinConSys.Maestros
     public partial class LocalidadEditForm : Form
     {
         private readonly ILocalidadService _localidadService;
-        public LocalidadEditForm(ILocalidadService localidadService)
+        private readonly int _idLocalidad;
+        public LocalidadEditForm(ILocalidadService localidadService, int idLocalidad)
         {
             InitializeComponent();
 
             _localidadService = localidadService;
+            _idLocalidad = idLocalidad;
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            var nuevaLocalidad = new Localidad
+            if (!FormValidator.Validar(this, out string mensaje))
             {
-                IdEmpresa= Convert.ToInt32(cboEmpresa.Text),
-                TipoLocalidad =cboTipoLocalidad.Text.ToString(),
-                NombreLocalidad = txtNombreLocalidad.Text.ToString(),
-                Direccion = txtDireccion.Text.ToString(),
-                Ubigeo=txtUbigeo.Text.ToString(),
-                Estado = cboEstado.Text.ToString(),
-                UsuarioCreacion = Session.UsuarioActual.NombreUsuario
+                MessageBox.Show(mensaje, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            btnGuardar.Enabled = false;
+
+            var nuevoRegistro = new Localidad
+            {
+                IdLocalidad     = _idLocalidad,
+                IdEmpresa       = int.Parse(cboEmpresa.SelectedItem.ToString()),
+                TipoLocalidad   = cboTipoLocalidad.Text,
+                NombreLocalidad = txtNombreLocalidad.Text,
+                Direccion       = txtDireccion.Text,
+                Ubigeo          = txtUbigeo.Text,
+                Estado          = cboEstado.Text,
+                UsuarioCreacion = Session.UsuarioActual.NombreUsuario,
+                UsuarioModificacion = Session.UsuarioActual.NombreUsuario
             };
 
             try
             {
-                await _localidadService.CrearLocalidadAsync(nuevaLocalidad);
+                if (_idLocalidad != 0)
+                {
+                    await _localidadService.ActualizarLocalidadAsync(nuevoRegistro);
+                }
+                else
+                {
+                    await _localidadService.CrearLocalidadAsync(nuevoRegistro);
+                }
 
-                MessageBox.Show("Localidad registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Registro Localidad correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnGuardar.Enabled = true;
+            }
+        }
+
+        private async void LocalidadEditForm_Load(object sender, EventArgs e)
+        {
+            if (_idLocalidad != 0)
+            {
+                var registro = await _localidadService.ObtenerPorIdAsync(_idLocalidad);
+
+                if (registro != null)
+                {
+
+                    cboEmpresa.Text = registro.IdEmpresa.ToString();
+                    cboTipoLocalidad.Text = registro.TipoLocalidad;
+                    txtNombreLocalidad.Text = registro.NombreLocalidad;
+                    txtDireccion.Text = registro.Direccion;
+                    txtUbigeo.Text = registro.Ubigeo;
+                    cboEstado.Text = registro.Estado;
+                }
             }
         }
     }
