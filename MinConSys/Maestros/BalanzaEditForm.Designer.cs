@@ -32,38 +32,38 @@ namespace MinConSys.Maestros
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtUbigeo = new System.Windows.Forms.TextBox();
             this.txtUnidad = new System.Windows.Forms.TextBox();
+            this.txtUbigeo = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnGuardar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(376, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(376, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnGuardar
             // 
-            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnGuardar.Image = global::MinConSys.Properties.Resources.Guardar;
             this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
-            this.btnGuardar.Text = "toolStripButton1";
+            this.btnGuardar.Size = new System.Drawing.Size(85, 36);
+            this.btnGuardar.Text = "Guardar";
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // panel1
@@ -79,46 +79,45 @@ namespace MinConSys.Maestros
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(376, 259);
+            this.panel1.Size = new System.Drawing.Size(376, 245);
             this.panel1.TabIndex = 1;
             // 
-            // label1
+            // txtUnidad
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre:";
+            this.txtUnidad.Location = new System.Drawing.Point(106, 204);
+            this.txtUnidad.Name = "txtUnidad";
+            this.txtUnidad.Size = new System.Drawing.Size(174, 20);
+            this.txtUnidad.TabIndex = 9;
             // 
-            // label2
+            // txtUbigeo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Descripcion:";
+            this.txtUbigeo.Location = new System.Drawing.Point(106, 161);
+            this.txtUbigeo.Name = "txtUbigeo";
+            this.txtUbigeo.Size = new System.Drawing.Size(174, 20);
+            this.txtUbigeo.TabIndex = 8;
             // 
-            // label3
+            // txtDireccion
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 123);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Direccion:";
+            this.txtDireccion.Location = new System.Drawing.Point(106, 120);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(174, 20);
+            this.txtDireccion.TabIndex = 7;
             // 
-            // label4
+            // txtDescripcion
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 164);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Ubigeo";
+            this.txtDescripcion.Location = new System.Drawing.Point(106, 80);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(174, 20);
+            this.txtDescripcion.TabIndex = 6;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(106, 35);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(174, 20);
+            this.txtNombre.TabIndex = 5;
             // 
             // label5
             // 
@@ -129,40 +128,41 @@ namespace MinConSys.Maestros
             this.label5.TabIndex = 4;
             this.label5.Text = "Unidad:";
             // 
-            // txtNombre
+            // label4
             // 
-            this.txtNombre.Location = new System.Drawing.Point(106, 35);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(174, 20);
-            this.txtNombre.TabIndex = 5;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 164);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Ubigeo";
             // 
-            // txtDescripcion
+            // label3
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(106, 80);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(174, 20);
-            this.txtDescripcion.TabIndex = 6;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 123);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Direccion:";
             // 
-            // txtDireccion
+            // label2
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(106, 120);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(174, 20);
-            this.txtDireccion.TabIndex = 7;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Descripcion:";
             // 
-            // txtUbigeo
+            // label1
             // 
-            this.txtUbigeo.Location = new System.Drawing.Point(106, 161);
-            this.txtUbigeo.Name = "txtUbigeo";
-            this.txtUbigeo.Size = new System.Drawing.Size(174, 20);
-            this.txtUbigeo.TabIndex = 8;
-            // 
-            // txtUnidad
-            // 
-            this.txtUnidad.Location = new System.Drawing.Point(106, 204);
-            this.txtUnidad.Name = "txtUnidad";
-            this.txtUnidad.Size = new System.Drawing.Size(174, 20);
-            this.txtUnidad.TabIndex = 9;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nombre:";
             // 
             // BalanzaEditForm
             // 

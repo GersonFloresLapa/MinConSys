@@ -30,6 +30,7 @@ namespace MinConSys.Maestros
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,9 +54,8 @@ namespace MinConSys.Maestros
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -64,13 +64,23 @@ namespace MinConSys.Maestros
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnGuardar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(790, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(376, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Image = global::MinConSys.Properties.Resources.Guardar;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(85, 36);
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label1
             // 
@@ -265,7 +275,7 @@ namespace MinConSys.Maestros
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(622, 272);
+            this.panel1.Size = new System.Drawing.Size(622, 263);
             this.panel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -277,12 +287,12 @@ namespace MinConSys.Maestros
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.84091F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.15909F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 528);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 510);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel2
@@ -291,16 +301,8 @@ namespace MinConSys.Maestros
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(631, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(156, 272);
+            this.panel2.Size = new System.Drawing.Size(156, 263);
             this.panel2.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 281);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(622, 244);
-            this.panel3.TabIndex = 3;
             // 
             // checkedListBox1
             // 
@@ -310,15 +312,13 @@ namespace MinConSys.Maestros
             this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
             this.checkedListBox1.TabIndex = 0;
             // 
-            // btnGuardar
+            // panel3
             // 
-            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardar.Image = global::MinConSys.Properties.Resources.Guardar;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
-            this.btnGuardar.Text = "toolStripButton1";
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 272);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(622, 235);
+            this.panel3.TabIndex = 3;
             // 
             // EmpresaEditForm
             // 

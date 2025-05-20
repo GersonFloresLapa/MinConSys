@@ -44,13 +44,14 @@ namespace MinConSys.Modales
             // 
             this.dgvAdjuntos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdjuntos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAdjuntos.Location = new System.Drawing.Point(0, 25);
+            this.dgvAdjuntos.Location = new System.Drawing.Point(0, 31);
             this.dgvAdjuntos.Name = "dgvAdjuntos";
-            this.dgvAdjuntos.Size = new System.Drawing.Size(384, 169);
+            this.dgvAdjuntos.Size = new System.Drawing.Size(384, 163);
             this.dgvAdjuntos.TabIndex = 3;
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAgregar,
             this.btnDescargar,
@@ -58,7 +59,7 @@ namespace MinConSys.Modales
             this.cboTipoDocumento});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(384, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(384, 31);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -68,7 +69,7 @@ namespace MinConSys.Modales
             this.btnAgregar.Image = global::MinConSys.Properties.Resources.Nuevo;
             this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(23, 22);
+            this.btnAgregar.Size = new System.Drawing.Size(28, 28);
             this.btnAgregar.Text = "toolStripButton1";
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
@@ -78,7 +79,7 @@ namespace MinConSys.Modales
             this.btnDescargar.Image = global::MinConSys.Properties.Resources.Exportar;
             this.btnDescargar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDescargar.Name = "btnDescargar";
-            this.btnDescargar.Size = new System.Drawing.Size(23, 22);
+            this.btnDescargar.Size = new System.Drawing.Size(28, 28);
             this.btnDescargar.Text = "toolStripButton1";
             // 
             // btnEliminar
@@ -87,20 +88,20 @@ namespace MinConSys.Modales
             this.btnEliminar.Image = global::MinConSys.Properties.Resources.Eliminar;
             this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(23, 22);
+            this.btnEliminar.Size = new System.Drawing.Size(28, 28);
             this.btnEliminar.Text = "toolStripButton1";
             // 
             // cboTipoDocumento
             // 
             this.cboTipoDocumento.Name = "cboTipoDocumento";
-            this.cboTipoDocumento.Size = new System.Drawing.Size(121, 25);
+            this.cboTipoDocumento.Size = new System.Drawing.Size(121, 31);
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(384, 169);
+            this.panel1.Size = new System.Drawing.Size(384, 163);
             this.panel1.TabIndex = 5;
             // 
             // AdjuntosViewerControl
