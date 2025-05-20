@@ -228,6 +228,12 @@
     <Compile Include="Maestros\PersonaForm.Designer.cs">
       <DependentUpon>PersonaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\AdjuntosViewerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modales\AdjuntosViewerControl.Designer.cs">
+      <DependentUpon>AdjuntosViewerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\FormFiltro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,13 +248,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\Refrescar.png" />
+    <None Include="Resources\Importar.png" />
+    <None Include="Resources\Eliminar.png" />
+    <None Include="Resources\Exportar.png" />
+    <None Include="Resources\Guardar.png" />
+    <None Include="Resources\Grabar.png" />
+    <None Include="Resources\Editar.png" />
+    <None Include="Resources\Nuevo.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\Fondo.png" />
-    <None Include="Resources\nuevo.png" />
-    <None Include="Resources\editar.png" />
-    <None Include="Resources\guardar.png" />
-    <None Include="Resources\exportar.png" />
-    <None Include="Resources\eliminar.png" />
     <EmbeddedResource Include="Maestros\BalanzaEditForm.resx">
       <DependentUpon>BalanzaEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\EmpresaForm.resx">
       <DependentUpon>EmpresaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\AdjuntosViewerControl.resx">
+      <DependentUpon>AdjuntosViewerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\FormFiltro.resx">
       <DependentUpon>FormFiltro.cs</DependentUpon>

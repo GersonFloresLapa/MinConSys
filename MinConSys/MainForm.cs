@@ -98,7 +98,9 @@ namespace MinConSys
                         AbrirFormularioHijo(personaForm);
                         break;
                     case "Empresas":
-                        var empresaForm = new EmpresaForm(_serviceProvider.GetRequiredService<IEmpresaService>(), _serviceProvider.GetRequiredService<ITablaGeneralesService>());
+                        var empresaForm = new EmpresaForm(  _serviceProvider.GetRequiredService<IEmpresaService>(), 
+                                                            _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
+                                                            _serviceProvider.GetRequiredService<IAdjuntoService>());
                         AbrirFormularioHijo(empresaForm);
                         break;
                     case "Vehiculo":

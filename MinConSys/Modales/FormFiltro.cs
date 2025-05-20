@@ -11,7 +11,8 @@ namespace MinConSys.Modales
         public List<string> ValoresSeleccionados { get; private set; }
         public event Action<List<string>> FiltroAplicado;
         private bool _actualizandoLista = false; // Flag para evitar eventos recursivos
-
+        private List<string> _todosLosValores = new List<string>();
+        private HashSet<string> _seleccionadosPrevios = new HashSet<string>();
         public FormFiltro(List<string> valores, List<string> seleccionadosPrevios)
         {
             InitializeComponent();
@@ -35,6 +36,11 @@ namespace MinConSys.Modales
                 {
                     string valor = checkedListBox1.Items[i].ToString();
                     checkedListBox1.SetItemChecked(i, seleccionadosPrevios.Contains(valor));
+
+                    if (seleccionadosPrevios.Contains(valor))
+                    {
+                        _seleccionadosPrevios.Add(valor);
+                    }
                 }
 
                 // Actualizar el estado de "Elegir todos" según la selección
@@ -60,6 +66,17 @@ namespace MinConSys.Modales
             this.Deactivate += FormFiltro_Deactivate;
             btnAplicar.Click += btnAplicar_Click;
             btnCancelar.Click += btnCancelar_Click;
+            _todosLosValores = valores.ToList();
+
+            txtBuscar.TextChanged += TxtBuscar_TextChanged;
+
+            //cboFiltro.SelectedIndexChanged += (s, e) => AplicarFiltroTexto();
+
+            cboFiltro.Items.Add("Contiene");
+            cboFiltro.Items.Add("Empieza por");
+            cboFiltro.Items.Add("Termina en");
+            cboFiltro.Items.Add("Exacto");
+            cboFiltro.SelectedIndex = 0;
         }
 
 
@@ -72,12 +89,14 @@ namespace MinConSys.Modales
         {
             ValoresSeleccionados = new List<string>();
 
+            ValoresSeleccionados = _seleccionadosPrevios.ToList();
+
             // Recopilar solo los valores seleccionados (no incluir "Elegir todos")
-            for (int i = 1; i < checkedListBox1.Items.Count; i++)
-            {
-                if (checkedListBox1.GetItemChecked(i))
-                    ValoresSeleccionados.Add(checkedListBox1.Items[i].ToString());
-            }
+            //for (int i = 1; i < checkedListBox1.Items.Count; i++)
+            //{
+            //    if (checkedListBox1.GetItemChecked(i))
+            //        ValoresSeleccionados.Add(checkedListBox1.Items[i].ToString());
+            //}
 
             // Invocar el evento si hay suscriptores
             FiltroAplicado?.Invoke(ValoresSeleccionados);
@@ -114,27 +133,88 @@ namespace MinConSys.Modales
                 {
                     for (int i = 1; i < checkedListBox1.Items.Count; i++)
                     {
+                        string valor = checkedListBox1.Items[i].ToString();
+
                         checkedListBox1.SetItemChecked(i, !isChecked);
+
+                        if (!isChecked)
+                            _seleccionadosPrevios.Add(valor);
+                        else
+                            _seleccionadosPrevios.Remove(valor);
                     }
                 }
                 else
                 {
                     // Verificar si todos están marcados (para actualizar "Elegir todos")
                     bool todosMarcados = true;
+
+                    string valor = checkedListBox1.Items[index].ToString();
+
+                    if (checkedListBox1.GetItemChecked(index))
+                        _seleccionadosPrevios.Add(valor);
+                    else
+                        _seleccionadosPrevios.Remove(valor);
+
                     for (int i = 1; i < checkedListBox1.Items.Count; i++)
                     {
+
                         if (!checkedListBox1.GetItemChecked(i))
                         {
                             todosMarcados = false;
                             break;
                         }
+
                     }
                     checkedListBox1.SetItemChecked(0, todosMarcados);
                 }
-
-                // Evitar que el ítem gane el foco
+          
                 checkedListBox1.ClearSelected(); // ← esto evita que quede seleccionado
+
             }
         }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltroTexto();
+        }
+
+        private void AplicarFiltroTexto()
+        {
+            if (_actualizandoLista) return;
+
+            _actualizandoLista = true;
+
+            string texto = txtBuscar.Text.Trim().ToLower();
+            string criterio = cboFiltro.SelectedItem?.ToString() ?? "Contiene";
+
+            checkedListBox1.Items.Clear();
+            checkedListBox1.Items.Add("(Elegir todos)");
+
+            var filtrados = _todosLosValores.Where(val =>
+            {
+                string valLower = val.ToLower();
+                if (criterio == "Contiene")
+                    return valLower.Contains(texto);
+                else if (criterio == "Empieza por")
+                    return valLower.StartsWith(texto);
+                else if (criterio == "Termina en")
+                    return valLower.EndsWith(texto);
+                else if (criterio == "Exacto")
+                    return valLower == texto;
+                else
+                    return true;
+            }).ToList();
+
+            foreach (var val in filtrados)
+            {
+                int index = checkedListBox1.Items.Add(val);
+                checkedListBox1.SetItemChecked(index, _seleccionadosPrevios.Contains(val));
+            }
+
+            checkedListBox1.SetItemChecked(0, TodosEstanMarcados());
+          
+            _actualizandoLista = false;
+        }
+
     }
 }
