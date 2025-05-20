@@ -28,7 +28,11 @@ namespace MinConSys.Core.Services
             var lista = localidad.Select(p => new LocalidadDto
             {
                 IdLocalidad = p.IdLocalidad,
+                IdEmpresa   = p.IdEmpresa,
+                TipoLocalidad= p.TipoLocalidad,
                 NombreLocalidad = $"{p.NombreLocalidad}".Trim(),
+                Direccion    =p.Direccion,
+                Ubigeo       =p.Ubigeo, 
                 Estado = p.Estado == "A" ? "Activo" : "Inactivo"
             }).ToList();
 

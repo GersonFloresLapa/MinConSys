@@ -64,7 +64,7 @@ namespace MinConSys.Infrastructure.Repositories
         public async Task<int> AddLocalidadAsync(Localidad localidad)
         {
             using (var connection = await _connectionFactory.GetConnection())
-            {
+        
 
                 using (var transaction = connection.BeginTransaction())
                 {
@@ -101,14 +101,13 @@ namespace MinConSys.Infrastructure.Repositories
                         throw;
                     }
                 }
-            }
+            
         }
 
         public async Task<bool> UpdateLocalidadAsync(Localidad localidad)
         {
             using (var connection = await _connectionFactory.GetConnection())
-            {
-
+         
                 using (var transaction = connection.BeginTransaction())
                 {
                     try
@@ -133,13 +132,13 @@ namespace MinConSys.Infrastructure.Repositories
                         throw;
                     }
                 }
-            }
+            
         }
 
         public async Task<bool> DeleteLocalidadAsync(int id, string usuario)
         {
             using (var connection = await _connectionFactory.GetConnection())
-            {
+            
 
                 using (var transaction = connection.BeginTransaction())
                 {
@@ -166,7 +165,7 @@ namespace MinConSys.Infrastructure.Repositories
                         throw;
                     }
                 }
-            }
+            
         }
     }
 }

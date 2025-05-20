@@ -32,18 +32,18 @@ namespace MinConSys.Maestros
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtUbigeo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboTipoLocalidad = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboEmpresa = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtNombreLocalidad = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cboEmpresa = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cboTipoLocalidad = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtUbigeo = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +55,7 @@ namespace MinConSys.Maestros
             this.btnGuardar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(737, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(737, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -84,11 +84,74 @@ namespace MinConSys.Maestros
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(737, 487);
+            this.panel1.Size = new System.Drawing.Size(737, 491);
             this.panel1.TabIndex = 2;
+            // 
+            // txtUbigeo
+            // 
+            this.txtUbigeo.Location = new System.Drawing.Point(158, 243);
+            this.txtUbigeo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUbigeo.Name = "txtUbigeo";
+            this.txtUbigeo.Size = new System.Drawing.Size(82, 22);
+            this.txtUbigeo.TabIndex = 25;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(33, 248);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 17);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Ubigeo:";
+            // 
+            // cboTipoLocalidad
+            // 
+            this.cboTipoLocalidad.FormattingEnabled = true;
+            this.cboTipoLocalidad.Items.AddRange(new object[] {
+            "M",
+            "P",
+            "D"});
+            this.cboTipoLocalidad.Location = new System.Drawing.Point(158, 78);
+            this.cboTipoLocalidad.Margin = new System.Windows.Forms.Padding(4);
+            this.cboTipoLocalidad.Name = "cboTipoLocalidad";
+            this.cboTipoLocalidad.Size = new System.Drawing.Size(219, 24);
+            this.cboTipoLocalidad.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 81);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 17);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Tipo Localidad:";
+            // 
+            // cboEmpresa
+            // 
+            this.cboEmpresa.FormattingEnabled = true;
+            this.cboEmpresa.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cboEmpresa.Location = new System.Drawing.Point(158, 26);
+            this.cboEmpresa.Margin = new System.Windows.Forms.Padding(4);
+            this.cboEmpresa.Name = "cboEmpresa";
+            this.cboEmpresa.Size = new System.Drawing.Size(219, 24);
+            this.cboEmpresa.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 17);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Empresa:";
             // 
             // cboEstado
             // 
@@ -148,69 +211,6 @@ namespace MinConSys.Maestros
             this.label3.TabIndex = 2;
             this.label3.Text = "Localidad:";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 29);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 17);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Empresa:";
-            // 
-            // cboEmpresa
-            // 
-            this.cboEmpresa.FormattingEnabled = true;
-            this.cboEmpresa.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cboEmpresa.Location = new System.Drawing.Point(158, 26);
-            this.cboEmpresa.Margin = new System.Windows.Forms.Padding(4);
-            this.cboEmpresa.Name = "cboEmpresa";
-            this.cboEmpresa.Size = new System.Drawing.Size(219, 24);
-            this.cboEmpresa.TabIndex = 21;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 81);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 17);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Tipo Localidad:";
-            // 
-            // cboTipoLocalidad
-            // 
-            this.cboTipoLocalidad.FormattingEnabled = true;
-            this.cboTipoLocalidad.Items.AddRange(new object[] {
-            "M",
-            "P",
-            "D"});
-            this.cboTipoLocalidad.Location = new System.Drawing.Point(158, 78);
-            this.cboTipoLocalidad.Margin = new System.Windows.Forms.Padding(4);
-            this.cboTipoLocalidad.Name = "cboTipoLocalidad";
-            this.cboTipoLocalidad.Size = new System.Drawing.Size(219, 24);
-            this.cboTipoLocalidad.TabIndex = 23;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 248);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 17);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Ubigeo:";
-            // 
-            // txtUbigeo
-            // 
-            this.txtUbigeo.Location = new System.Drawing.Point(158, 243);
-            this.txtUbigeo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUbigeo.Name = "txtUbigeo";
-            this.txtUbigeo.Size = new System.Drawing.Size(82, 22);
-            this.txtUbigeo.TabIndex = 25;
-            // 
             // LocalidadEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -220,6 +220,7 @@ namespace MinConSys.Maestros
             this.Controls.Add(this.toolStrip1);
             this.Name = "LocalidadEditForm";
             this.Text = "LocalidadEditForm";
+            this.Load += new System.EventHandler(this.LocalidadEditForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
