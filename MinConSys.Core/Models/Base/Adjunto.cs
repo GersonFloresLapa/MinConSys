@@ -7,6 +7,7 @@ namespace MinConSys.Core.Models.Base
         public int IdAdjunto { get; set; }
         public string TablaReferencia { get; set; }
         public int IdReferencia { get; set; }
+        public string TipoDocumento { get; set; }
         public string NombreArchivo { get; set; }
         public string UrlArchivo { get; set; }
         public char Estado { get; set; } = 'A';
@@ -14,5 +15,6 @@ namespace MinConSys.Core.Models.Base
         public DateTime FechaCreacion { get; set; }
         public string UsuarioModificacion { get; set; }
         public DateTime? FechaModificacion { get; set; }
+
     }
 }
