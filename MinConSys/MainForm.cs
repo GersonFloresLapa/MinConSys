@@ -2,6 +2,7 @@
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Helpers;
+using MinConSys.Maestros;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -142,6 +143,10 @@ namespace MinConSys
                     case "Usuario":
                         var usuarioForm = new UsuarioForm(_serviceProvider.GetRequiredService<IUsuarioService>());
                         AbrirFormularioHijo(usuarioForm);
+                        break;
+                    case "Ticket":
+                        var ticketForm = new TicketForm(_serviceProvider.GetRequiredService<ITicketService>(), _serviceProvider.GetRequiredService<IEmpresaService>());
+                        AbrirFormularioHijo(ticketForm);
                         break;
                     default:
                         break;

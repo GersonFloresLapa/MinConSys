@@ -59,6 +59,7 @@
     <Compile Include="Repositories\AdjuntoRepository.cs" />
     <Compile Include="Repositories\BalanzaRepository.cs" />
     <Compile Include="Repositories\ClaseRepository.cs" />
+    <Compile Include="Repositories\TicketRepository.cs" />
     <Compile Include="Repositories\ContratoRepository.cs" />
     <Compile Include="Repositories\EmpresaRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />

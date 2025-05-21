@@ -44,6 +44,7 @@
     <Compile Include="Interfaces\Repository\IAdjuntoRepository.cs" />
     <Compile Include="Interfaces\Repository\IBalanzaRepository.cs" />
     <Compile Include="Interfaces\Repository\IClaseRepository.cs" />
+    <Compile Include="Interfaces\Repository\ITicketRepository.cs" />
     <Compile Include="Interfaces\Repository\IEmpresaRepository.cs" />
     <Compile Include="Interfaces\Repository\IGenericRepository.cs" />
     <Compile Include="Interfaces\Repository\ILocalidadRepository.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Interfaces\Services\IBalanzaService.cs" />
     <Compile Include="Interfaces\Services\IClaseService.cs" />
     <Compile Include="Interfaces\Services\IContratoRepository.cs" />
+    <Compile Include="Interfaces\Services\ITicketService.cs" />
     <Compile Include="Interfaces\Services\IContratoService.cs" />
     <Compile Include="Interfaces\Services\IEmpresaService.cs" />
     <Compile Include="Interfaces\Services\ILocalidadService.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Models\Base\Adjunto.cs" />
     <Compile Include="Models\Base\Balanza.cs" />
     <Compile Include="Models\Base\Clase.cs" />
+    <Compile Include="Models\Base\Ticket.cs" />
     <Compile Include="Models\Base\Contrato.cs" />
     <Compile Include="Models\Base\Empresa.cs" />
     <Compile Include="Models\Base\Menu.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Models\Base\Usuario.cs" />
     <Compile Include="Models\Base\Vehiculo.cs" />
     <Compile Include="Models\Common\ComboItem.cs" />
+    <Compile Include="Models\Dto\TicketDto.cs" />
     <Compile Include="Models\Dto\ContratoDto.cs" />
     <Compile Include="Models\Dto\LocalidadDto.cs" />
     <Compile Include="Models\Dto\MenuDto.cs" />
@@ -104,6 +108,7 @@
     <Compile Include="Services\AdjuntoService.cs" />
     <Compile Include="Services\BalanzaService.cs" />
     <Compile Include="Services\ClaseService.cs" />
+    <Compile Include="Services\TicketService.cs" />
     <Compile Include="Services\ContratoService.cs" />
     <Compile Include="Services\EmpresaService.cs" />
     <Compile Include="Models\Response\LocalidadResponse.cs" />
