@@ -1,7 +1,9 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models;
+using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Request;
 using MinConSys.Core.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -59,9 +61,13 @@ namespace MinConSys.Core.Services
         {
             return await _tablaGeneralesRepository.DeleteTablaGeneralesAsync(id, nombreUsuario);
         }
-        public async Task<List<TablaGenerales>> ObtenerPorTipoGeneralAsync(string tipoGeneral)
+        public async Task<List<TablaGeneralesCombo>> ObtenerPorTipoGeneralAsync(string tipoGeneral)
         {
             return await _tablaGeneralesRepository.GetAllTablaGeneralesByTipoGeneralAsync(tipoGeneral);
+        }
+        public async Task<List<Ubigeo>> ObtenerUbigeosAsync()
+        {
+            return await _tablaGeneralesRepository.GetAllUbigeosAsync();
         }
     }
 }

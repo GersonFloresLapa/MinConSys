@@ -1,5 +1,6 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models;
+using MinConSys.Core.Models.Request;
 using MinConSys.Helpers;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace MinConSys.Maestros
         private readonly IPersonaService _personaService;
         private readonly ITablaGeneralesService _tablaGeneralesService;
         private readonly int _idPersona;
-        private List<TablaGenerales> _tipoDocumento;
+        private List<TablaGeneralesCombo> _tipoDocumento;
         public PersonaEditForm(IPersonaService personaService, ITablaGeneralesService tablaGeneralesService, int idPersona)
         {
             InitializeComponent();

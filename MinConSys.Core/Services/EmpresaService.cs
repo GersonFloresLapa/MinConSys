@@ -2,6 +2,7 @@
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Dto;
 using MinConSys.Core.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace MinConSys.Core.Services
             _empresaRepository = empresaRepository;
         }
 
-        public async Task<List<Empresa>> ListarEmpresasAsync()
+        public async Task<List<EmpresaDto>> ListarEmpresasAsync()
         {
             return await _empresaRepository.GetAllEmpresasAsync();
         }

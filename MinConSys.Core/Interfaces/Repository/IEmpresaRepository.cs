@@ -1,4 +1,5 @@
 ﻿using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Dto;
 using MinConSys.Core.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace MinConSys.Core.Interfaces.Repository
 {
     public interface IEmpresaRepository
     {
-        Task<List<Empresa>> GetAllEmpresasAsync();
+        Task<List<EmpresaDto>> GetAllEmpresasAsync();
         Task<Empresa> GetEmpresaByIdAsync(int id);
         Task<int> AddEmpresaAsync(Empresa empresa);
         Task<bool> UpdateEmpresaAsync(Empresa empresa);

@@ -81,6 +81,7 @@ namespace MinConSys.Modales
             this.btnDescargar.Name = "btnDescargar";
             this.btnDescargar.Size = new System.Drawing.Size(28, 28);
             this.btnDescargar.Text = "toolStripButton1";
+            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
             // 
             // btnEliminar
             // 
@@ -90,6 +91,7 @@ namespace MinConSys.Modales
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(28, 28);
             this.btnEliminar.Text = "toolStripButton1";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // cboTipoDocumento
             // 

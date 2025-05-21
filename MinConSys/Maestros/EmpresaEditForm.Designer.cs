@@ -52,9 +52,15 @@ namespace MinConSys.Maestros
             this.txtPartidaElectronica = new System.Windows.Forms.TextBox();
             this.txtZonaPartidaElectronica = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboDistrito = new System.Windows.Forms.ComboBox();
+            this.cboProvincia = new System.Windows.Forms.ComboBox();
+            this.cboDepartamento = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.clbTipoEmpresa = new System.Windows.Forms.CheckedListBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -69,7 +75,7 @@ namespace MinConSys.Maestros
             this.btnGuardar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(376, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(936, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -85,7 +91,7 @@ namespace MinConSys.Maestros
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Location = new System.Drawing.Point(14, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 0;
@@ -121,7 +127,7 @@ namespace MinConSys.Maestros
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 166);
+            this.label5.Location = new System.Drawing.Point(12, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 4;
@@ -130,7 +136,7 @@ namespace MinConSys.Maestros
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(265, 166);
+            this.label6.Location = new System.Drawing.Point(338, 196);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 5;
@@ -139,7 +145,7 @@ namespace MinConSys.Maestros
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 202);
+            this.label7.Location = new System.Drawing.Point(12, 232);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 13);
             this.label7.TabIndex = 6;
@@ -148,7 +154,7 @@ namespace MinConSys.Maestros
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(265, 202);
+            this.label8.Location = new System.Drawing.Point(338, 232);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 13);
             this.label8.TabIndex = 7;
@@ -157,7 +163,7 @@ namespace MinConSys.Maestros
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 238);
+            this.label9.Location = new System.Drawing.Point(12, 268);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(99, 13);
             this.label9.TabIndex = 8;
@@ -166,7 +172,7 @@ namespace MinConSys.Maestros
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(265, 238);
+            this.label10.Location = new System.Drawing.Point(338, 268);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(71, 13);
             this.label10.TabIndex = 9;
@@ -182,9 +188,9 @@ namespace MinConSys.Maestros
             // 
             // txtRazonSocial
             // 
-            this.txtRazonSocial.Location = new System.Drawing.Point(122, 55);
+            this.txtRazonSocial.Location = new System.Drawing.Point(122, 56);
             this.txtRazonSocial.Name = "txtRazonSocial";
-            this.txtRazonSocial.Size = new System.Drawing.Size(377, 20);
+            this.txtRazonSocial.Size = new System.Drawing.Size(502, 20);
             this.txtRazonSocial.TabIndex = 11;
             this.txtRazonSocial.Tag = "requerido";
             // 
@@ -192,66 +198,72 @@ namespace MinConSys.Maestros
             // 
             this.txtDireccionFiscal.Location = new System.Drawing.Point(122, 91);
             this.txtDireccionFiscal.Name = "txtDireccionFiscal";
-            this.txtDireccionFiscal.Size = new System.Drawing.Size(377, 20);
+            this.txtDireccionFiscal.Size = new System.Drawing.Size(502, 20);
             this.txtDireccionFiscal.TabIndex = 12;
             // 
             // txtDireccionComercial
             // 
             this.txtDireccionComercial.Location = new System.Drawing.Point(122, 127);
             this.txtDireccionComercial.Name = "txtDireccionComercial";
-            this.txtDireccionComercial.Size = new System.Drawing.Size(377, 20);
+            this.txtDireccionComercial.Size = new System.Drawing.Size(502, 20);
             this.txtDireccionComercial.TabIndex = 13;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(122, 163);
+            this.txtTelefono.Location = new System.Drawing.Point(122, 193);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(123, 20);
+            this.txtTelefono.Size = new System.Drawing.Size(194, 20);
             this.txtTelefono.TabIndex = 14;
             this.txtTelefono.Tag = "entero";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(343, 163);
+            this.txtEmail.Location = new System.Drawing.Point(430, 193);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(156, 20);
+            this.txtEmail.Size = new System.Drawing.Size(194, 20);
             this.txtEmail.TabIndex = 15;
             this.txtEmail.Tag = "email";
             // 
             // cboEstadoContribuyente
             // 
             this.cboEstadoContribuyente.FormattingEnabled = true;
-            this.cboEstadoContribuyente.Location = new System.Drawing.Point(122, 199);
+            this.cboEstadoContribuyente.Location = new System.Drawing.Point(122, 229);
             this.cboEstadoContribuyente.Name = "cboEstadoContribuyente";
-            this.cboEstadoContribuyente.Size = new System.Drawing.Size(123, 21);
+            this.cboEstadoContribuyente.Size = new System.Drawing.Size(194, 21);
             this.cboEstadoContribuyente.TabIndex = 16;
             this.cboEstadoContribuyente.Tag = "requerido";
             // 
             // cboCondicionContribuyente
             // 
             this.cboCondicionContribuyente.FormattingEnabled = true;
-            this.cboCondicionContribuyente.Location = new System.Drawing.Point(343, 199);
+            this.cboCondicionContribuyente.Location = new System.Drawing.Point(430, 229);
             this.cboCondicionContribuyente.Name = "cboCondicionContribuyente";
-            this.cboCondicionContribuyente.Size = new System.Drawing.Size(156, 21);
+            this.cboCondicionContribuyente.Size = new System.Drawing.Size(194, 21);
             this.cboCondicionContribuyente.TabIndex = 17;
             this.cboCondicionContribuyente.Tag = "requerido";
             // 
             // txtPartidaElectronica
             // 
-            this.txtPartidaElectronica.Location = new System.Drawing.Point(122, 235);
+            this.txtPartidaElectronica.Location = new System.Drawing.Point(122, 265);
             this.txtPartidaElectronica.Name = "txtPartidaElectronica";
-            this.txtPartidaElectronica.Size = new System.Drawing.Size(123, 20);
+            this.txtPartidaElectronica.Size = new System.Drawing.Size(194, 20);
             this.txtPartidaElectronica.TabIndex = 18;
             // 
             // txtZonaPartidaElectronica
             // 
-            this.txtZonaPartidaElectronica.Location = new System.Drawing.Point(343, 235);
+            this.txtZonaPartidaElectronica.Location = new System.Drawing.Point(430, 265);
             this.txtZonaPartidaElectronica.Name = "txtZonaPartidaElectronica";
-            this.txtZonaPartidaElectronica.Size = new System.Drawing.Size(156, 20);
+            this.txtZonaPartidaElectronica.Size = new System.Drawing.Size(194, 20);
             this.txtZonaPartidaElectronica.TabIndex = 19;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cboDistrito);
+            this.panel1.Controls.Add(this.cboProvincia);
+            this.panel1.Controls.Add(this.cboDepartamento);
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.txtZonaPartidaElectronica);
             this.panel1.Controls.Add(this.txtPartidaElectronica);
             this.panel1.Controls.Add(this.cboCondicionContribuyente);
@@ -275,56 +287,111 @@ namespace MinConSys.Maestros
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(622, 263);
+            this.panel1.Size = new System.Drawing.Size(643, 320);
             this.panel1.TabIndex = 1;
+            // 
+            // cboDistrito
+            // 
+            this.cboDistrito.FormattingEnabled = true;
+            this.cboDistrito.Location = new System.Drawing.Point(484, 160);
+            this.cboDistrito.Name = "cboDistrito";
+            this.cboDistrito.Size = new System.Drawing.Size(140, 21);
+            this.cboDistrito.TabIndex = 25;
+            // 
+            // cboProvincia
+            // 
+            this.cboProvincia.FormattingEnabled = true;
+            this.cboProvincia.Location = new System.Drawing.Point(309, 160);
+            this.cboProvincia.Name = "cboProvincia";
+            this.cboProvincia.Size = new System.Drawing.Size(121, 21);
+            this.cboProvincia.TabIndex = 24;
+            this.cboProvincia.SelectedIndexChanged += new System.EventHandler(this.cboProvincia_SelectedIndexChanged);
+            // 
+            // cboDepartamento
+            // 
+            this.cboDepartamento.FormattingEnabled = true;
+            this.cboDepartamento.Location = new System.Drawing.Point(122, 160);
+            this.cboDepartamento.Name = "cboDepartamento";
+            this.cboDepartamento.Size = new System.Drawing.Size(121, 21);
+            this.cboDepartamento.TabIndex = 23;
+            this.cboDepartamento.SelectedIndexChanged += new System.EventHandler(this.cboDepartamento_SelectedIndexChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(436, 163);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(42, 13);
+            this.label13.TabIndex = 22;
+            this.label13.Text = "Distrito:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(249, 163);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 13);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Provincia:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 163);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Departamento:";
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.4259F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.5741F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 39);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.84091F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.15909F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 510);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.42413F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.57587F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(936, 514);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.checkedListBox1);
+            this.panel2.Controls.Add(this.clbTipoEmpresa);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(631, 3);
+            this.panel2.Location = new System.Drawing.Point(652, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(156, 263);
+            this.panel2.Size = new System.Drawing.Size(281, 320);
             this.panel2.TabIndex = 2;
             // 
-            // checkedListBox1
+            // clbTipoEmpresa
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(0, -3);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
-            this.checkedListBox1.TabIndex = 0;
+            this.clbTipoEmpresa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbTipoEmpresa.FormattingEnabled = true;
+            this.clbTipoEmpresa.Location = new System.Drawing.Point(0, 0);
+            this.clbTipoEmpresa.Name = "clbTipoEmpresa";
+            this.clbTipoEmpresa.Size = new System.Drawing.Size(281, 320);
+            this.clbTipoEmpresa.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 272);
+            this.panel3.Location = new System.Drawing.Point(3, 329);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(622, 235);
+            this.panel3.Size = new System.Drawing.Size(643, 182);
             this.panel3.TabIndex = 3;
             // 
             // EmpresaEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 553);
+            this.ClientSize = new System.Drawing.Size(936, 553);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "EmpresaEditForm";
@@ -368,7 +435,13 @@ namespace MinConSys.Maestros
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox clbTipoEmpresa;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox cboDistrito;
+        private System.Windows.Forms.ComboBox cboProvincia;
+        private System.Windows.Forms.ComboBox cboDepartamento;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
     }
 }

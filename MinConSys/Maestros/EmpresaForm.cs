@@ -20,7 +20,7 @@ namespace MinConSys
         private readonly IEmpresaService _empresaService;
         private readonly ITablaGeneralesService _tablaGeneralesService;
         private readonly IAdjuntoService _adjuntoService;
-        private List<Empresa> _empresas;
+        private List<EmpresaDto> _empresas;
         public EmpresaForm(IEmpresaService empresaService, 
                             ITablaGeneralesService tablaGeneralesService,
                             IAdjuntoService adjuntoService)

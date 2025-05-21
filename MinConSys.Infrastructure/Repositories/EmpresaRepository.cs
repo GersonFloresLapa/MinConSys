@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Dto;
 using MinConSys.Core.Models.Response;
 using MinConSys.Infrastructure.Data;
 using System;
@@ -20,27 +21,28 @@ namespace MinConSys.Infrastructure.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<List<Empresa>> GetAllEmpresasAsync()
+        public async Task<List<EmpresaDto>> GetAllEmpresasAsync()
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
                 string sql = @"SELECT 
-                    IdEmpresa,
-                    RUC,
-                    RazonSocial,
-                    DireccionFiscal,
-                    DireccionComercial,
-                    Telefono,
-                    Email,
-                    EstadoContribuyente,
-                    CondicionContribuyente,
-                    PartidaElectronica,
-                    ZonaPartidaElectronica,
-                    Estado
-                FROM Empresas
-                WHERE Estado = 'A'";
+                                    IdEmpresa,
+                                    RUC,
+                                    RazonSocial,
+                                    DireccionFiscal,
+                                    DireccionComercial,
+                                    Telefono,
+                                    Email,
+                                    EC.Valor EstadoContribuyente,
+                                    CC.Valor CondicionContribuyente,
+                                    PartidaElectronica,
+                                    ZonaPartidaElectronica
+                                FROM Empresas E
+	                                INNER JOIN TablaGenerales EC on EC.Codigo = E.EstadoContribuyente and EC.TipoGeneral = 'EstadoContribuyente'
+	                                INNER JOIN TablaGenerales CC on CC.Codigo = E.CondicionContribuyente and CC.TipoGeneral = 'CondicionContribuyente'
+                                WHERE E.Estado = 'A'";
 
-                var empresas = await connection.QueryAsync<Empresa>(sql);
+                var empresas = await connection.QueryAsync<EmpresaDto>(sql);
                 return empresas.ToList();
             }
         }
@@ -54,6 +56,7 @@ namespace MinConSys.Infrastructure.Repositories
                     RazonSocial,
                     DireccionFiscal,
                     DireccionComercial,
+                    Ubigeo,
                     Telefono,
                     Email,
                     EstadoContribuyente,
@@ -94,6 +97,7 @@ namespace MinConSys.Infrastructure.Repositories
                         RazonSocial,
                         DireccionFiscal,
                         DireccionComercial,
+                        Ubigeo,
                         Telefono,
                         Email,
                         EstadoContribuyente,
@@ -108,6 +112,7 @@ namespace MinConSys.Infrastructure.Repositories
                         @RazonSocial,
                         @DireccionFiscal,
                         @DireccionComercial,
+                        @Ubigeo,
                         @Telefono,
                         @Email,
                         @EstadoContribuyente,
@@ -144,6 +149,7 @@ namespace MinConSys.Infrastructure.Repositories
                         RazonSocial = @RazonSocial,
                         DireccionFiscal = @DireccionFiscal,
                         DireccionComercial = @DireccionComercial,
+                        Ubigeo = @Ubigeo,
                         Telefono = @Telefono,
                         Email = @Email,
                         EstadoContribuyente = @EstadoContribuyente,

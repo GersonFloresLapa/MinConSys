@@ -1,6 +1,7 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Request;
 using MinConSys.Helpers;
 using MinConSys.Modales;
 using System;
@@ -21,8 +22,10 @@ namespace MinConSys.Maestros
         private readonly ITablaGeneralesService _tablaGeneralesService;
         private readonly IAdjuntoService _adjuntoService;
         private readonly int _idEmpresa;
-        private List<TablaGenerales> _estadoContribuyentes;
-        private List<TablaGenerales> _condicionContribuyentes;
+        private List<TablaGeneralesCombo> _estadoContribuyentes;
+        private List<TablaGeneralesCombo> _condicionContribuyentes;
+        private List<TablaGeneralesCombo> _tipoEmpresaContribuyentes;
+        private List<Ubigeo> _ubigeos;
         private AdjuntosViewerControl _adjuntosViewer;
         public EmpresaEditForm( IEmpresaService empresaService, 
                                 ITablaGeneralesService tablaGenerales,
@@ -30,6 +33,11 @@ namespace MinConSys.Maestros
                                 int idEmpresa)
         {
             InitializeComponent();
+            _adjuntosViewer = new AdjuntosViewerControl
+            {
+                Dock = DockStyle.Fill
+            };
+            panel3.Controls.Add(_adjuntosViewer);
             _empresaService = empresaService;
             _idEmpresa = idEmpresa;
             _tablaGeneralesService = tablaGenerales;
@@ -40,8 +48,10 @@ namespace MinConSys.Maestros
         {
             var estadoContribuyenteTask = CargarEstadoContribuyenteAsync();
             var condicionContribuyenteTask = CargarCondicionContribuyenteAsync();
+            var tipoEmpresaTask = CargarTipoEmpresaAsync();
+            var ubigeosEmpresaTask = CargarUbigeosAsync();
 
-            await Task.WhenAll(estadoContribuyenteTask, condicionContribuyenteTask);
+            await Task.WhenAll(estadoContribuyenteTask, condicionContribuyenteTask, tipoEmpresaTask, ubigeosEmpresaTask);
 
             if (_idEmpresa != 0)
             {
@@ -59,22 +69,10 @@ namespace MinConSys.Maestros
                     cboCondicionContribuyente.SelectedValue = empresa.CondicionContribuyente;
                     txtPartidaElectronica.Text = empresa.PartidaElectronica;
                     txtZonaPartidaElectronica.Text = empresa.ZonaPartidaElectronica;
+                    SetUbigeoEmpresa(empresa.Ubigeo);
                 }
             }
-
-            // Instanciar el control
-            _adjuntosViewer = new AdjuntosViewerControl();
-
-            // Configurar servicio e identificación de los adjuntos
-            _adjuntosViewer.SetService(_adjuntoService); // asegúrate de tener una instancia de IAdjuntoService
-            _adjuntosViewer.TablaReferencia = "Empresa";
-            _adjuntosViewer.IdReferencia = _idEmpresa; // por ejemplo
-
-            // Ajustar al panel
-            _adjuntosViewer.Dock = DockStyle.Fill;
-            // Agregar al panel3
-            panel3.Controls.Clear(); // opcional: limpiar contenido anterior
-            panel3.Controls.Add(_adjuntosViewer);
+            await _adjuntosViewer.InicializarAsync(_adjuntoService, "Empresa", _idEmpresa);
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
@@ -98,6 +96,7 @@ namespace MinConSys.Maestros
                 Email = txtEmail.Text,
                 EstadoContribuyente = cboEstadoContribuyente.SelectedValue.ToString(),
                 CondicionContribuyente = cboCondicionContribuyente.SelectedValue.ToString(),
+                Ubigeo = cboDistrito.SelectedValue.ToString(),
                 PartidaElectronica = txtPartidaElectronica.Text,
                 ZonaPartidaElectronica = txtZonaPartidaElectronica.Text,
                 Estado = cboEstadoContribuyente.Text,
@@ -110,7 +109,11 @@ namespace MinConSys.Maestros
                 if (_idEmpresa != 0)
                     await _empresaService.ActualizarEmpresaAsync(nuevaEmpresa);
                 else
-                    await _empresaService.CrearEmpresaAsync(nuevaEmpresa);
+                {
+                    var empresaId = await _empresaService.CrearEmpresaAsync(nuevaEmpresa);
+                    await _adjuntosViewer.GuardarAdjuntosTemporalesAsync(empresaId);
+                }
+                    
 
                 MessageBox.Show("Empresa guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
@@ -148,5 +151,84 @@ namespace MinConSys.Maestros
             cboCondicionContribuyente.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
+        private async Task CargarTipoEmpresaAsync()
+        {
+
+            _tipoEmpresaContribuyentes = await _tablaGeneralesService.ObtenerPorTipoGeneralAsync("TIPOEMPRESA");
+            
+            foreach (var v in _tipoEmpresaContribuyentes)
+            {
+                clbTipoEmpresa.Items.Add(v);
+            }
+
+        }
+        private async Task CargarUbigeosAsync()
+        {
+            _ubigeos = await _tablaGeneralesService.ObtenerUbigeosAsync();
+            var departamentos = _ubigeos
+                .Select(u => u.Departamento)
+                .Distinct()
+                .OrderBy(d => d)
+                .ToList();
+
+            cboDepartamento.DataSource = departamentos;
+        }
+
+        private void cboDepartamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string departamentoSeleccionado = cboDepartamento.SelectedItem.ToString();
+
+            cboProvincia.DataSource = null; // Limpia distrito
+
+            var provincias = _ubigeos
+                .Where(u => u.Departamento == departamentoSeleccionado)
+                .Select(u => u.Provincia)
+                .Distinct()
+                .OrderBy(p => p)
+                .ToList();
+
+            cboProvincia.DataSource = provincias;
+           
+        }
+
+        private void cboProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDepartamento.SelectedItem == null || cboProvincia.SelectedItem == null) return;
+
+            string departamento = cboDepartamento.SelectedItem.ToString();
+            string provincia = cboProvincia.SelectedItem.ToString();
+
+            cboDistrito.DataSource = null; // Limpia distrito
+
+            var distritos = _ubigeos
+                .Where(u => u.Departamento == departamento && u.Provincia == provincia)
+                .Distinct()
+                .OrderBy(u => u.Distrito)
+                .ToList();
+
+            cboDistrito.DataSource = distritos;
+
+            cboDistrito.DisplayMember = "Distrito"; // Lo que se muestra
+            cboDistrito.ValueMember = "Codigo";     // Lo que se guarda/interna
+        }
+
+        private void SetUbigeoEmpresa(string codigoUbigeo)
+        {
+            var ubigeo = _ubigeos.FirstOrDefault(u => u.Codigo == codigoUbigeo);
+
+            if (ubigeo == null)
+            {
+                MessageBox.Show("Ubigeo no encontrado.");
+                return;
+            }
+
+            // 1. Setear Departamento
+            cboDepartamento.SelectedItem = ubigeo.Departamento;
+
+            cboProvincia.SelectedItem = ubigeo.Provincia;
+
+            cboDistrito.SelectedValue = codigoUbigeo; // <- aquí seleccionas el ubigeo exacto
+        }
+
     }
 }
