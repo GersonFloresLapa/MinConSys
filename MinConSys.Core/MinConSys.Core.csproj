@@ -50,6 +50,7 @@
     <Compile Include="Interfaces\Repository\IMenuRepository.cs" />
     <Compile Include="Interfaces\Repository\ILoginRepository.cs" />
     <Compile Include="Interfaces\Repository\IProductoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IRepresentanteRepository.cs" />
     <Compile Include="Interfaces\Repository\IRolMenuPermisoRepository.cs" />
     <Compile Include="Interfaces\Repository\IRolRepository.cs" />
     <Compile Include="Interfaces\Repository\ITablaGeneralesRepository.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Interfaces\Services\ILoginService.cs" />
     <Compile Include="Interfaces\Services\IMenuService.cs" />
     <Compile Include="Interfaces\Services\IProductoService.cs" />
+    <Compile Include="Interfaces\Services\IRepresentanteService.cs" />
     <Compile Include="Interfaces\Services\IRolMenuPermisoService.cs" />
     <Compile Include="Interfaces\Services\IRolService.cs" />
     <Compile Include="Interfaces\Services\ITablaGeneralesService.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Models\Base\Empresa.cs" />
     <Compile Include="Models\Base\Menu.cs" />
     <Compile Include="Models\Base\Producto.cs" />
+    <Compile Include="Models\Base\Representante.cs" />
     <Compile Include="Models\Base\Rol.cs" />
     <Compile Include="Models\Base\RolMenuPermiso.cs" />
     <Compile Include="Models\Base\Ubigeo.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Models\Dto\EmpresaDto.cs" />
     <Compile Include="Models\Dto\LocalidadDto.cs" />
     <Compile Include="Models\Dto\MenuDto.cs" />
+    <Compile Include="Models\Dto\RepresentanteDto.cs" />
     <Compile Include="Models\Dto\TablaGeneralesDto.cs" />
     <Compile Include="Models\Dto\PersonaDto.cs" />
     <Compile Include="Models\Base\Localidad.cs" />
@@ -113,6 +117,7 @@
     <Compile Include="Services\LocalidadService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\ProductoService.cs" />
+    <Compile Include="Services\RepresentanteService.cs" />
     <Compile Include="Services\RolMenuPermisoService.cs" />
     <Compile Include="Services\RolService.cs" />
     <Compile Include="Services\TablaGeneralesService.cs" />

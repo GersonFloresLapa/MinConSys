@@ -62,10 +62,19 @@ namespace MinConSys.Maestros
             this.panel2 = new System.Windows.Forms.Panel();
             this.clbTipoEmpresa = new System.Windows.Forms.CheckedListBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.dgvRepresentates = new System.Windows.Forms.DataGridView();
+            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
+            this.cboTipoCargo = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRepresentates)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -287,23 +296,23 @@ namespace MinConSys.Maestros
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(643, 320);
+            this.panel1.Size = new System.Drawing.Size(643, 293);
             this.panel1.TabIndex = 1;
             // 
             // cboDistrito
             // 
             this.cboDistrito.FormattingEnabled = true;
-            this.cboDistrito.Location = new System.Drawing.Point(484, 160);
+            this.cboDistrito.Location = new System.Drawing.Point(495, 160);
             this.cboDistrito.Name = "cboDistrito";
-            this.cboDistrito.Size = new System.Drawing.Size(140, 21);
+            this.cboDistrito.Size = new System.Drawing.Size(129, 21);
             this.cboDistrito.TabIndex = 25;
             // 
             // cboProvincia
             // 
             this.cboProvincia.FormattingEnabled = true;
-            this.cboProvincia.Location = new System.Drawing.Point(309, 160);
+            this.cboProvincia.Location = new System.Drawing.Point(315, 160);
             this.cboProvincia.Name = "cboProvincia";
-            this.cboProvincia.Size = new System.Drawing.Size(121, 21);
+            this.cboProvincia.Size = new System.Drawing.Size(129, 21);
             this.cboProvincia.TabIndex = 24;
             this.cboProvincia.SelectedIndexChanged += new System.EventHandler(this.cboProvincia_SelectedIndexChanged);
             // 
@@ -312,14 +321,14 @@ namespace MinConSys.Maestros
             this.cboDepartamento.FormattingEnabled = true;
             this.cboDepartamento.Location = new System.Drawing.Point(122, 160);
             this.cboDepartamento.Name = "cboDepartamento";
-            this.cboDepartamento.Size = new System.Drawing.Size(121, 21);
+            this.cboDepartamento.Size = new System.Drawing.Size(129, 21);
             this.cboDepartamento.TabIndex = 23;
             this.cboDepartamento.SelectedIndexChanged += new System.EventHandler(this.cboDepartamento_SelectedIndexChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(436, 163);
+            this.label13.Location = new System.Drawing.Point(449, 163);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(42, 13);
             this.label13.TabIndex = 22;
@@ -328,7 +337,7 @@ namespace MinConSys.Maestros
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(249, 163);
+            this.label12.Location = new System.Drawing.Point(256, 163);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 13);
             this.label12.TabIndex = 21;
@@ -351,12 +360,13 @@ namespace MinConSys.Maestros
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 39);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.42413F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.57587F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.17121F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.82879F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(936, 514);
             this.tableLayoutPanel1.TabIndex = 2;
@@ -367,7 +377,7 @@ namespace MinConSys.Maestros
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(652, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(281, 320);
+            this.panel2.Size = new System.Drawing.Size(281, 293);
             this.panel2.TabIndex = 2;
             // 
             // clbTipoEmpresa
@@ -376,16 +386,72 @@ namespace MinConSys.Maestros
             this.clbTipoEmpresa.FormattingEnabled = true;
             this.clbTipoEmpresa.Location = new System.Drawing.Point(0, 0);
             this.clbTipoEmpresa.Name = "clbTipoEmpresa";
-            this.clbTipoEmpresa.Size = new System.Drawing.Size(281, 320);
+            this.clbTipoEmpresa.Size = new System.Drawing.Size(281, 293);
             this.clbTipoEmpresa.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 329);
+            this.panel3.Location = new System.Drawing.Point(3, 302);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(643, 182);
+            this.panel3.Size = new System.Drawing.Size(643, 209);
             this.panel3.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.dgvRepresentates);
+            this.panel4.Controls.Add(this.toolStrip2);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(652, 302);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(281, 209);
+            this.panel4.TabIndex = 4;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNuevo,
+            this.btnEliminar,
+            this.cboTipoCargo});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(281, 31);
+            this.toolStrip2.TabIndex = 0;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // dgvRepresentates
+            // 
+            this.dgvRepresentates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRepresentates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRepresentates.Location = new System.Drawing.Point(0, 31);
+            this.dgvRepresentates.Name = "dgvRepresentates";
+            this.dgvRepresentates.Size = new System.Drawing.Size(281, 178);
+            this.dgvRepresentates.TabIndex = 1;
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNuevo.Image = global::MinConSys.Properties.Resources.Nuevo;
+            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(28, 28);
+            this.btnNuevo.Text = "toolStripButton1";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEliminar.Image = global::MinConSys.Properties.Resources.Eliminar;
+            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(28, 28);
+            this.btnEliminar.Text = "toolStripButton1";
+            // 
+            // cboTipoCargo
+            // 
+            this.cboTipoCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipoCargo.Name = "cboTipoCargo";
+            this.cboTipoCargo.Size = new System.Drawing.Size(121, 31);
             // 
             // EmpresaEditForm
             // 
@@ -403,6 +469,11 @@ namespace MinConSys.Maestros
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRepresentates)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,5 +514,11 @@ namespace MinConSys.Maestros
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.DataGridView dgvRepresentates;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton btnNuevo;
+        private System.Windows.Forms.ToolStripButton btnEliminar;
+        private System.Windows.Forms.ToolStripComboBox cboTipoCargo;
     }
 }
