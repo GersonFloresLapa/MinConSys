@@ -1,5 +1,7 @@
 ﻿using MinConSys.Core.Models;
+using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace MinConSys.Core.Interfaces.Services
         Task<int> CrearTablaGeneralesAsync(TablaGenerales request);
         Task<bool> ActualizarTablaGeneralesAsync(TablaGenerales request);
         Task<bool> EliminarTablaGeneralesAsync(int id, string nombreUsuario);
-        Task<List<TablaGenerales>> ObtenerPorTipoGeneralAsync(string tipoGeneral);
+        Task<List<TablaGeneralesCombo>> ObtenerPorTipoGeneralAsync(string tipoGeneral);
+        Task<List<Ubigeo>> ObtenerUbigeosAsync();
     }
 }

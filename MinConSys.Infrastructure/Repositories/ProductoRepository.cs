@@ -155,5 +155,23 @@ namespace MinConSys.Infrastructure.Repositories
                 }
             }
         }
+
+        public async Task<List<Producto>> GetProductoCboAsync()
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                    IdProducto,
+                    Nombre,
+                    NombreCompleto
+                FROM Producto
+                WHERE Estado = 'A'";
+
+                var productos = await connection.QueryAsync<Producto>(sql);
+                return productos.ToList();
+            }
+        }
+
+
     }
 }

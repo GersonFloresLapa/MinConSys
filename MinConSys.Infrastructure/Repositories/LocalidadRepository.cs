@@ -22,22 +22,26 @@ namespace MinConSys.Infrastructure.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<List<Localidad>> GetAllLocalidadesAsync()
+        public async Task<List<LocalidadDto>> GetAllLocalidadesAsync()
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
                 string sql = @"SELECT 
-                    IdLocalidad,
-                    IdEmpresa,
-                    TipoLocalidad,
-                    NombreLocalidad,
-                    Direccion,
-                    Ubigeo,
-                    Estado
-                   FROM Localidad
-                   WHERE Estado = 'A'";
+                    L.IdLocalidad,
+                    L.IdEmpresa,
+					Empresa=rtrim(E.Ruc)+' - '+rtrim(E.RazonSocial) ,
+                    L.TipoLocalidad,
+					Tipo=G.Valor,
+                    L.NombreLocalidad,
+                    L.Direccion,
+                    L.Ubigeo,
+                    L.Estado
+                   FROM Localidad L
+				   INNER JOIN Empresas E ON E.IdEmpresa=L.IdEmpresa 
+				   INNER JOIN TablaGenerales G ON G.TipoGeneral='TIPOLOCALIDAD' AND G.Codigo=L.TipoLocalidad
+                   WHERE L.Estado = 'A'";
 
-                var localidad = await connection.QueryAsync<Localidad>(sql);
+                var localidad = await connection.QueryAsync<LocalidadDto>(sql);
                 return localidad.ToList();
             }
         }
@@ -167,5 +171,22 @@ namespace MinConSys.Infrastructure.Repositories
                 }
             
         }
+
+        public async Task<List<Localidad>> GetLocalidadByTipoAsync(string tipo)
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                    IdLocalidad,
+                    NombreLocalidad
+                FROM Localidad
+                WHERE (TipoLocalidad = @TipoLocalidad or TipoLocalidad = 'A') and Estado = 'A'";
+
+                var localidades = await connection.QueryAsync<Localidad>(sql, new { TipoLocalidad = tipo });
+                return localidades.ToList();
+            }
+        }
+
+
     }
 }

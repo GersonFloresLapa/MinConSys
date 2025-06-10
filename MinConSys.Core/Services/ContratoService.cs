@@ -1,5 +1,6 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
 using MinConSys.Core.Models.Dto;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,17 @@ namespace MinConSys.Core.Services
         public async Task<bool> EliminarContratoAsync(int id, string usuario)
         {
             return await _contratoRepository.DeleteContratoAsync(id, usuario);
+        }
+        public async Task<List<ComboItem>> ListarContratosTiposAsync(int? idEmpresa, int? idProveedor)
+        {
+            var localidades = await _contratoRepository.GetContratoCboAsync(idEmpresa, idProveedor); // Debes implementar esto
+            var lista = localidades.Select(e => new ComboItem
+            {
+                Id = e.IdContrato,
+                Descripcion = e.CodigoContrato
+            }).ToList();
+
+            return lista;
         }
     }
 }

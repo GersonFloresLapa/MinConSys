@@ -29,6 +29,7 @@ namespace MinConSys.Modales
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdjuntosViewerControl));
             this.dgvAdjuntos = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
@@ -36,6 +37,7 @@ namespace MinConSys.Modales
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.cboTipoDocumento = new System.Windows.Forms.ToolStripComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdjuntos)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -46,20 +48,22 @@ namespace MinConSys.Modales
             this.dgvAdjuntos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAdjuntos.Location = new System.Drawing.Point(0, 31);
             this.dgvAdjuntos.Name = "dgvAdjuntos";
-            this.dgvAdjuntos.Size = new System.Drawing.Size(384, 163);
+            this.dgvAdjuntos.RowHeadersWidth = 51;
+            this.dgvAdjuntos.Size = new System.Drawing.Size(447, 207);
             this.dgvAdjuntos.TabIndex = 3;
             // 
             // toolStrip1
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
             this.btnAgregar,
             this.btnDescargar,
             this.btnEliminar,
             this.cboTipoDocumento});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(384, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(447, 31);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -81,6 +85,7 @@ namespace MinConSys.Modales
             this.btnDescargar.Name = "btnDescargar";
             this.btnDescargar.Size = new System.Drawing.Size(28, 28);
             this.btnDescargar.Text = "toolStripButton1";
+            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
             // 
             // btnEliminar
             // 
@@ -90,29 +95,42 @@ namespace MinConSys.Modales
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(28, 28);
             this.btnEliminar.Text = "toolStripButton1";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // cboTipoDocumento
             // 
+            this.cboTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipoDocumento.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cboTipoDocumento.Name = "cboTipoDocumento";
-            this.cboTipoDocumento.Size = new System.Drawing.Size(121, 31);
+            this.cboTipoDocumento.Size = new System.Drawing.Size(140, 31);
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(384, 163);
+            this.panel1.Size = new System.Drawing.Size(447, 207);
             this.panel1.TabIndex = 5;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Font = new System.Drawing.Font("Segoe UI", 8.599999F, System.Drawing.FontStyle.Bold);
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(73, 28);
+            this.toolStripButton1.Text = "Adjuntos";
             // 
             // AdjuntosViewerControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgvAdjuntos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "AdjuntosViewerControl";
-            this.Size = new System.Drawing.Size(384, 194);
+            this.Size = new System.Drawing.Size(447, 238);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdjuntos)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -129,5 +147,6 @@ namespace MinConSys.Modales
         private System.Windows.Forms.ToolStripButton btnDescargar;
         private System.Windows.Forms.ToolStripButton btnEliminar;
         private System.Windows.Forms.ToolStripComboBox cboTipoDocumento;
+        private System.Windows.Forms.ToolStripLabel toolStripButton1;
     }
 }

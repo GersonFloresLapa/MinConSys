@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Dto;
 using MinConSys.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,7 @@ namespace MinConSys.Infrastructure.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<List<Vehiculo>> GetAllVehiculosAsync()
+        public async Task<List<VehiculoDto>> GetAllVehiculosAsync()
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
@@ -31,16 +33,13 @@ namespace MinConSys.Infrastructure.Repositories
                     Anio,
                     TipoVehiculoCodigo,
                     CapacidadToneladas,
-                    IdEmpresa,
-                    Estado,
-                    UsuarioCreacion,
-                    FechaCreacion,
-                    UsuarioModificacion,
-                    FechaModificacion
-                FROM Vehiculos
-                WHERE Estado = 'A'";
+                    E.RazonSocial Transportista
 
-                var vehiculos = await connection.QueryAsync<Vehiculo>(sql);
+                FROM Vehiculos V
+					INNER JOIN Empresas E on V.IdTransportista = E.IdEmpresa
+                WHERE V.Estado = 'A'";
+
+                var vehiculos = await connection.QueryAsync<VehiculoDto>(sql);
                 return vehiculos.ToList();
             }
         }
@@ -57,7 +56,7 @@ namespace MinConSys.Infrastructure.Repositories
                     Anio,
                     TipoVehiculoCodigo,
                     CapacidadToneladas,
-                    IdEmpresa,
+                    IdTransportista,
                     Estado,
                     UsuarioCreacion,
                     FechaCreacion,
@@ -84,7 +83,7 @@ namespace MinConSys.Infrastructure.Repositories
                         Anio,
                         TipoVehiculoCodigo,
                         CapacidadToneladas,
-                        IdEmpresa,
+                        IdTransportista,
                         Estado,
                         UsuarioCreacion,
                         FechaCreacion
@@ -95,7 +94,7 @@ namespace MinConSys.Infrastructure.Repositories
                         @Anio,
                         @TipoVehiculoCodigo,
                         @CapacidadToneladas,
-                        @IdEmpresa,
+                        @IdTransportista,
                         @Estado,
                         @UsuarioCreacion,
                         GETDATE()
@@ -128,7 +127,7 @@ namespace MinConSys.Infrastructure.Repositories
                         Anio = @Anio,
                         TipoVehiculoCodigo = @TipoVehiculoCodigo,
                         CapacidadToneladas = @CapacidadToneladas,
-                        IdEmpresa = @IdEmpresa,
+                        IdTransportista = @IdTransportista,
                         UsuarioModificacion = @UsuarioModificacion,
                         FechaModificacion = GETDATE()
                     WHERE IdVehiculo = @IdVehiculo AND Estado = 'A'";
@@ -174,5 +173,33 @@ namespace MinConSys.Infrastructure.Repositories
                 }
             }
         }
+
+        public async Task<List<Vehiculo>> GetVehiculoByTiposAsync(int idTransportista, string Tipo)
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                    IdVehiculo,
+                    Placa,
+                    Marca,
+                    Modelo,
+                    Anio,
+                    TipoVehiculoCodigo,
+                    CapacidadToneladas,
+                    IdTransportista,
+                    Estado,
+                    UsuarioCreacion,
+                    FechaCreacion,
+                    UsuarioModificacion,
+                    FechaModificacion
+                FROM Vehiculos
+                WHERE IdTransportista=@IdTransportista and TipoVehiculoCodigo=@TipoVehiculo AND Estado = 'A'";
+
+                var result= await connection.QueryAsync<Vehiculo>(sql, new { IdTransportista = idTransportista, TipoVehiculo = Tipo });
+                return result.ToList();
+            }
+        }
+
+
     }
 }

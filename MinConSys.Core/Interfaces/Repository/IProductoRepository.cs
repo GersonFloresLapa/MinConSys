@@ -14,5 +14,6 @@ namespace MinConSys.Core.Interfaces.Repository
         Task<int> AddProductoAsync(Producto producto);
         Task<bool> UpdateProductoAsync(Producto producto);
         Task<bool> DeleteProductoAsync(int id, string usuario);
+        Task<List<Producto>> GetProductoCboAsync();
     }
 }

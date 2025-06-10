@@ -1,7 +1,9 @@
 ﻿using Dapper;
 using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Models;
+using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Request;
 using MinConSys.Core.Models.Response;
 using MinConSys.Infrastructure.Data;
 using System;
@@ -163,7 +165,7 @@ namespace MinConSys.Infrastructure.Repositories
             }
         }
 
-        public async Task<List<TablaGenerales>> GetAllTablaGeneralesByTipoGeneralAsync(string tipoGeneral)
+        public async Task<List<TablaGeneralesCombo>> GetAllTablaGeneralesByTipoGeneralAsync(string tipoGeneral)
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
@@ -173,7 +175,18 @@ namespace MinConSys.Infrastructure.Repositories
                                FROM TablaGenerales
                                WHERE TipoGeneral = @TipoGeneral and Estado = 'A'";
 
-                var result = await connection.QueryAsync<TablaGenerales>(sql,new { TipoGeneral = tipoGeneral});
+                var result = await connection.QueryAsync<TablaGeneralesCombo>(sql,new { TipoGeneral = tipoGeneral});
+                return result.ToList();
+            }
+        }
+
+        public async Task<List<Ubigeo>> GetAllUbigeosAsync()
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT Codigo, Departamento, Provincia, Distrito FROM Ubigeo";
+
+                var result = await connection.QueryAsync<Ubigeo>(sql);
                 return result.ToList();
             }
         }

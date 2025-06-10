@@ -38,9 +38,6 @@ namespace MinConSys.Maestros
             this.cboEmpresa = new System.Windows.Forms.ComboBox();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.txtProducto = new System.Windows.Forms.TextBox();
-            this.txtClase = new System.Windows.Forms.TextBox();
-            this.txtTipoContrato = new System.Windows.Forms.TextBox();
             this.txtCodigoContrato = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,6 +47,9 @@ namespace MinConSys.Maestros
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cboClase = new System.Windows.Forms.ComboBox();
+            this.cboProducto = new System.Windows.Forms.ComboBox();
+            this.cboTipoContrato = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@ namespace MinConSys.Maestros
             this.btnGuardar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(376, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(468, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -76,15 +76,15 @@ namespace MinConSys.Maestros
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cboTipoContrato);
+            this.panel1.Controls.Add(this.cboProducto);
+            this.panel1.Controls.Add(this.cboClase);
             this.panel1.Controls.Add(this.btnBuscarProveedor);
             this.panel1.Controls.Add(this.btnBuscarEmpresa);
             this.panel1.Controls.Add(this.cboProveedor);
             this.panel1.Controls.Add(this.cboEmpresa);
             this.panel1.Controls.Add(this.dtpFechaFin);
             this.panel1.Controls.Add(this.dtpFechaInicio);
-            this.panel1.Controls.Add(this.txtProducto);
-            this.panel1.Controls.Add(this.txtClase);
-            this.panel1.Controls.Add(this.txtTipoContrato);
             this.panel1.Controls.Add(this.txtCodigoContrato);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
@@ -95,9 +95,9 @@ namespace MinConSys.Maestros
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(468, 255);
+            this.panel1.Size = new System.Drawing.Size(468, 241);
             this.panel1.TabIndex = 1;
             // 
             // btnBuscarProveedor
@@ -153,30 +153,6 @@ namespace MinConSys.Maestros
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(100, 20);
             this.dtpFechaInicio.TabIndex = 15;
-            // 
-            // txtProducto
-            // 
-            this.txtProducto.Location = new System.Drawing.Point(333, 201);
-            this.txtProducto.Name = "txtProducto";
-            this.txtProducto.Size = new System.Drawing.Size(100, 20);
-            this.txtProducto.TabIndex = 14;
-            this.txtProducto.Tag = "requerido";
-            // 
-            // txtClase
-            // 
-            this.txtClase.Location = new System.Drawing.Point(110, 201);
-            this.txtClase.Name = "txtClase";
-            this.txtClase.Size = new System.Drawing.Size(100, 20);
-            this.txtClase.TabIndex = 13;
-            this.txtClase.Tag = "requerido";
-            // 
-            // txtTipoContrato
-            // 
-            this.txtTipoContrato.Location = new System.Drawing.Point(110, 168);
-            this.txtTipoContrato.Name = "txtTipoContrato";
-            this.txtTipoContrato.Size = new System.Drawing.Size(100, 20);
-            this.txtTipoContrato.TabIndex = 12;
-            this.txtTipoContrato.Tag = "requerido";
             // 
             // txtCodigoContrato
             // 
@@ -258,6 +234,30 @@ namespace MinConSys.Maestros
             this.label1.TabIndex = 0;
             this.label1.Text = "Codigo Contrato:";
             // 
+            // cboClase
+            // 
+            this.cboClase.FormattingEnabled = true;
+            this.cboClase.Location = new System.Drawing.Point(110, 205);
+            this.cboClase.Name = "cboClase";
+            this.cboClase.Size = new System.Drawing.Size(121, 21);
+            this.cboClase.TabIndex = 21;
+            // 
+            // cboProducto
+            // 
+            this.cboProducto.FormattingEnabled = true;
+            this.cboProducto.Location = new System.Drawing.Point(333, 205);
+            this.cboProducto.Name = "cboProducto";
+            this.cboProducto.Size = new System.Drawing.Size(121, 21);
+            this.cboProducto.TabIndex = 22;
+            // 
+            // cboTipoContrato
+            // 
+            this.cboTipoContrato.FormattingEnabled = true;
+            this.cboTipoContrato.Location = new System.Drawing.Point(110, 171);
+            this.cboTipoContrato.Name = "cboTipoContrato";
+            this.cboTipoContrato.Size = new System.Drawing.Size(121, 21);
+            this.cboTipoContrato.TabIndex = 23;
+            // 
             // ContratoEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,13 +292,13 @@ namespace MinConSys.Maestros
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpFechaFin;
         private System.Windows.Forms.DateTimePicker dtpFechaInicio;
-        private System.Windows.Forms.TextBox txtProducto;
-        private System.Windows.Forms.TextBox txtClase;
-        private System.Windows.Forms.TextBox txtTipoContrato;
         private System.Windows.Forms.TextBox txtCodigoContrato;
         private System.Windows.Forms.ComboBox cboProveedor;
         private System.Windows.Forms.ComboBox cboEmpresa;
         private System.Windows.Forms.Button btnBuscarProveedor;
         private System.Windows.Forms.Button btnBuscarEmpresa;
+        private System.Windows.Forms.ComboBox cboProducto;
+        private System.Windows.Forms.ComboBox cboClase;
+        private System.Windows.Forms.ComboBox cboTipoContrato;
     }
 }

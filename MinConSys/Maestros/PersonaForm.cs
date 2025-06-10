@@ -18,12 +18,21 @@ namespace MinConSys
     {
         private readonly IPersonaService _personaService;
         private readonly ITablaGeneralesService _tablaGeneralesService;
+        private readonly ICuentaBancariaService _cuentabancariaService;
+        private readonly IAdjuntoService _adjuntoService;
+
         private List<PersonaDto> _personas;
-        public PersonaForm(IPersonaService personaService, ITablaGeneralesService tablaGeneralesService)
+        public PersonaForm( IPersonaService personaService, 
+                            ITablaGeneralesService tablaGeneralesService, 
+                            ICuentaBancariaService cuentabancariaService,
+                            IAdjuntoService adjuntoService
+                             )
         {
             InitializeComponent();
             _personaService = personaService;
             _tablaGeneralesService = tablaGeneralesService;
+            _cuentabancariaService = cuentabancariaService;
+            _adjuntoService = adjuntoService;
         }
         private async void PersonaForm_Load(object sender, EventArgs e)
         {
@@ -45,7 +54,7 @@ namespace MinConSys
         }
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new PersonaEditForm(_personaService, _tablaGeneralesService, 0))
+            using (var form = new PersonaEditForm(_personaService, _tablaGeneralesService, _cuentabancariaService,_adjuntoService, 0))
             {
                 var result = form.ShowDialog();
 
@@ -58,7 +67,7 @@ namespace MinConSys
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idPersona = Convert.ToInt32(dgvPersonas.CurrentRow.Cells["IdPersona"].Value);
-            using (var form = new PersonaEditForm(_personaService,_tablaGeneralesService, idPersona))
+            using (var form = new PersonaEditForm(_personaService, _tablaGeneralesService, _cuentabancariaService, _adjuntoService, idPersona))
             {
                 var result = form.ShowDialog();
 

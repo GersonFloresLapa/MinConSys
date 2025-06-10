@@ -1,12 +1,13 @@
 ﻿using Dapper;
 using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Models;
+using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Request;
 using MinConSys.Core.Models.Response;
 using MinConSys.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,9 @@ namespace MinConSys.Infrastructure.Repositories
                     ApellidoPaterno,
                     ApellidoMaterno,
                     CorreoElectronico,
+                    Telefono,
+                    Direccion,
+                    Brevete,
                     Estado
                    FROM Personas
                    WHERE Estado = 'A'";
@@ -66,7 +70,7 @@ namespace MinConSys.Infrastructure.Repositories
             }
         }
 
-        public async Task<int> AddPersonaAsync(Persona persona)
+        public async Task<int> AddPersonaAsync(PersonaRequest persona)
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
@@ -117,7 +121,7 @@ namespace MinConSys.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> UpdatePersonaAsync(Persona persona)
+        public async Task<bool> UpdatePersonaAsync(PersonaRequest request)
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
@@ -126,7 +130,7 @@ namespace MinConSys.Infrastructure.Repositories
                 {
                     try
                     {
-                        string sql = @"UPDATE Personas SET
+                        string sqlPersona = @"UPDATE Personas SET
                             TipoDocumento = @TipoDocumento,
                             NumeroDocumento = @NumeroDocumento,
                             Nombres = @Nombres,
@@ -140,9 +144,45 @@ namespace MinConSys.Infrastructure.Repositories
                             FechaModificacion = GETDATE()
                         WHERE IdPersona = @IdPersona AND Estado = 'A'";
 
-                        var affectedRows = await connection.ExecuteAsync(sql, persona, transaction);
+
+                        var affectedRows = await connection.ExecuteAsync(sqlPersona, request.Persona, transaction);
+
+                        if (affectedRows == 0)
+                        {
+                            transaction.Rollback();
+                            return false;
+                        }
+
+                        // 2. Eliminar TipoPersona actuales
+                        string deleteTipoPersona = @"DELETE FROM TipoPersona WHERE IdPersona = @IdPersona";
+                        await connection.ExecuteAsync(deleteTipoPersona, new { request.Persona.IdPersona }, transaction);
+
+                        // 3. Insertar nuevos TipoPersona
+                        if (request.TipoPersonas != null && request.TipoPersonas.Count > 0)
+                        {
+                            string insertTipoPersona = @"INSERT INTO TipoPersona (
+                                                        CodigoTipoPersona,
+                                                        IdPersona,
+                                                        Estado,
+                                                        UsuarioCreacion,
+                                                        FechaCreacion
+                                                    ) VALUES (
+                                                        @CodigoTipoPersona,
+                                                        @IdPersona,
+                                                        @Estado,
+                                                        @UsuarioCreacion,
+                                                        GETDATE()
+                                                    )";
+
+                            foreach (var tipo in request.TipoPersonas)
+                            {
+                                tipo.IdPersona = request.Persona.IdPersona;
+                                await connection.ExecuteAsync(insertTipoPersona, tipo, transaction);
+                            }
+                        }
+
                         transaction.Commit();
-                        return affectedRows > 0;
+                        return true;
                     }
                     catch
                     {
@@ -185,5 +225,46 @@ namespace MinConSys.Infrastructure.Repositories
                 }
             }
         }
+
+        public async Task<List<Persona>> GetPersonasByTipoAsync(string tipo)
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                    P.IdPersona,
+                    P.NumeroDocumento,
+                    P.Nombres+' '+P.ApellidoPaterno Nombres
+                   FROM Personas P
+                   INNER JOIN TipoPersona T on T.Idpersona=P.IdPersona 
+                   WHERE P.Estado = 'A' and T.CodigoTipoPersona=@TipoPersona ";
+
+                var personas = await connection.QueryAsync<Persona>(sql, new { TipoPersona = tipo });
+                return personas.ToList();
+            }
+        }
+
+        public async Task<List<TipoPersona>> GetTipoPersonaByPersonaAsync(int idPersona)
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"
+                        SELECT 
+                            IdTipoPersona,
+                            CodigoTipoPersona,
+                            IdPersona,
+                            Estado,
+                            UsuarioCreacion,
+                            FechaCreacion,
+                            UsuarioModificacion,
+                            FechaModificacion
+                        FROM TipoPersona
+                        WHERE IdPersona = @IdPersona AND Estado = 'A';";
+
+                var result = await connection.QueryAsync<TipoPersona>(sql, new { IdPersona = idPersona });
+                return result.AsList();
+            }
+        }
+
+
     }
 }

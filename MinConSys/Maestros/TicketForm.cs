@@ -19,13 +19,39 @@ namespace MinConSys.Maestros
     {
         private readonly ITicketService _ticketService;
         private readonly IEmpresaService _empresaService;
+        private readonly IBalanzaService _balanzaService;
+        private readonly ITablaGeneralesService _tablaGenerales;
+        private readonly IProductoService _productoService;
+        private readonly IClaseService _claseService;
+        private readonly ILocalidadService _localidadService;
+        private readonly IVehiculoService _vehiculoService;
+        private readonly IPersonaService _personaService;
+        private readonly IAdjuntoService _adjuntoService;
 
         private List<TicketDto> _tickets;
-        public TicketForm(ITicketService ticketService, IEmpresaService empresaService)
+        public TicketForm(ITicketService ticketService, 
+                          IEmpresaService empresaService, 
+                          IBalanzaService balanzaService,
+                          ITablaGeneralesService tablaGeneralesService,
+                          IProductoService productoService,
+                          IClaseService claseService,
+                          ILocalidadService localidadService,
+                          IVehiculoService  vehiculoService,
+                          IPersonaService   personaService,
+                          IAdjuntoService adjuntoService
+                          )
         {
             InitializeComponent();
             _ticketService = ticketService;
             _empresaService = empresaService;
+            _balanzaService = balanzaService;
+            _tablaGenerales = tablaGeneralesService;
+            _productoService = productoService;
+            _claseService = claseService;
+            _localidadService = localidadService;
+            _vehiculoService = vehiculoService;
+            _personaService  = personaService;
+            _adjuntoService = adjuntoService;
         }
         private async void TicketForm_Load(object sender, EventArgs e)
         {
@@ -49,7 +75,19 @@ namespace MinConSys.Maestros
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new TicketEditForm(_ticketService, _empresaService, 0))
+            using (var form = new TicketEditForm(_ticketService, 
+                                                 _empresaService, 
+                                                 _balanzaService,
+                                                 _tablaGenerales, 
+                                                 _productoService,
+                                                 _claseService,
+                                                 _localidadService,
+                                                 _vehiculoService,
+                                                 _personaService,
+                                                 _adjuntoService,
+                                                 0
+                                                 )
+                   )
             {
                 var result = form.ShowDialog();
 
@@ -63,7 +101,20 @@ namespace MinConSys.Maestros
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idTicket = Convert.ToInt32(dgvTickets.CurrentRow.Cells["IdTicket"].Value);
-            using (var form = new TicketEditForm(_ticketService, _empresaService, idTicket))
+
+
+            using (var form = new TicketEditForm(_ticketService, 
+                                                 _empresaService,
+                                                 _balanzaService,
+                                                 _tablaGenerales,
+                                                 _productoService,
+                                                 _claseService,
+                                                 _localidadService,
+                                                 _vehiculoService,
+                                                 _personaService,
+                                                 _adjuntoService,
+                                                 idTicket
+                                                 ))
             {
                 var result = form.ShowDialog();
 

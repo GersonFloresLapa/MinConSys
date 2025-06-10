@@ -1,6 +1,7 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Request;
 using MinConSys.Core.Models.Response;
 using MinConSys.Helpers;
 using MinConSys.Modales;
@@ -20,11 +21,15 @@ namespace MinConSys.Maestros
     {
         private readonly IVehiculoService _vehiculoService;
         private readonly IEmpresaService _empresaService;
+        private readonly ITablaGeneralesService _tablaGeneralesService;
+
         private List<ComboItem> _empresas;
+        private List<TablaGeneralesCombo> _tipoVehiculo;
         private readonly int _idVehiculo;
 
         public VehiculoEditForm(IVehiculoService vehiculoService, 
-                                IEmpresaService empresaService, 
+                                IEmpresaService empresaService,
+                                ITablaGeneralesService tablaGeneralesService,
                                 int idVehiculo
                                 )
         {
@@ -32,6 +37,7 @@ namespace MinConSys.Maestros
             _vehiculoService = vehiculoService;
             _empresaService = empresaService;
             _idVehiculo = idVehiculo;
+            _tablaGeneralesService = tablaGeneralesService;
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
@@ -51,9 +57,9 @@ namespace MinConSys.Maestros
                 Marca = txtMarca.Text.Trim(),
                 Modelo = txtModelo.Text.Trim(),
                 Anio = (int?)nudAnio.Value,
-                TipoVehiculoCodigo = cboTipoVehiculo.Text,
+                TipoVehiculoCodigo = cboTipoVehiculo.SelectedValue.ToString(),
                 CapacidadToneladas = decimal.TryParse(txtCapacidad.Text, out var capacidad) ? capacidad : (decimal?)null,
-                IdEmpresa = (int)cboEmpresa.SelectedValue,
+                IdTransportista = (int)cboTransportista.SelectedValue,
                 UsuarioCreacion = Session.UsuarioActual.NombreUsuario,
                 UsuarioModificacion = Session.UsuarioActual.NombreUsuario
             };
@@ -82,12 +88,13 @@ namespace MinConSys.Maestros
 
         private async void VehiculoEditForm_Load(object sender, EventArgs e)
         {
-            cboEmpresa.DropDownStyle = ComboBoxStyle.DropDown;
+            cboTransportista.DropDownStyle = ComboBoxStyle.DropDown;
             nudAnio.Minimum = 0;
             nudAnio.Maximum = DateTime.Now.Year;
             nudAnio.Value = DateTime.Now.Year;
 
             await CargarEmpresasAsync();
+            await CargarEstadoContribuyenteAsync();
 
             if (_idVehiculo != 0)
             {
@@ -100,7 +107,7 @@ namespace MinConSys.Maestros
                     nudAnio.Value = vehiculo.Anio ?? nudAnio.Minimum;
                     cboTipoVehiculo.SelectedValue = vehiculo.TipoVehiculoCodigo;
                     txtCapacidad.Text = vehiculo.CapacidadToneladas?.ToString("0.##") ?? "";
-                    cboEmpresa.SelectedValue = vehiculo.IdEmpresa;
+                    cboTransportista.SelectedValue = vehiculo.IdTransportista;
                 }
             }
         }
@@ -108,14 +115,14 @@ namespace MinConSys.Maestros
         private async Task CargarEmpresasAsync()
         {
 
-            _empresas = await _empresaService.ListarEmpresasTiposAsync("TRA");
+            _empresas = await _empresaService.ListarEmpresasTiposAsync("PROTRA");
  
-            cboEmpresa.DataSource = _empresas;
-            cboEmpresa.DisplayMember = "Descripcion";
-            cboEmpresa.ValueMember = "Id";
-            cboEmpresa.DropDownStyle = ComboBoxStyle.DropDown;
-            cboEmpresa.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cboEmpresa.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cboTransportista.DataSource = _empresas;
+            cboTransportista.DisplayMember = "Descripcion";
+            cboTransportista.ValueMember = "Id";
+            cboTransportista.DropDownStyle = ComboBoxStyle.DropDown;
+            cboTransportista.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboTransportista.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -126,10 +133,25 @@ namespace MinConSys.Maestros
             if (selector.ShowDialog() == DialogResult.OK)
             {
                 var seleccionado = selector.ItemSeleccionado;
-                cboEmpresa.SelectedItem = cboEmpresa.Items
+                cboTransportista.SelectedItem = cboTransportista.Items
                     .Cast<ComboItem>()
                     .FirstOrDefault(x => x.Id == seleccionado.Id);
             }
+        }
+        private async Task CargarEstadoContribuyenteAsync()
+        {
+
+            _tipoVehiculo = await _tablaGeneralesService.ObtenerPorTipoGeneralAsync("TIPOVEHICULO");
+
+            cboTipoVehiculo.DataSource = _tipoVehiculo;
+            cboTipoVehiculo.DisplayMember = "Valor";
+            cboTipoVehiculo.ValueMember = "Codigo";
+            cboTipoVehiculo.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

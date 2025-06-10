@@ -1,5 +1,7 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models;
+using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Request;
 using MinConSys.Helpers;
 using System;
 using System.Collections.Generic;
@@ -16,12 +18,24 @@ namespace MinConSys.Maestros
     public partial class LocalidadEditForm : Form
     {
         private readonly ILocalidadService _localidadService;
+        private readonly IEmpresaService _empresaService;
+        private readonly ITablaGeneralesService _tablaGeneralesService;
+        private List<ComboItem> _empresas;
+        private bool _cargandoComponentes = false;
+        private List<TablaGeneralesCombo> _tipoLocalidades;
+
+
         private readonly int _idLocalidad;
-        public LocalidadEditForm(ILocalidadService localidadService, int idLocalidad)
+        public LocalidadEditForm(   ILocalidadService localidadService, 
+                                    IEmpresaService empresaService, 
+                                    ITablaGeneralesService tablaGeneralesService,
+                                    int idLocalidad)
         {
             InitializeComponent();
 
             _localidadService = localidadService;
+            _empresaService = empresaService;
+            _tablaGeneralesService = tablaGeneralesService;
             _idLocalidad = idLocalidad;
         }
 
@@ -38,12 +52,12 @@ namespace MinConSys.Maestros
             var nuevoRegistro = new Localidad
             {
                 IdLocalidad     = _idLocalidad,
-                IdEmpresa       = int.Parse(cboEmpresa.SelectedItem.ToString()),
-                TipoLocalidad   = cboTipoLocalidad.Text,
+                IdEmpresa       = (int)cboEmpresa.SelectedValue,//int.Parse(cboEmpresa.SelectedItem.ToString()),
+                TipoLocalidad   = cboTipoLocalidad.SelectedValue.ToString(),
                 NombreLocalidad = txtNombreLocalidad.Text,
                 Direccion       = txtDireccion.Text,
                 Ubigeo          = txtUbigeo.Text,
-                Estado          = cboEstado.Text,
+                Estado          = "A",
                 UsuarioCreacion = Session.UsuarioActual.NombreUsuario,
                 UsuarioModificacion = Session.UsuarioActual.NombreUsuario
             };
@@ -75,6 +89,12 @@ namespace MinConSys.Maestros
 
         private async void LocalidadEditForm_Load(object sender, EventArgs e)
         {
+            _cargandoComponentes = true;
+            var empresasTask = CargarEmpresasAsync();
+            var tipolocalidadTask = CargarTipoLocalidadAsync();
+
+            await Task.WhenAll(empresasTask, tipolocalidadTask);
+
             if (_idLocalidad != 0)
             {
                 var registro = await _localidadService.ObtenerPorIdAsync(_idLocalidad);
@@ -82,14 +102,49 @@ namespace MinConSys.Maestros
                 if (registro != null)
                 {
 
-                    cboEmpresa.Text = registro.IdEmpresa.ToString();
-                    cboTipoLocalidad.Text = registro.TipoLocalidad;
+                    cboEmpresa.SelectedValue = registro.IdEmpresa;
+                    cboTipoLocalidad.SelectedValue = registro.TipoLocalidad;
                     txtNombreLocalidad.Text = registro.NombreLocalidad;
                     txtDireccion.Text = registro.Direccion;
                     txtUbigeo.Text = registro.Ubigeo;
-                    cboEstado.Text = registro.Estado;
+                    
                 }
             }
+            else
+            {
+                cboEmpresa.SelectedIndex = -1;
+                cboTipoLocalidad.SelectedIndex = -1;
+
+            }
+
+            _cargandoComponentes = false;
         }
+
+        private async Task CargarEmpresasAsync()
+        {
+
+            _empresas = await _empresaService.ListarEmpresasTiposAsync("PROMIN");
+
+            cboEmpresa.DataSource = _empresas;
+            cboEmpresa.DisplayMember = "Descripcion";
+            cboEmpresa.ValueMember = "Id";
+            cboEmpresa.DropDownStyle = ComboBoxStyle.DropDown;
+            cboEmpresa.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboEmpresa.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
+
+        private async Task CargarTipoLocalidadAsync()
+        {
+
+            _tipoLocalidades = await _tablaGeneralesService.ObtenerPorTipoGeneralAsync("TIPOLOCALIDAD");
+
+            cboTipoLocalidad.DataSource = _tipoLocalidades;
+            cboTipoLocalidad.DisplayMember = "Valor";
+            cboTipoLocalidad.ValueMember = "Codigo";
+            cboTipoLocalidad.DropDownStyle = ComboBoxStyle.DropDownList;
+
+        }
+
+
     }
 }

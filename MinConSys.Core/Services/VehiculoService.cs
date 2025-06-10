@@ -1,6 +1,8 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace MinConSys.Core.Services
             _vehiculoRepository = vehiculoRepository;
         }
 
-        public async Task<List<Vehiculo>> ListarVehiculosAsync()
+        public async Task<List<VehiculoDto>> ListarVehiculosAsync()
         {
             return await _vehiculoRepository.GetAllVehiculosAsync();
         }
@@ -45,5 +47,19 @@ namespace MinConSys.Core.Services
         {
             return await _vehiculoRepository.DeleteVehiculoAsync(id, usuario);
         }
+
+        public async Task<List<ComboItem>> ListarVehiculosTiposAsync(int idTransportista, string tipo)
+        {
+            var vehiculos = await _vehiculoRepository.GetVehiculoByTiposAsync(idTransportista, tipo); // Debes implementar esto
+            var lista = vehiculos.Select(e => new ComboItem
+            {
+                Id = e.IdVehiculo,
+                Descripcion = e.Placa
+            }).ToList();
+
+            return lista;
+        }
+
+
     }
 }

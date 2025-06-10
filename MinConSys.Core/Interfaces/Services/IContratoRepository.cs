@@ -15,5 +15,6 @@ namespace MinConSys.Core.Interfaces.Services
         Task<int> AddContratoAsync(Contrato contrato);
         Task<bool> UpdateContratoAsync(Contrato contrato);
         Task<bool> DeleteContratoAsync(int id, string usuario);
+        Task<List<Contrato>> GetContratoCboAsync(int? idEmpresa, int? idProveedor);
     }
 }

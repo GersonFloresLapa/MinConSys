@@ -1,6 +1,9 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,5 +48,19 @@ namespace MinConSys.Core.Services
         {
             return await _productoRepository.DeleteProductoAsync(id, usuario);
         }
+
+        public async Task<List<ComboItem>> ListarProductosCboAsync()
+        {
+            var productos = await _productoRepository.GetProductoCboAsync(); // Debes implementar esto
+            var lista = productos.Select(e => new ComboItem
+            {
+                Id = e.IdProducto,
+                Descripcion = $"{e.Nombre} - {e.NombreCompleto}"
+            }).ToList();
+
+            return lista;
+        }
+
+
     }
 }

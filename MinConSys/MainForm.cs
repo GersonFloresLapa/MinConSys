@@ -38,12 +38,12 @@ namespace MinConSys
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
             // Opcional: actualizar la hora cada segundo
-            var timer = new Timer();
-            timer.Interval = 1000;
-            timer.Tick += (s, ev) => {
+            //var timer = new Timer();
+            //timer.Interval = 1000;
+            //timer.Tick += (s, ev) => {
                 lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            };
-            timer.Start();
+            //};
+            //timer.Start();
 
             var _menuService = _serviceProvider.GetRequiredService<IMenuService>();
 
@@ -95,25 +95,43 @@ namespace MinConSys
                 switch (nombreInterno)
                 {
                     case "Persona":
-                        var personaForm = new PersonaForm(_serviceProvider.GetRequiredService<IPersonaService>(), _serviceProvider.GetRequiredService<ITablaGeneralesService>());
+                        var personaForm = new PersonaForm(  _serviceProvider.GetRequiredService<IPersonaService>(), 
+                                                            _serviceProvider.GetRequiredService<ITablaGeneralesService>(), 
+                                                            _serviceProvider.GetRequiredService<ICuentaBancariaService>(),
+                                                            _serviceProvider.GetRequiredService<IAdjuntoService>()
+                                                          );
                         AbrirFormularioHijo(personaForm);
                         break;
                     case "Empresas":
                         var empresaForm = new EmpresaForm(  _serviceProvider.GetRequiredService<IEmpresaService>(), 
                                                             _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
-                                                            _serviceProvider.GetRequiredService<IAdjuntoService>());
+                                                            _serviceProvider.GetRequiredService<IAdjuntoService>(),
+                                                            _serviceProvider.GetRequiredService<IRepresentanteService>(),
+                                                            _serviceProvider.GetRequiredService<IPersonaService>(),
+                                                            _serviceProvider.GetRequiredService<ICuentaBancariaService>()
+                                                            );
                         AbrirFormularioHijo(empresaForm);
                         break;
                     case "Vehiculo":
-                        var vehiculoForm = new VehiculoForm(_serviceProvider.GetRequiredService<IVehiculoService>(), _serviceProvider.GetRequiredService<IEmpresaService>());
+                        var vehiculoForm = new VehiculoForm(_serviceProvider.GetRequiredService<IVehiculoService>(), 
+                                                            _serviceProvider.GetRequiredService<IEmpresaService>(),
+                                                            _serviceProvider.GetRequiredService<ITablaGeneralesService>());
                         AbrirFormularioHijo(vehiculoForm);
                         break;
                     case "Contrato":
-                        var contratoForm = new ContratoForm(_serviceProvider.GetRequiredService<IContratoService>(), _serviceProvider.GetRequiredService<IEmpresaService>());
+                        var contratoForm = new ContratoForm(_serviceProvider.GetRequiredService<IContratoService>(), 
+                                                            _serviceProvider.GetRequiredService<IEmpresaService>(),
+                                                            _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
+                                                            _serviceProvider.GetRequiredService<IProductoService>(),
+                                                            _serviceProvider.GetRequiredService<IClaseService>()
+                                                            );
                         AbrirFormularioHijo(contratoForm);
                         break;
                     case "Localidad":
-                        var localidadForm = new LocalidadForm(_serviceProvider.GetRequiredService<ILocalidadService>());
+                        var localidadForm = new LocalidadForm(_serviceProvider.GetRequiredService<ILocalidadService>(), 
+                                                              _serviceProvider.GetRequiredService<IEmpresaService>(),
+                                                              _serviceProvider.GetRequiredService<ITablaGeneralesService>()
+                                                              );
                         AbrirFormularioHijo(localidadForm);
                         break;
                     case "Clase":
@@ -145,8 +163,82 @@ namespace MinConSys
                         AbrirFormularioHijo(usuarioForm);
                         break;
                     case "Ticket":
-                        var ticketForm = new TicketForm(_serviceProvider.GetRequiredService<ITicketService>(), _serviceProvider.GetRequiredService<IEmpresaService>());
+                        var ticketForm = new TicketForm(
+                                                    _serviceProvider.GetRequiredService<ITicketService>(), 
+                                                    _serviceProvider.GetRequiredService<IEmpresaService>(), 
+                                                    _serviceProvider.GetRequiredService<IBalanzaService>(),
+                                                    _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
+                                                    _serviceProvider.GetRequiredService<IProductoService>(),
+                                                    _serviceProvider.GetRequiredService<IClaseService>(),
+                                                    _serviceProvider.GetRequiredService<ILocalidadService>(),
+                                                    _serviceProvider.GetRequiredService<IVehiculoService>(),
+                                                    _serviceProvider.GetRequiredService<IPersonaService>(),
+                                                    _serviceProvider.GetRequiredService<IAdjuntoService>()
+                                                    );
+
                         AbrirFormularioHijo(ticketForm);
+                        break;
+                    case "RumaRecibir":
+                        var rumaRecibirForm = new RumaForm(
+                                                    _serviceProvider.GetRequiredService<IRumaService>(),
+                                                    _serviceProvider.GetRequiredService<ITicketService>(),
+                                                    _serviceProvider.GetRequiredService<IEmpresaService>(),
+                                                    _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
+                                                    _serviceProvider.GetRequiredService<IProductoService>(),
+                                                    _serviceProvider.GetRequiredService<IClaseService>(),
+                                                    _serviceProvider.GetRequiredService<IContratoService>(),
+                                                    _serviceProvider.GetRequiredService<ILocalidadService>(),
+                                                    _serviceProvider.GetRequiredService<IAdjuntoService>(),
+                                                    "REC"
+                                                    );
+
+                        AbrirFormularioHijo(rumaRecibirForm);
+                        break;
+                    case "RumaMineral":
+                        var rumaMineralForm = new RumaForm(
+                                                    _serviceProvider.GetRequiredService<IRumaService>(),
+                                                    _serviceProvider.GetRequiredService<ITicketService>(),
+                                                    _serviceProvider.GetRequiredService<IEmpresaService>(),
+                                                    _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
+                                                    _serviceProvider.GetRequiredService<IProductoService>(),
+                                                    _serviceProvider.GetRequiredService<IClaseService>(),
+                                                    _serviceProvider.GetRequiredService<IContratoService>(),
+                                                    _serviceProvider.GetRequiredService<ILocalidadService>(),
+                                                    _serviceProvider.GetRequiredService<IAdjuntoService>(),
+                                                    "MIS"
+                                                    );
+
+                        AbrirFormularioHijo(rumaMineralForm);
+                        break;
+                    case "RumaConcentrado":
+                        var rumaConcentradoForm = new RumaForm(
+                                                    _serviceProvider.GetRequiredService<IRumaService>(),
+                                                    _serviceProvider.GetRequiredService<ITicketService>(),
+                                                    _serviceProvider.GetRequiredService<IEmpresaService>(),
+                                                    _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
+                                                    _serviceProvider.GetRequiredService<IProductoService>(),
+                                                    _serviceProvider.GetRequiredService<IClaseService>(),
+                                                    _serviceProvider.GetRequiredService<IContratoService>(),
+                                                    _serviceProvider.GetRequiredService<ILocalidadService>(),
+                                                    _serviceProvider.GetRequiredService<IAdjuntoService>(),
+                                                    "CON"
+                                                    );
+
+                        AbrirFormularioHijo(rumaConcentradoForm);
+                        break;
+                    case "LeyMineral":
+                        var leyMineralForm = new LeyMineralForm(
+                                                    _serviceProvider.GetRequiredService<ILeyService>(),
+                                                    _serviceProvider.GetRequiredService<IRumaService>(),
+                                                    _serviceProvider.GetRequiredService<ITicketService>(),
+                                                    _serviceProvider.GetRequiredService<IEmpresaService>(),
+                                                    _serviceProvider.GetRequiredService<ITablaGeneralesService>(),
+                                                    _serviceProvider.GetRequiredService<IClaseService>(),
+                                                    _serviceProvider.GetRequiredService<ILocalidadService>(),
+                                                    _serviceProvider.GetRequiredService<IAdjuntoService>()
+                                                    );
+
+                        AbrirFormularioHijo(leyMineralForm);
                         break;
                     default:
                         break;

@@ -14,5 +14,6 @@ namespace MinConSys.Core.Interfaces.Repository
         Task<int> AddClaseAsync(Clase clase);
         Task<bool> UpdateClaseAsync(Clase clase);
         Task<bool> DeleteClaseAsync(int id, string usuario);
+        Task<List<Clase>> GetClaseCboAsync();
     }
 }

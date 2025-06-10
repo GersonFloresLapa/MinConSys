@@ -15,5 +15,6 @@ namespace MinConSys.Core.Interfaces.Services
         Task<int> CrearTicketAsync(Ticket ticket);
         Task<bool> ActualizarTicketAsync(Ticket ticket);
         Task<bool> EliminarTicketAsync(int id, string usuario);
+        Task<List<TicketRumaDto>> ListarTickestParaRumaAsync(int idProveedor, int idClase, int idProducto);
     }
 }

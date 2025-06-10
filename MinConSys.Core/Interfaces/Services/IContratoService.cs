@@ -1,4 +1,5 @@
 ﻿using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
 using MinConSys.Core.Models.Dto;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace MinConSys.Core.Interfaces.Services
         Task<int> CrearContratoAsync(Contrato contrato);
         Task<bool> ActualizarContratoAsync(Contrato contrato);
         Task<bool> EliminarContratoAsync(int id, string usuario);
+        Task<List<ComboItem>> ListarContratosTiposAsync(int? idEmpresa, int? idProveedor);
     }
 }

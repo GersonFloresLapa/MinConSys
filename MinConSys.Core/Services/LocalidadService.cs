@@ -1,8 +1,10 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
-using MinConSys.Core.Models;
+using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
 using MinConSys.Core.Models.Dto;
 using MinConSys.Core.Models.Response;
+using MinConSys.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +24,9 @@ namespace MinConSys.Core.Services
 
         public async Task<List<LocalidadDto>> ListarLocalidadesAsync()
         {
-            var localidad = await _localidadRepository.GetAllLocalidadesAsync();
+ 
+            return await _localidadRepository.GetAllLocalidadesAsync();
 
-            // Mapear a DTO
-            var lista = localidad.Select(p => new LocalidadDto
-            {
-                IdLocalidad = p.IdLocalidad,
-                IdEmpresa   = p.IdEmpresa,
-                TipoLocalidad= p.TipoLocalidad,
-                NombreLocalidad = $"{p.NombreLocalidad}".Trim(),
-                Direccion    =p.Direccion,
-                Ubigeo       =p.Ubigeo, 
-                Estado = p.Estado == "A" ? "Activo" : "Inactivo"
-            }).ToList();
-
-            return lista;
         }
 
         public async Task<Localidad> ObtenerPorIdAsync(int id)
@@ -60,5 +50,20 @@ namespace MinConSys.Core.Services
         {
             return await _localidadRepository.DeleteLocalidadAsync(id, nombreUsuario);
         }
+
+        public async Task<List<ComboItem>> ListarLocalidadesTiposAsync(string tipo)
+        {
+            var localidades = await _localidadRepository.GetLocalidadByTipoAsync(tipo); // Debes implementar esto
+            var lista = localidades.Select(e => new ComboItem
+            {
+                Id = e.IdLocalidad,
+                Descripcion = e.NombreLocalidad
+            }).ToList();
+
+            return lista;
+        }
+
+
+
     }
 }

@@ -20,13 +20,23 @@ namespace MinConSys
         private readonly IContratoService _contratoService;
         private readonly IEmpresaService _empresaService;
         private List<ContratoDto> _contratos;
-        public ContratoForm(IContratoService contratoService, IEmpresaService empresaService)
+        public readonly ITablaGeneralesService _tablaGeneralesService;
+        public readonly IProductoService _productoService;
+        public readonly IClaseService _claseService;
+        public ContratoForm(IContratoService contratoService,
+                                IEmpresaService empresaService,
+                                ITablaGeneralesService tablaGeneralesService,
+                                IProductoService productoService,
+                                IClaseService claseService
+                                )
         {
             InitializeComponent();
             _contratoService = contratoService;
             _empresaService = empresaService;
+            _tablaGeneralesService = tablaGeneralesService;
+            _productoService = productoService;
+            _claseService = claseService;
         }
-
         private async void ContratoForm_Load(object sender, EventArgs e)
         {
             await CargarContratosAsync();
@@ -48,7 +58,7 @@ namespace MinConSys
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new ContratoEditForm(_contratoService,_empresaService,0))
+            using (var form = new ContratoEditForm(_contratoService,_empresaService, _tablaGeneralesService,_productoService,_claseService, 0))
             {
                 var result = form.ShowDialog();
 
@@ -62,7 +72,7 @@ namespace MinConSys
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idContrato = Convert.ToInt32(dgvContratos.CurrentRow.Cells["IdContrato"].Value);
-            using (var form = new ContratoEditForm(_contratoService,_empresaService, idContrato))
+            using (var form = new ContratoEditForm(_contratoService, _empresaService, _tablaGeneralesService, _productoService, _claseService, idContrato))
             {
                 var result = form.ShowDialog();
 

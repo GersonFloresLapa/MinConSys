@@ -72,6 +72,36 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\CuentaBancariaEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\CuentaBancariaEditForm.Designer.cs">
+      <DependentUpon>CuentaBancariaEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\LeyMineralEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\LeyMineralEditForm.Designer.cs">
+      <DependentUpon>LeyMineralEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\LeyMineralForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\LeyMineralForm.Designer.cs">
+      <DependentUpon>LeyMineralForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\RumaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\RumaForm.Designer.cs">
+      <DependentUpon>RumaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\RumaEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\RumaEditForm.Designer.cs">
+      <DependentUpon>RumaEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\BalanzaEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +113,12 @@
     </Compile>
     <Compile Include="Maestros\BalanzaForm.Designer.cs">
       <DependentUpon>BalanzaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\RepresentanteEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestros\RepresentanteEditForm.Designer.cs">
+      <DependentUpon>RepresentanteEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maestros\MenuEditForm.cs">
       <SubType>Form</SubType>
@@ -252,6 +288,18 @@
     <Compile Include="Modales\FormFiltro.Designer.cs">
       <DependentUpon>FormFiltro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\SelectorRumaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\SelectorRumaForm.Designer.cs">
+      <DependentUpon>SelectorRumaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\SelectorTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\SelectorTicketForm.Designer.cs">
+      <DependentUpon>SelectorTicketForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\SelectorGenericoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +308,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\Adjuntar.png" />
     <None Include="Resources\Refrescar.png" />
     <None Include="Resources\Importar.png" />
     <None Include="Resources\Eliminar.png" />
@@ -270,11 +319,29 @@
     <None Include="Resources\Nuevo.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\Fondo.png" />
+    <EmbeddedResource Include="Maestros\CuentaBancariaEditForm.resx">
+      <DependentUpon>CuentaBancariaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\LeyMineralEditForm.resx">
+      <DependentUpon>LeyMineralEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\LeyMineralForm.resx">
+      <DependentUpon>LeyMineralForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\RumaForm.resx">
+      <DependentUpon>RumaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\RumaEditForm.resx">
+      <DependentUpon>RumaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maestros\BalanzaEditForm.resx">
       <DependentUpon>BalanzaEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\BalanzaForm.resx">
       <DependentUpon>BalanzaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestros\RepresentanteEditForm.resx">
+      <DependentUpon>RepresentanteEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maestros\MenuEditForm.resx">
       <DependentUpon>MenuEditForm.cs</DependentUpon>
@@ -353,6 +420,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\FormFiltro.resx">
       <DependentUpon>FormFiltro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\SelectorRumaForm.resx">
+      <DependentUpon>SelectorRumaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\SelectorTicketForm.resx">
+      <DependentUpon>SelectorTicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\SelectorGenericoForm.resx">
       <DependentUpon>SelectorGenericoForm.cs</DependentUpon>

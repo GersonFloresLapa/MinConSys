@@ -1,6 +1,7 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace MinConSys.Core.Services
             _adjuntoRepository = adjuntoRepository;
         }
 
-        public async Task<List<Adjunto>> ListarAdjuntosAsync(string tablaReferencia, int idReferencia)
+        public async Task<List<AdjuntoDto>> ListarAdjuntosAsync(string tablaReferencia, int idReferencia)
         {
             return await _adjuntoRepository.ObtenerAdjuntosPorEntidadAsync(tablaReferencia, idReferencia);
         }

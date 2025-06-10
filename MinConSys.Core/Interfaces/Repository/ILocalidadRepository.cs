@@ -10,10 +10,11 @@ namespace MinConSys.Core.Interfaces.Repository
 {
     public interface ILocalidadRepository
     {
-        Task<List<Localidad>> GetAllLocalidadesAsync();
+        Task<List<LocalidadDto>> GetAllLocalidadesAsync();
         Task<Localidad> GetLocalidadByIdAsync(int id);
         Task<int> AddLocalidadAsync(Localidad localidad);
         Task<bool> UpdateLocalidadAsync(Localidad localidad);
         Task<bool> DeleteLocalidadAsync(int id, string usuario);
+        Task<List<Localidad>> GetLocalidadByTipoAsync(string tipo);
     }
 }

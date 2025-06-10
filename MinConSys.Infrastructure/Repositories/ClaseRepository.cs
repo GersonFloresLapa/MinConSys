@@ -146,5 +146,23 @@ namespace MinConSys.Infrastructure.Repositories
                 }
             }
         }
+
+        public async Task<List<Clase>> GetClaseCboAsync()
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                    IdClase,
+                    Nombre,
+                    Descripcion
+                FROM Clase
+                WHERE Estado = 'A'";
+
+                var clases = await connection.QueryAsync<Clase>(sql);
+                return clases.ToList();
+            }
+        }
+
+
     }
 }

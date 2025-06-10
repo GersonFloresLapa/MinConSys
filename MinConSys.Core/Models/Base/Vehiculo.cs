@@ -15,7 +15,7 @@ namespace MinConSys.Core.Models.Base
         public int? Anio { get; set; }
         public string TipoVehiculoCodigo { get; set; }
         public decimal? CapacidadToneladas { get; set; }
-        public int IdEmpresa { get; set; }
+        public int IdTransportista { get; set; }
         public string Estado { get; set; }
         public string UsuarioCreacion { get; set; }
         public DateTime? FechaCreacion { get; set; }

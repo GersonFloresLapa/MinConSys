@@ -1,12 +1,14 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace MinConSys.Core.Services
 {
     public class ClaseService : IClaseService
@@ -45,5 +47,19 @@ namespace MinConSys.Core.Services
         {
             return await _claseRepository.DeleteClaseAsync(id, usuario);
         }
+
+        public async Task<List<ComboItem>> ListarClasesCboAsync()
+        {
+            var clases = await _claseRepository.GetClaseCboAsync(); // Debes implementar esto
+            var lista = clases.Select(e => new ComboItem
+            {
+                Id = e.IdClase,
+                Descripcion = $"{e.Nombre} - {e.Descripcion}"
+            }).ToList();
+
+            return lista;
+        }
+
+
     }
 }

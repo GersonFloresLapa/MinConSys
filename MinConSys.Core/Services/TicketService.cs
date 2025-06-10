@@ -45,5 +45,10 @@ namespace MinConSys.Core.Services
         {
             return await _ticketRepository.DeleteTicketAsync(id, usuario);
         }
+
+        public async Task<List<TicketRumaDto>> ListarTickestParaRumaAsync(int idProveedor, int idClase, int idProducto)
+        {
+            return await _ticketRepository.GetAllTicketsForRumaAsync(idProveedor, idClase, idProducto);
+        }
     }
 }

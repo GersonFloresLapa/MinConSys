@@ -9,16 +9,22 @@ namespace MinConSys.Core.Models.Dto
     public class TicketDto
     {
         public int IdTicket { get; set; }
+        public string Empresa { get; set; }
         public string NroTicket { get; set; }
-        public int IdBalanza { get; set; }
+        public string Balanza { get; set; }
         public string TipoOperacion { get; set; }
         public string Clase { get; set; }
         public string Producto { get; set; }
-        public int IdLocalidad { get; set; }
-        public int IdTransportista { get; set; }
-        public int IdVehiculo { get; set; }
-        public int IdVehiculo2 { get; set; }
+        public string Procedencia { get; set; }
+        public string Deposito { get; set; }
+        public string Transportista { get; set; }
+        public string EstadoContribuyente { get; set; }
+        public string Chofer { get; set; }
+        public string Brevete { get; set; }
+        public string Tracto { get; set; }
+        public string Remolque { get; set; }
         public DateTime FechaMovimiento { get; set; }
+        public string Proveedor { get; set; }
         public string GuiaRemision { get; set; }
         public DateTime FechaGuiaRemision { get; set; }
         public string GuiaTransporte { get; set; }

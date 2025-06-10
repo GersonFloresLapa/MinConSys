@@ -19,13 +19,14 @@ namespace MinConSys
     {
         private readonly IVehiculoService _vehiculoService;
         private readonly IEmpresaService _empresaService;
-        private List<Vehiculo> _vehiculos;
-        public VehiculoForm(IVehiculoService vehiculoService, IEmpresaService empresaService)
+        private readonly ITablaGeneralesService _tablaGeneralesService;
+        private List<VehiculoDto> _vehiculos;
+        public VehiculoForm(IVehiculoService vehiculoService, IEmpresaService empresaService, ITablaGeneralesService tablaGeneralesService)
         {
             InitializeComponent();
             _vehiculoService = vehiculoService;
             _empresaService = empresaService;
-
+            _tablaGeneralesService = tablaGeneralesService;
         }
 
         private async void VehiculoForm_Load(object sender, EventArgs e)
@@ -49,7 +50,7 @@ namespace MinConSys
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new VehiculoEditForm(_vehiculoService, _empresaService, 0))
+            using (var form = new VehiculoEditForm(_vehiculoService, _empresaService, _tablaGeneralesService, 0))
             {
                 var result = form.ShowDialog();
 
@@ -63,7 +64,7 @@ namespace MinConSys
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idVehiculo = Convert.ToInt32(dgvVehiculos.CurrentRow.Cells["IdVehiculo"].Value);
-            using (var form = new VehiculoEditForm(_vehiculoService, _empresaService, idVehiculo))
+            using (var form = new VehiculoEditForm(_vehiculoService, _empresaService, _tablaGeneralesService, idVehiculo))
             {
                 var result = form.ShowDialog();
 

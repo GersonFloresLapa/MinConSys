@@ -1,6 +1,9 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +48,20 @@ namespace MinConSys.Core.Services
         {
             return await _balanzaRepository.DeleteBalanzaAsync(id, usuario);
         }
+
+        public async Task<List<ComboItem>> ListarBalanzaCboAsync()
+        {
+            var balanzas = await _balanzaRepository.GetBalanzaCboAsync(); // Debes implementar esto
+            var lista = balanzas.Select(e => new ComboItem
+            {
+                Id = e.IdBalanza,
+                Descripcion =e.Nombre
+            }).ToList();
+
+            return lista;
+        }
+
+
     }
 
 }

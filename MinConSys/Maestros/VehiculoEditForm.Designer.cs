@@ -34,7 +34,7 @@ namespace MinConSys.Maestros
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.nudAnio = new System.Windows.Forms.NumericUpDown();
-            this.cboEmpresa = new System.Windows.Forms.ComboBox();
+            this.cboTransportista = new System.Windows.Forms.ComboBox();
             this.cboTipoVehiculo = new System.Windows.Forms.ComboBox();
             this.txtCapacidad = new System.Windows.Forms.TextBox();
             this.txtModelo = new System.Windows.Forms.TextBox();
@@ -59,9 +59,10 @@ namespace MinConSys.Maestros
             this.btnGuardar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(376, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(553, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // btnGuardar
             // 
@@ -76,7 +77,7 @@ namespace MinConSys.Maestros
             // 
             this.panel1.Controls.Add(this.btnBuscar);
             this.panel1.Controls.Add(this.nudAnio);
-            this.panel1.Controls.Add(this.cboEmpresa);
+            this.panel1.Controls.Add(this.cboTransportista);
             this.panel1.Controls.Add(this.cboTipoVehiculo);
             this.panel1.Controls.Add(this.txtCapacidad);
             this.panel1.Controls.Add(this.txtModelo);
@@ -90,9 +91,9 @@ namespace MinConSys.Maestros
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(553, 225);
+            this.panel1.Size = new System.Drawing.Size(553, 211);
             this.panel1.TabIndex = 1;
             // 
             // btnBuscar
@@ -118,16 +119,16 @@ namespace MinConSys.Maestros
             this.nudAnio.TabIndex = 16;
             this.nudAnio.Tag = "anio";
             // 
-            // cboEmpresa
+            // cboTransportista
             // 
-            this.cboEmpresa.FormattingEnabled = true;
-            this.cboEmpresa.Items.AddRange(new object[] {
+            this.cboTransportista.FormattingEnabled = true;
+            this.cboTransportista.Items.AddRange(new object[] {
             "1"});
-            this.cboEmpresa.Location = new System.Drawing.Point(125, 141);
-            this.cboEmpresa.Name = "cboEmpresa";
-            this.cboEmpresa.Size = new System.Drawing.Size(337, 21);
-            this.cboEmpresa.TabIndex = 15;
-            this.cboEmpresa.Tag = "requerido";
+            this.cboTransportista.Location = new System.Drawing.Point(125, 141);
+            this.cboTransportista.Name = "cboTransportista";
+            this.cboTransportista.Size = new System.Drawing.Size(337, 21);
+            this.cboTransportista.TabIndex = 15;
+            this.cboTransportista.Tag = "requerido";
             // 
             // cboTipoVehiculo
             // 
@@ -175,9 +176,9 @@ namespace MinConSys.Maestros
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(37, 144);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 13);
+            this.label7.Size = new System.Drawing.Size(71, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Empresa:";
+            this.label7.Text = "Transportista:";
             // 
             // label6
             // 
@@ -270,7 +271,7 @@ namespace MinConSys.Maestros
         private System.Windows.Forms.TextBox txtModelo;
         private System.Windows.Forms.TextBox txtMarca;
         private System.Windows.Forms.ComboBox cboTipoVehiculo;
-        private System.Windows.Forms.ComboBox cboEmpresa;
+        private System.Windows.Forms.ComboBox cboTransportista;
         private System.Windows.Forms.NumericUpDown nudAnio;
         private System.Windows.Forms.Button btnBuscar;
     }

@@ -164,6 +164,22 @@ namespace MinConSys.Infrastructure.Repositories
                 }
             }
         }
+
+        public async Task<List<Balanza>> GetBalanzaCboAsync()
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                string sql = @"SELECT 
+                    IdBalanza,
+                    Nombre
+                FROM Balanza
+                WHERE Estado = 'A'";
+
+                var balanzas = await connection.QueryAsync<Balanza>(sql);
+                return balanzas.ToList();
+            }
+        }
+
     }
 
 }

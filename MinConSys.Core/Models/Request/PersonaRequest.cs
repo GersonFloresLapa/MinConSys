@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinConSys.Core.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace MinConSys.Core.Models.Request
 {
     public class PersonaRequest
     {
+
+
         public int? IdPersona { get; set; } // Null cuando sea insertar
         public string TipoDocumento { get; set; }
         public string NumeroDocumento { get; set; }
@@ -18,5 +21,7 @@ namespace MinConSys.Core.Models.Request
         public string CorreoElectronico { get; set; }
         public string Telefono { get; set; }
         public string Direccion { get; set; }
-    }
+        public Persona Persona { get; set; }
+        public List<TipoPersona> TipoPersonas { get; set; }
+  }
 }

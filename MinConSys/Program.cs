@@ -22,7 +22,7 @@ namespace MinConSys
             // Configurar inyección de dependencias
             ServiceProvider = DependencyInjection.ConfigureServices();
 
-            // Iniciar con el formulario de login
+            // Iniciar con el formulario de login sa
             var loginForm = new LoginForm(ServiceProvider.GetRequiredService<ILoginService>());
 
             // Si el login es exitoso, abre el formulario principal

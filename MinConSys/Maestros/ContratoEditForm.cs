@@ -1,6 +1,7 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
 using MinConSys.Core.Models.Common;
+using MinConSys.Core.Models.Request;
 using MinConSys.Helpers;
 using MinConSys.Modales;
 using System;
@@ -19,17 +20,30 @@ namespace MinConSys.Maestros
     {
         private readonly IContratoService _contratoService;
         private readonly IEmpresaService _empresaService;
+        public readonly ITablaGeneralesService _tablaGeneralesService;
+        public readonly IProductoService _productoService;
+        public readonly IClaseService _claseService;
         private List<ComboItem> _empresas;
         private List<ComboItem> _proveedores;
         private readonly int _idContrato;
-        public ContratoEditForm(IContratoService contratoService, 
+
+        private List<ComboItem> _productos;
+        private List<ComboItem> _clases;
+        private List<TablaGeneralesCombo> _tipoContratos;
+        public ContratoEditForm(IContratoService contratoService,
                                 IEmpresaService empresaService,
+                                ITablaGeneralesService tablaGeneralesService,
+                                IProductoService productoService,
+                                IClaseService claseService,
                                 int idContrato
                                 )
         {
             InitializeComponent();
             _contratoService = contratoService;
             _empresaService = empresaService;
+            _tablaGeneralesService = tablaGeneralesService;
+            _productoService = productoService;
+            _claseService = claseService;
             _idContrato = idContrato;
         }
 
@@ -51,9 +65,9 @@ namespace MinConSys.Maestros
                 IdProveedor = (int)cboProveedor.SelectedValue,
                 FechaInicio = dtpFechaInicio.Value.Date,
                 FechaFin = dtpFechaFin.Checked ? dtpFechaFin.Value.Date : (DateTime?)null,
-                TipoContrato = txtTipoContrato.Text,
-                Clase = txtClase.Text,
-                Producto = txtProducto.Text,
+                TipoContrato = cboTipoContrato.SelectedValue.ToString(),
+                IdClase = (int)cboClase.SelectedValue,
+                IdProducto = (int)cboProducto.SelectedValue,
                 UsuarioCreacion = Session.UsuarioActual.NombreUsuario,
                 UsuarioModificacion = Session.UsuarioActual.NombreUsuario
             };
@@ -82,10 +96,9 @@ namespace MinConSys.Maestros
         private async void ContratoEditForm_Load(object sender, EventArgs e)
         {
 
-            var empresasTask = CargarEmpresasAsync();
-            var proveedoresTask = CargarProveedoresAsync();
+            var combosTask = CargarCombosAsync();
 
-            await Task.WhenAll(empresasTask, proveedoresTask);
+            await Task.WhenAll(combosTask);
 
             if (_idContrato != 0)
             {
@@ -108,16 +121,16 @@ namespace MinConSys.Maestros
                     {
                         dtpFechaFin.Checked = false;
                     }
-                    txtTipoContrato.Text = contrato.TipoContrato;
-                    txtClase.Text = contrato.Clase;
-                    txtProducto.Text = contrato.Producto;
+                    cboTipoContrato.SelectedValue = contrato.TipoContrato;
+                    cboClase.SelectedValue = contrato.IdClase;
+                    cboProducto.SelectedValue = contrato.IdProducto;
                 }
             }
         }
-        private async Task CargarEmpresasAsync()
+        private async Task CargarCombosAsync()
         {
 
-            _empresas = await _empresaService.ListarEmpresasTiposAsync("TRA");
+            _empresas = await _empresaService.ListarEmpresasGrupoAsync();
 
             cboEmpresa.DataSource = _empresas;
             cboEmpresa.DisplayMember = "Descripcion";
@@ -125,12 +138,8 @@ namespace MinConSys.Maestros
             cboEmpresa.DropDownStyle = ComboBoxStyle.DropDown;
             cboEmpresa.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cboEmpresa.AutoCompleteSource = AutoCompleteSource.ListItems;
-        }
-        private async Task CargarProveedoresAsync()
-        {
 
-            _proveedores = await _empresaService.ListarEmpresasTiposAsync("TRA");
-
+            _proveedores = await _empresaService.ListarEmpresasTiposAsync("PROMIN");
 
             cboProveedor.DataSource = _proveedores;
             cboProveedor.DisplayMember = "Descripcion";
@@ -138,7 +147,31 @@ namespace MinConSys.Maestros
             cboProveedor.DropDownStyle = ComboBoxStyle.DropDown;
             cboProveedor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cboProveedor.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            _productos = await _productoService.ListarProductosCboAsync();
+
+            cboProducto.DataSource = _productos;
+            cboProducto.DisplayMember = "Descripcion";
+            cboProducto.ValueMember = "Id";
+            cboProducto.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboProducto.SelectedIndex = -1;
+
+            _clases = await _claseService.ListarClasesCboAsync();
+
+            cboClase.DataSource = _clases;
+            cboClase.DisplayMember = "Descripcion";
+            cboClase.ValueMember = "Id";
+            cboClase.DropDownStyle = ComboBoxStyle.DropDownList;
+    
+
+            _tipoContratos = await _tablaGeneralesService.ObtenerPorTipoGeneralAsync("TIPOCONTRATO");
+
+            cboTipoContrato.DataSource = _tipoContratos;
+            cboTipoContrato.DisplayMember = "Valor";
+            cboTipoContrato.ValueMember = "Codigo";
+            cboTipoContrato.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+
 
         private void btnBuscarEmpresa_Click(object sender, EventArgs e)
         {

@@ -1,13 +1,12 @@
 ﻿using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Request;
+using MinConSys.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,80 +17,49 @@ namespace MinConSys.Modales
         private string _tablaReferencia;
         private int _idReferencia;
         private IAdjuntoService _adjuntoService;
-
-        public string TablaReferencia
-        {
-            get => _tablaReferencia;
-            set
-            {
-                _tablaReferencia = value;
-                CargarAdjuntos();
-            }
-        }
-
-        public int IdReferencia
-        {
-            get => _idReferencia;
-            set
-            {
-                _idReferencia = value;
-                CargarAdjuntos();
-            }
-        }
-
+        private List<Adjunto> _adjuntosTemporales = new List<Adjunto>();
         public AdjuntosViewerControl()
         {
             InitializeComponent();
-            cboTipoDocumento.Items.AddRange(new string[] {
-                    "DNI", "RUC", "Contrato", "Ficha Técnica", "Otro"
-                });
-            cboTipoDocumento.DropDownStyle = ComboBoxStyle.DropDownList;
+            
         }
 
-        public async void SetService(IAdjuntoService service)
+        // Inicializa el control (en lugar de usar propiedades con lógica asíncrona)
+        public async Task InicializarAsync(IAdjuntoService adjuntoService, string tablaReferencia, int idReferencia, List<TablaGeneralesCombo> tiposAdjunto = null)
         {
-            _adjuntoService = service;
-            await CargarAdjuntos(); // Opcional: recarga al asignar servicio
+            _adjuntoService = adjuntoService ?? throw new ArgumentNullException(nameof(adjuntoService));
+            _tablaReferencia = tablaReferencia ?? throw new ArgumentNullException(nameof(tablaReferencia));
+            _idReferencia = idReferencia;
+
+            cboTipoDocumento.ComboBox.DataSource = tiposAdjunto;
+            cboTipoDocumento.ComboBox.DisplayMember = "Valor";
+            cboTipoDocumento.ComboBox.ValueMember = "Codigo";
+
+
+            await CargarAdjuntosAsync();
+
+
         }
 
-        private async Task CargarAdjuntos()
+        private async Task CargarAdjuntosAsync()
         {
             if (string.IsNullOrEmpty(_tablaReferencia) || _idReferencia == 0 || _adjuntoService == null)
                 return;
 
             try
             {
-                List<Adjunto> lista = await _adjuntoService.ListarAdjuntosAsync(_tablaReferencia, _idReferencia);
+                List<AdjuntoDto> lista = await _adjuntoService.ListarAdjuntosAsync(_tablaReferencia, _idReferencia);
                 dgvAdjuntos.DataSource = lista;
-                EstiloGrid();
+                dgvAdjuntos.ConfigurarGenerico(_adjuntosTemporales,false);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los adjuntos: " + ex.Message);
             }
         }
-        private void EstiloGrid()
-        {
-            dgvAdjuntos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvAdjuntos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvAdjuntos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAdjuntos.ReadOnly = true;
-            dgvAdjuntos.AllowUserToAddRows = false;
-            dgvAdjuntos.AllowUserToDeleteRows = false;
-            dgvAdjuntos.MultiSelect = false;
-            dgvAdjuntos.AllowUserToResizeRows = false;
-            dgvAdjuntos.RowHeadersVisible = false;
-
-            foreach (DataGridViewColumn col in dgvAdjuntos.Columns)
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            if (dgvAdjuntos.Columns.Count > 0)
-                dgvAdjuntos.Columns[dgvAdjuntos.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
-
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_tablaReferencia) || _idReferencia == 0 || _adjuntoService == null)
+            if (string.IsNullOrEmpty(_tablaReferencia) /*|| _idReferencia == 0*/ || _adjuntoService == null)
             {
                 MessageBox.Show("No se ha configurado correctamente la tabla o el ID de referencia.");
                 return;
@@ -106,7 +74,7 @@ namespace MinConSys.Modales
                 {
                     string rutaOrigen = ofd.FileName;
                     string nombreArchivo = Path.GetFileName(rutaOrigen);
-                    string tipoDocumento = cboTipoDocumento.SelectedItem?.ToString();
+                    string tipoDocumento = cboTipoDocumento.ComboBox.SelectedValue?.ToString();
 
                     if (string.IsNullOrEmpty(tipoDocumento))
                     {
@@ -114,28 +82,136 @@ namespace MinConSys.Modales
                         return;
                     }
 
-                    // Aquí puedes copiar el archivo a una carpeta específica si deseas
-                    // Por ahora, usaremos la misma ruta
-                    var adjunto = new Adjunto
+                    try
                     {
-                        TablaReferencia = _tablaReferencia,
-                        IdReferencia = _idReferencia,
-                        NombreArchivo = nombreArchivo,
-                        UrlArchivo = rutaOrigen, // O la ruta destino si lo copias
-                        TipoDocumento = tipoDocumento,
-                        FechaCreacion = DateTime.Now,
-                        UsuarioCreacion = Environment.UserName // o el usuario actual
-                    };
+                        var adjunto = new Adjunto
+                        {
+                            TablaReferencia = _tablaReferencia,
+                            IdReferencia = _idReferencia,
+                            NombreArchivo = nombreArchivo,
+                            UrlArchivo = rutaOrigen,
+                            TipoDocumento = tipoDocumento,
+                            FechaCreacion = DateTime.Now,
+                            UsuarioCreacion = Session.UsuarioActual.NombreUsuario
+                        };
 
-                    // Guardar en base de datos
-                    await _adjuntoService.CrearAdjuntoAsync(adjunto);
+                        if (_idReferencia == 0)
+                        {
+                            _adjuntosTemporales.Add(adjunto);
+                            var listaDtos = _adjuntosTemporales.Select(a => ConvertirADto(a)).ToList();
+                            dgvAdjuntos.DataSource = null;
+                            dgvAdjuntos.DataSource = listaDtos;
+                        }
+                        else
+                        {
+                            await _adjuntoService.CrearAdjuntoAsync(adjunto);
+                            await CargarAdjuntosAsync();
+                        }
 
-                    // Recargar adjuntos
-                    await CargarAdjuntos();
+                        //await _adjuntoService.CrearAdjuntoAsync(adjunto);
+                        //await CargarAdjuntosAsync();
 
-                    MessageBox.Show("Archivo adjuntado correctamente.");
+                        MessageBox.Show("Archivo adjuntado correctamente.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al agregar el adjunto: " + ex.Message);
+                    }
                 }
             }
         }
+
+        private void btnDescargar_Click(object sender, EventArgs e)
+        {
+            if (dgvAdjuntos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un archivo.");
+                return;
+            }
+
+            var adjunto = dgvAdjuntos.SelectedRows[0].DataBoundItem as Adjunto;
+            if (adjunto == null || !File.Exists(adjunto.UrlArchivo))
+            {
+                MessageBox.Show("El archivo no existe o no se puede acceder.");
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.FileName = adjunto.NombreArchivo;
+                sfd.Filter = "Todos los archivos|*.*";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        File.Copy(adjunto.UrlArchivo, sfd.FileName, overwrite: true);
+                        MessageBox.Show("Archivo descargado correctamente.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al descargar el archivo: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private async void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvAdjuntos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un archivo.");
+                return;
+            }
+
+            var adjunto = dgvAdjuntos.SelectedRows[0].DataBoundItem as Adjunto;
+            if (adjunto == null)
+                return;
+
+            var confirm = MessageBox.Show($"¿Desea eliminar el archivo '{adjunto.NombreArchivo}'?", "Confirmar", MessageBoxButtons.YesNo);
+            if (confirm != DialogResult.Yes)
+                return;
+
+            try
+            {
+                await _adjuntoService.EliminarAdjuntoAsync(adjunto.IdAdjunto, Session.UsuarioActual.NombreUsuario); // Asegúrate de tener este método
+                await CargarAdjuntosAsync();
+
+                MessageBox.Show("Archivo eliminado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el archivo: " + ex.Message);
+            }
+        }
+
+        private AdjuntoDto ConvertirADto(Adjunto adjunto)
+        {
+            return new AdjuntoDto
+            {
+                IdAdjunto = adjunto.IdAdjunto,
+                TipoDocumento = adjunto.TipoDocumento,
+                NombreArchivo = adjunto.NombreArchivo,
+                UrlArchivo = adjunto.UrlArchivo,
+                UsuarioCreacion = adjunto.UsuarioCreacion,
+                FechaCreacion = adjunto.FechaCreacion
+            };
+        }
+
+        public async Task GuardarAdjuntosTemporalesAsync(int nuevoIdReferencia)
+        {
+            if (_adjuntosTemporales.Count == 0 || _adjuntoService == null)
+                return;
+
+            foreach (var adjunto in _adjuntosTemporales)
+            {
+                adjunto.IdReferencia = nuevoIdReferencia;
+                await _adjuntoService.CrearAdjuntoAsync(adjunto);
+            }
+
+            _adjuntosTemporales.Clear();
+            _idReferencia = nuevoIdReferencia; // Esto también recarga
+        }
+
     }
 }

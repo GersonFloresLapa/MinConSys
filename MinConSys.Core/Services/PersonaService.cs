@@ -1,7 +1,10 @@
 ﻿using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Interfaces.Services;
 using MinConSys.Core.Models;
+using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Common;
 using MinConSys.Core.Models.Dto;
+using MinConSys.Core.Models.Request;
 using MinConSys.Core.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -14,6 +17,7 @@ namespace MinConSys.Core.Services
     public class PersonaService : IPersonaService
     {
         private readonly IPersonaRepository _personaRepository;
+     
 
         public PersonaService(IPersonaRepository personaRepository)
         {
@@ -42,16 +46,16 @@ namespace MinConSys.Core.Services
             return await _personaRepository.GetPersonaByIdAsync(id);
         }
 
-        public async Task<int> CrearPersonaAsync(Persona persona)
+        public async Task<int> CrearPersonaAsync(PersonaRequest persona)
         {
-            persona.FechaCreacion = DateTime.Now;
-            persona.Estado = "A";
+            persona.Persona.FechaCreacion = DateTime.Now;
+            persona.Persona.Estado = "A";
             return await _personaRepository.AddPersonaAsync(persona);
         }
 
-        public async Task<bool> ActualizarPersonaAsync(Persona persona)
+        public async Task<bool> ActualizarPersonaAsync(PersonaRequest persona)
         {
-            persona.FechaModificacion = DateTime.Now;
+            persona.Persona.FechaModificacion = DateTime.Now; ;
             return await _personaRepository.UpdatePersonaAsync(persona);
         }
 
@@ -59,5 +63,24 @@ namespace MinConSys.Core.Services
         {
             return await _personaRepository.DeletePersonaAsync(id, nombreUsuario);
         }
+        public async Task<List<ComboItem>> ListarPersonasTiposAsync(string tipo)
+        {
+            var empresas = await _personaRepository.GetPersonasByTipoAsync(tipo); // Debes implementar esto
+            var lista = empresas.Select(e => new ComboItem
+            {
+                Id = e.IdPersona,
+                Descripcion = $"{e.NumeroDocumento} - {e.Nombres}"
+            }).ToList();
+
+            return lista;
+        }
+
+        public async Task<List<TipoPersona>> ObtenerTipoPersonaPorPersonaAsync(int idPersona)
+        {
+            return await _personaRepository.GetTipoPersonaByPersonaAsync(idPersona);
+        }
+
+
+
     }
 }

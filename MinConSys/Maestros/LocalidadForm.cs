@@ -17,13 +17,17 @@ namespace MinConSys
     public partial class LocalidadForm : Form
     {
         private readonly ILocalidadService _localidadService;
+        private readonly IEmpresaService _empresaService;
+        private readonly ITablaGeneralesService _tablaGeneralesService;
         private List<LocalidadDto> _localidad;
 
-        public LocalidadForm(ILocalidadService localidadService)
+        public LocalidadForm(ILocalidadService localidadService, IEmpresaService empresaService, ITablaGeneralesService tablaGeneralesService)
         {
             InitializeComponent();
             _localidadService = localidadService;
- 
+            _empresaService = empresaService;
+            _tablaGeneralesService = tablaGeneralesService;
+
         }
 
         private async void LocalidadForm_Load(object sender, EventArgs e)
@@ -48,7 +52,7 @@ namespace MinConSys
 
         private async void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var form = new LocalidadEditForm(_localidadService,0 ))
+            using (var form = new LocalidadEditForm(_localidadService,_empresaService, _tablaGeneralesService,0))
             {
 
                 var result = form.ShowDialog();
@@ -63,7 +67,7 @@ namespace MinConSys
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             int idLocalidad = Convert.ToInt32(dgvLocalidades.CurrentRow.Cells["IdLocalidad"].Value);
-            using (var form = new LocalidadEditForm(_localidadService , idLocalidad))
+            using (var form = new LocalidadEditForm(_localidadService, _empresaService, _tablaGeneralesService, idLocalidad))
             {
                 var result = form.ShowDialog();
 

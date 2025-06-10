@@ -15,8 +15,8 @@ namespace MinConSys.Core.Models.Base
         public DateTime FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
         public string TipoContrato { get; set; }
-        public string Clase { get; set; }
-        public string Producto { get; set; }
+        public int IdClase { get; set; }
+        public int IdProducto { get; set; }
         public string Estado { get; set; }
         public string UsuarioCreacion { get; set; }
         public DateTime? FechaCreacion { get; set; }

@@ -59,6 +59,9 @@
     <Compile Include="Repositories\AdjuntoRepository.cs" />
     <Compile Include="Repositories\BalanzaRepository.cs" />
     <Compile Include="Repositories\ClaseRepository.cs" />
+    <Compile Include="Repositories\CuentaBancariaRepository.cs" />
+    <Compile Include="Repositories\LeyRepository.cs" />
+    <Compile Include="Repositories\RumaRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
     <Compile Include="Repositories\ContratoRepository.cs" />
     <Compile Include="Repositories\EmpresaRepository.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Repositories\LocalidadRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\ProductoRepository.cs" />
+    <Compile Include="Repositories\RepresentanteRepository.cs" />
     <Compile Include="Repositories\RolMenuPermisoRepository.cs" />
     <Compile Include="Repositories\RolRepository.cs" />
     <Compile Include="Repositories\TablaGeneralesRepository.cs" />

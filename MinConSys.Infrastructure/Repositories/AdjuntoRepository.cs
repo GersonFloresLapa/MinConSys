@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using MinConSys.Core.Interfaces.Repository;
 using MinConSys.Core.Models.Base;
+using MinConSys.Core.Models.Dto;
 using MinConSys.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace MinConSys.Infrastructure.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<List<Adjunto>> ObtenerAdjuntosPorEntidadAsync(string tablaReferencia, int idReferencia)
+        public async Task<List<AdjuntoDto>> ObtenerAdjuntosPorEntidadAsync(string tablaReferencia, int idReferencia)
         {
             using (var connection = await _connectionFactory.GetConnection())
             {
@@ -26,6 +27,7 @@ namespace MinConSys.Infrastructure.Repositories
                     IdAdjunto,
                     TablaReferencia,
                     IdReferencia,
+                    TipoDocumento,
                     NombreArchivo,
                     UrlArchivo,
                     Estado,
@@ -36,7 +38,7 @@ namespace MinConSys.Infrastructure.Repositories
                 FROM Adjuntos
                 WHERE TablaReferencia = @tabla AND IdReferencia = @id AND Estado = 'A'";
 
-                var adjuntos = await connection.QueryAsync<Adjunto>(sql, new { tabla = tablaReferencia, id = idReferencia });
+                var adjuntos = await connection.QueryAsync<AdjuntoDto>(sql, new { tabla = tablaReferencia, id = idReferencia });
                 return adjuntos.ToList();
             }
         }
@@ -51,6 +53,7 @@ namespace MinConSys.Infrastructure.Repositories
                     string sql = @"INSERT INTO Adjuntos (
                         TablaReferencia,
                         IdReferencia,
+                        TipoDocumento,
                         NombreArchivo,
                         UrlArchivo,
                         Estado,
@@ -59,6 +62,7 @@ namespace MinConSys.Infrastructure.Repositories
                     ) VALUES (
                         @TablaReferencia,
                         @IdReferencia,
+                        @TipoDocumento,
                         @NombreArchivo,
                         @UrlArchivo,
                         @Estado,

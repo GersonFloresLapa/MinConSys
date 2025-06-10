@@ -26,9 +26,9 @@ namespace MinConSys.Infrastructure.Repositories
             {
                 string sql = @"SELECT	C.IdContrato,
 		                                C.CodigoContrato,
-		                                C.TipoContrato,
-		                                C.Clase,
-		                                C.Producto,
+		                                TG.Valor TipoContrato,
+		                                CL.Descripcion Clase,
+		                                PR.NombreCompleto Producto,
 		                                E.RazonSocial Empresa,
 		                                P.RazonSocial Proveedor,
 		                                C.FechaInicio,
@@ -36,6 +36,9 @@ namespace MinConSys.Infrastructure.Repositories
                                 FROM Contratos C
                                 INNER JOIN Empresas E ON C.IdEmpresa = E.IdEmpresa
                                 INNER JOIN Empresas P ON C.IdProveedor = P.IdEmpresa
+								INNER JOIN Clase CL ON C.IdClase = CL.IdClase
+								INNER JOIN Producto PR ON C.IdProducto = PR.IdProducto
+								INNER JOIN TablaGenerales TG ON TG.Codigo = C.TipoContrato and TipoGeneral = 'TIPOCONTRATO'
                                 WHERE  C.Estado = 'A'";
                 var contratos = await connection.QueryAsync<ContratoDto>(sql);
                 return contratos.ToList();
@@ -65,8 +68,8 @@ namespace MinConSys.Infrastructure.Repositories
                         FechaInicio,
                         FechaFin,
                         TipoContrato,
-                        Clase,
-                        Producto,
+                        IdClase,
+                        IdProducto,
                         Estado,
                         UsuarioCreacion,
                         FechaCreacion
@@ -77,8 +80,8 @@ namespace MinConSys.Infrastructure.Repositories
                         @FechaInicio,
                         @FechaFin,
                         @TipoContrato,
-                        @Clase,
-                        @Producto,
+                        @IdClase,
+                        @IdProducto,
                         @Estado,
                         @UsuarioCreacion,
                         GETDATE()
@@ -111,8 +114,8 @@ namespace MinConSys.Infrastructure.Repositories
                         FechaInicio = @FechaInicio,
                         FechaFin = @FechaFin,
                         TipoContrato = @TipoContrato,
-                        Clase = @Clase,
-                        Producto = @Producto,
+                        IdClase = @IdClase,
+                        IdProducto = @IdProducto,
                         UsuarioModificacion = @UsuarioModificacion,
                         FechaModificacion = GETDATE()
                     WHERE IdContrato = @IdContrato AND Estado = 'A'";
@@ -156,6 +159,35 @@ namespace MinConSys.Infrastructure.Repositories
                     transaction.Rollback();
                     throw;
                 }
+            }
+        }
+
+        public async Task<List<Contrato>> GetContratoCboAsync(int? idEmpresa, int? idProveedor)
+        {
+            using (var connection = await _connectionFactory.GetConnection())
+            {
+                var sql = new StringBuilder(@"SELECT 
+                                            IdContrato,
+                                            CodigoContrato
+                                            FROM Contratos
+                                            WHERE Estado = 'A'");
+
+                var parameters = new DynamicParameters();
+
+                if (idEmpresa.HasValue)
+                {
+                    sql.Append(" AND IdEmpresa = @IdEmpresa");
+                    parameters.Add("IdEmpresa", idEmpresa.Value);
+                }
+
+                if (idProveedor.HasValue)
+                {
+                    sql.Append(" AND IdProveedor = @IdProveedor");
+                    parameters.Add("IdProveedor", idProveedor.Value);
+                }
+
+                var balanzas = await connection.QueryAsync<Contrato>(sql.ToString(), parameters);
+                return balanzas.ToList();
             }
         }
     }

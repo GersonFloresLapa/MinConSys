@@ -14,5 +14,6 @@ namespace MinConSys.Core.Interfaces.Repository
         Task<int> AddBalanzaAsync(Balanza balanza);
         Task<bool> UpdateBalanzaAsync(Balanza balanza);
         Task<bool> DeleteBalanzaAsync(int id, string usuario);
+        Task<List<Balanza>> GetBalanzaCboAsync();
     }
 }

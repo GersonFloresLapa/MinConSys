@@ -30,28 +30,21 @@ namespace MinConSys.Maestros
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnGuardar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(800, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 425);
-            this.panel1.TabIndex = 1;
             // 
             // btnGuardar
             // 
@@ -59,9 +52,17 @@ namespace MinConSys.Maestros
             this.btnGuardar.Image = global::MinConSys.Properties.Resources.Guardar;
             this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
+            this.btnGuardar.Size = new System.Drawing.Size(36, 36);
             this.btnGuardar.Text = "toolStripButton1";
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 411);
+            this.panel1.TabIndex = 1;
             // 
             // EditForm
             // 

@@ -50,6 +50,10 @@ namespace MinConSys.DI
             services.AddScoped<IRolRepository, RolRepository>();
             services.AddScoped<IAdjuntoRepository, AdjuntoRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<IRepresentanteRepository, RepresentanteRepository>();
+            services.AddScoped<IRumaRepository, RumaRepository>();
+            services.AddScoped<ICuentaBancariaRepository, CuentaBancariaRepository>();
+            services.AddScoped<ILeyRepository, LeyRepository>();
             // Más repositorios...
 
             // Registrar servicios de negocio
@@ -69,6 +73,10 @@ namespace MinConSys.DI
             services.AddScoped<IRolService, RolService>();
             services.AddScoped<IAdjuntoService, AdjuntoService>();
             services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<IRepresentanteService, RepresentanteService>();
+            services.AddScoped<IRumaService, RumaService>();
+            services.AddScoped<ICuentaBancariaService, CuentaBancariaService>();
+            services.AddScoped<ILeyService, LeyService>();
             // Más servicios...
 
             return services.BuildServiceProvider();
